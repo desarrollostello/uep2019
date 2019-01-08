@@ -15,40 +15,40 @@
             <thead>
             <tr>
                 <th>CONCEPTO</th>
-                <th  class="text-center form-control" width="15%">SI / NO</th>
-                <th  class="text-center form-control" width="10%">%</th>
-                <th  class="text-center form-control" width="50%">RAZONES</th>
+                <th style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center" width="15%">SI / NO</th>
+                <th style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center" width="10%">%</th>
+                <th style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center" width="50%">RAZONES</th>
                 
             </tr>
             </thead>
            
             <tbody>
                 <tr>
-                    <td>Materia Prima</td>
-                    <td class="text-center form-control"> {{ $seguimiento->m_p_si_no_13 }}  </td>
-                    <td class="form-control"> {{ $seguimiento->m_p_porcentaje_13 }}  </td>
-                    <td class="form-control"> {{ $seguimiento->m_p_razones_13 }}  </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;">Materia Prima</td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->m_p_si_no_13 }}  </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->m_p_porcentaje_13 }}  </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->m_p_razones_13 }}  </td>
                 </tr>
 
                 <tr>
-                    <td>Insumos</td>
-                    <td class="text-center form-control"> {{ $seguimiento->insumos_si_no_13 }} </td>
-                    <td class="form-control">  {{ $seguimiento->insumos_porcentaje_13 }} </td>
-                    <td class="form-control"> {{ $seguimiento->insumos_razones_13 }} </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;">Insumos</td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->insumos_si_no_13 }} </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center">  {{ $seguimiento->insumos_porcentaje_13 }} </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->insumos_razones_13 }} </td>
                 </tr>
 
                 <tr>
-                    <td>Mano de Obra</td>
-                    <td class="text-center form-control"> {{ $seguimiento->mano_obra_si_no_13 }} </td>
-                    <td class="form-control"> {{ $seguimiento->mano_obra_porcentaje_13 }}  </td>
-                    <td class="form-control"> {{ $seguimiento->mano_obra_razones_13 }}  </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;">Mano de Obra</td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->mano_obra_si_no_13 }} </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->mano_obra_porcentaje_13 }}  </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->mano_obra_razones_13 }}  </td>
                 </tr>
 
                 <tr>
-                    <td>Otros</td>
-                    <td class="text-center form-control"> {{ $seguimiento->otros_si_no_13 }}  </td>
-                    <td class="form-control"> {{ $seguimiento->otros_porcentaje_13 }}   </td>
-                    <td class="form-control"> {{ $seguimiento->otros_razones_13 }}  </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;">Otros</td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->otros_si_no_13 }}  </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->otros_porcentaje_13 }}   </td>
+                    <td style="height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->otros_razones_13 }}  </td>
                 </tr>
               
             </tbody>

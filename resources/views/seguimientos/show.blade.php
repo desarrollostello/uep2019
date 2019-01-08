@@ -1,19 +1,19 @@
 @extends('adminlte::layouts.app')
 @section('htmlheader_title')
-    Proyectos
+    Seguimientos
 @endsection
 
 @section('main-content')
 <div class="container">
     <div class="row">
-        <div class="col-md-11">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading" style="padding-bottom: 20px;">
                     <div class="row">
                         <div class="col-md-5 pull-left"><h4>Editando Proyecto</h4></div>
                         <div class="col-md-5 pull-right">
 
-                            <a href="{{ route('proyecto.index') }}" class="btn btn-sm btn-primary pull-right">
+                            <a href="{{ route('seguimiento.index') }}" class="btn btn-sm btn-primary pull-right">
                             Volver
                             </a>
                         </div>
@@ -39,53 +39,53 @@
                                        
                                     </ul>
                                 </div>
-                                <div class="panel-body">
+                                
                                     <div class="tab-content">
-                                          <div class="tab-pane fade in active" id="pagina1">
+                                          <div class="tab-pane fade in active" id="show_pagina1">
                                                 @include('seguimientos.show_pagina1')
                                           </div>
                                           <!-- ******** FIN CAMPOS OBLIGATORIOS ****** -->
-                                          <div class="tab-pane fade" id="pagina2">
+                                          <div class="tab-pane fade" id="show_pagina2">
                                               @include('seguimientos.show_pagina2')
                                           </div>
 
-                                          <div class="tab-pane fade" id="pagina3">
+                                          <div class="tab-pane fade" id="show_pagina3">
                                                 @include('seguimientos.show_pagina3')
                                           </div>
 
-                                          <div class="tab-pane fade" id="pagina4">
+                                          <div class="tab-pane fade" id="show_pagina4">
                                               @include('seguimientos.show_pagina4')
                                           </div>
-                                           <div class="tab-pane fade" id="pagina5">
+                                           <div class="tab-pane fade" id="show_pagina5">
                                               @include('seguimientos.show_pagina5')
                                           </div>
 
-                                           <div class="tab-pane fade" id="pagina6">
+                                           <div class="tab-pane fade" id="show_pagina6">
                                               @include('seguimientos.show_pagina6')
                                           </div>
 
-                                           <div class="tab-pane fade" id="pagina7">
+                                           <div class="tab-pane fade" id="show_pagina7">
                                               @include('seguimientos.show_pagina7')
                                           </div>
 
-                                           <div class="tab-pane fade" id="pagina8">
+                                           <div class="tab-pane fade" id="show_pagina8">
                                               @include('seguimientos.show_pagina8')
                                           </div>
 
-                                           <div class="tab-pane fade" id="pagina9">
+                                           <div class="tab-pane fade" id="show_pagina9">
                                               @include('seguimientos.show_pagina9')
                                           </div>
 
-                                           <div class="tab-pane fade" id="pagina10">
+                                           <div class="tab-pane fade" id="show_pagina10">
                                               @include('seguimientos.show_pagina10')
                                           </div>
 
-                                          <div class="tab-pane fade" id="anexos">
+                                          <div class="tab-pane fade" id="show_anexos">
                                             @include('seguimientos.show_anexos')
                                           </div>
                                           
                                     </div>
-                                </div>
+                                
                             </div>
                         </div>
                         <br /><br />

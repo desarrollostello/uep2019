@@ -82,18 +82,18 @@
 </div>
 
 <div class="row">
-  <div class="form-group col-sm-5">
+  <div class="form-group col-sm-6">
       <table id="table" class="table table-striped table-bordered">
           <thead>
           <tr>
-              <th class="text-center form-control">SI / NO</th>
-              <th class="text-center form-control">MONTO APROXIMADO</th>
+              <th style="width: 50%; height: 40px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center">SI / NO</th>
+              <th style="width: 50%; height: 40px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center">MONTO APROXIMADO</th>
           </tr>
           </thead>
           <tbody>
               <tr>
-                  <td class="form-control"> {{ $seguimiento->nuevas_inv_si_no }}   </td> 
-                  <td class="form-control"> {{ $seguimiento->monto_aprox_nuevas_inversiones }}  </td> 
+                  <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->nuevas_inv_si_no }}   </td> 
+                  <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->monto_aprox_nuevas_inversiones }}  </td> 
               </tr>
           </tbody>
       </table>

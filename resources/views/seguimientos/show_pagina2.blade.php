@@ -2,22 +2,21 @@
 <!--- INICIO PAGINA 2 --->
 
 <div class="row">
-  <div class="form-group col-sm-8">
-
+  <div class="form-group col-sm-6">
         <table id="table" class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th class="text-center">Cant. de Cuotas</th>
-                <th class="text-center">Frec. Cap.</th>
-                <th class="text-center">Frec. Int.</th>
+                <th style="width: 33%; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center">Cant. de Cuotas</th>
+                <th style="width: 33%; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center">Frec. Cap.</th>
+                <th style="width: 33%; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center">Frec. Int.</th>
             </tr>
             </thead>
            
             <tbody>
                 <tr>
-                    <td class="text-center form-control"> {{ $seguimiento->cant_cuotas }} </td>
-                    <td class="text-center form-control"> {{ $seguimiento->frecuencia_amortizacion }} </td>
-                    <td class="text-center form-control"> {{ $seguimiento->frecuencia_gracia }} </td>
+                    <td style="width: 33%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->cant_cuotas }} </td>
+                    <td style="width: 33%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->frecuencia_amortizacion }} </td>
+                    <td style="width: 33%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->frecuencia_gracia }} </td>
                 </tr>
               
             </tbody>
@@ -69,31 +68,31 @@
       <table id="table" class="table table-striped table-bordered">
           <thead>
           <tr>
-              <th  class="text-center" width="50%">NUEVA RAZÓN SOCIAL O APELLIDO Y NOMBRES</th>
-              <th  class="text-center" width="50%">DOMICILIO Y TELEFONO</th>
+              <th style="color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center" width="50%">NUEVA RAZÓN SOCIAL O APELLIDO Y NOMBRES</th>
+              <th style="color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center" width="50%">DOMICILIO Y TELEFONO</th>
               
           </tr>
           </thead>
          
           <tbody>
               <tr>
-                  <td class="form-control"> {{ $seguimiento->especificar_nombre1 }} </td>
-                  <td class="text-center form-control"> {{ $seguimiento->especificar_domicilio_telefono1 }} </td>
+                  <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->especificar_nombre1 }} </td>
+                  <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->especificar_domicilio_telefono1 }} </td>
                   
               </tr>
               <tr>
-                  <td class="form-control"> {{ $seguimiento->especificar_nombre2 }} </td>
-                  <td class="text-center form-control"> {{ $seguimiento->especificar_domicilio_telefono2 }} </td>
+                  <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->especificar_nombre2 }} </td>
+                  <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->especificar_domicilio_telefono2 }} </td>
                   
               </tr>
               <tr>
-                <td class="form-control"> {{ $seguimiento->especificar_nombre3 }} </td>
-                <td class="text-center form-control"> {{ $seguimiento->especificar_domicilio_telefono3 }} </td>
+                <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->especificar_nombre3 }} </td>
+                <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->especificar_domicilio_telefono3 }} </td>
                 
               </tr>
               <tr>
-                <td class="form-control"> {{ $seguimiento->especificar_nombre4 }} </td>
-                <td class="text-center form-control"> {{ $seguimiento->especificar_domicilio_telefono4 }} </td>
+                <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->especificar_nombre4 }} </td>
+                <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center"> {{ $seguimiento->especificar_domicilio_telefono4 }} </td>
               </tr>
           </tbody>
       </table>

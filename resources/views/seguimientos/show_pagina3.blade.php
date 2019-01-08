@@ -9,20 +9,20 @@
 
 
 <div class="row">
-  <div class="form-group col-sm-8">
+  <div class="form-group col-sm-6">
       <table id="table" class="table table-striped table-bordered">
           <thead>
           <tr>
-              <th class="text-center form-control">Nueva o Ampliación</th>
-              <th class="text-center form-control">SI / NO* / PARCIAL*</th>
+              <th style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center">Nueva o Ampliación</th>
+              <th style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;" class="text-center">SI / NO* / PARCIAL*</th>
               
           </tr>
           </thead>
          
           <tbody>
               <tr>
-                  <td class="form-control"> {{ $seguimiento->puesta_en_marcha_nuevo_ampliacion }} </td> <!-- N o A -->
-                  <td class="form-control"> {{ $seguimiento->puesta_en_marcha_si_no_parcial }} </td>
+                  <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;"> {{ $seguimiento->puesta_en_marcha_nuevo_ampliacion }} </td> <!-- N o A -->
+                  <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;"> {{ $seguimiento->puesta_en_marcha_si_no_parcial }} </td>
                   
               </tr>
             
@@ -171,16 +171,16 @@
       <table id="table" class="table table-striped table-bordered">
           <thead>
           <tr>
-              <th class="form-control">SI / NO* / PARCIAL*</th>
-              <th class="form-control">% del Desvío</th>
+              <th style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;">SI / NO* / PARCIAL*</th>
+              <th style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;">% del Desvío</th>
           </tr>
           </thead>
          
           <tbody>
               <tr>
                   
-                  <td class="form-control"> {{ $seguimiento->inv_previstas_si_no }}   </td>
-                  <td id="porcentaje_desvio" class="form-control"> {{ $seguimiento->inv_previstas_desvios }} </td> 
+                  <td style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;"> {{ $seguimiento->inv_previstas_si_no }}   </td>
+                  <td id="porcentaje_desvio" style="width: 50%; height: 34px; padding: 6px 12px; font-size: 12px; line-height: 1.42857143; color: #555555; background-color: #fff;background-image: none; border: 1px solid #ccc;"> {{ $seguimiento->inv_previstas_desvios }} </td> 
               </tr>
             
           </tbody>
