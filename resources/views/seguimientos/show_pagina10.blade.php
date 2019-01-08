@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-        {{ $seguimiento->22_opinion_responsable }}
+        <span class="form-control">   {{ $seguimiento->opinion_responsable_22 }} </span>
           
     </div>
 </div>

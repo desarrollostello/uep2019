@@ -1,50 +1,46 @@
     <div class="row">
         <div class="form-group col-sm-10">
-            {!! Form::label('proyecto_id', 'Proyecto') !!}
-            <input type="text" id="proyecto_nombre" class="form-control" name="proyecto_nombre" value="{{ $proyecto->nombre  }}" disabled />
-            <input style="visibility:hidden" type="text" id="proyecto_id" class="form-control" name="proyecto_id" value="{{ $proyecto->id }}" />
+            Proyecto
+          <p class="form-control" style="margin-bottom: 0px">  {{ $seguimiento->proyecto->nombre  }} </p>
         </div>
     </div>
-    
-@endif
-
 
 <br>
 <div class="row">
       <div class="form-group col-sm-2">
             Fecha
-            {{ $seguimiento->fechaSeguimiento  }}
+          <span class="form-control">  {{ $seguimiento->fechaSeguimiento  }} </span>
       </div>
       <div class="form-group col-sm-2">
             Nro Entrevista
-            {{ $seguimiento->nro_entrevista  }}
+            <span class="form-control"> {{ $seguimiento->nro_entrevista  }} </span>
       </div>
       <div class="form-group col-sm-2">
             Grado Morosidad
-            {{ $seguimiento->grado_morosidad  }}
+            <span class="form-control"> {{ $seguimiento->grado_morosidad  }} </span>
       </div>
       <div class="form-group col-sm-3">
           Tipo de Proyecto
-          {{ $seguimiento->tipo_proyecto  }}
+          <span class="form-control"> {{ $seguimiento->tipo_proyecto  }} </span>
       </div>
 </div>
 
 <div class="row">
     <div class="form-group col-sm-5">
         2. EVALUADOR SECTORIAL DEL CFI
-        {{ $seguimiento->profesional_cfi  }}
+        <span class="form-control">    {{ $seguimiento->profesional_cfi  }} </span>
     </div>
 
      <div class="form-group col-sm-5">
         TÉCNICO UEP
-        {{ $seguimiento->profesional_uep  }}
+        <span class="form-control">  {{ $seguimiento->profesional_uep  }} </span>
     </div>
 </div>
 
 <div class="row">
    <div class="form-group col-sm-10">
         3. LOCALIZACIÓN DEL PROYECTO
-        {{ $seguimiento->localizacion  }}
+        <span class="form-control">  {{ $seguimiento->localizacion  }} </span>
     </div>
 </div>
 
@@ -67,19 +63,19 @@
          
           <tbody>
               <tr>
-                  <td class="text-center"> {{ $seguimiento->beneficiario1 }} </td>
-                  <td class="text-center"> {{ $seguimiento->domicilio_beneficiario1 }} </td>
-                  <td class="text-center"> {{ $seguimiento->telefono_beneficiario1 }} </td>
+                  <td class="text-center forn-control"> {{ $seguimiento->beneficiario1 }} </td>
+                  <td class="text-center forn-control"> {{ $seguimiento->domicilio_beneficiario1 }} </td>
+                  <td class="text-center forn-control"> {{ $seguimiento->telefono_beneficiario1 }} </td>
               </tr>
               <tr>
-                  <td class="text-center"> {{ $seguimiento->beneficiario2 }} </td>
-                  <td class="text-center"> {{ $seguimiento->domicilio_beneficiario2 }} </td>
-                  <td class="text-center"> {{ $seguimiento->telefono_beneficiario2 }} </td>
+                  <td class="text-center forn-control"> {{ $seguimiento->beneficiario2 }} </td>
+                  <td class="text-center forn-control"> {{ $seguimiento->domicilio_beneficiario2 }} </td>
+                  <td class="text-center forn-control"> {{ $seguimiento->telefono_beneficiario2 }} </td>
               </tr>
               <tr>
-                  <td class="text-center"> {{ $seguimiento->beneficiario3 }} </td>
-                  <td class="text-center"> {{ $seguimiento->domicilio_beneficiario3 }} </td>
-                  <td class="text-center"> {{ $seguimiento->telefono_beneficiario3 }} </td>
+                  <td class="text-center forn-control"> {{ $seguimiento->beneficiario3 }} </td>
+                  <td class="text-center forn-control"> {{ $seguimiento->domicilio_beneficiario3 }} </td>
+                  <td class="text-center forn-control"> {{ $seguimiento->telefono_beneficiario3 }} </td>
               </tr>
           </tbody>
       </table>
@@ -97,17 +93,17 @@
         <table id="table" class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th class="text-center">Permanentes</th>
-                <th class="text-center">Temporario</th>
-                <th class="text-center">A Incorporar</th>
+                <th class="text-center forn-control">Permanentes</th>
+                <th class="text-center forn-control">Temporario</th>
+                <th class="text-center forn-control">A Incorporar</th>
             </tr>
             </thead>
            
             <tbody>
                 <tr>
-                    <td class="text-center"> {!! Form::text('personal_permanente', null, ['class' => 'form-control']) !!} </td>
-                    <td class="text-center"> {!! Form::text('personal_temporario', null, ['class' => 'form-control']) !!} </td>
-                    <td class="text-center"> {!! Form::text('personal_a_incorporar', null, ['class' => 'form-control']) !!} </td>
+                    <td class="text-center forn-control"> {{ $seguimiento->personal_permanente }}   </td>
+                    <td class="text-center forn-control"> {{ $seguimiento->personal_temporario }}  </td>
+                    <td class="text-center forn-control"> {{ $seguimiento->personal_a_incorporar }}  </td>
                 </tr>
               
             </tbody>
@@ -131,10 +127,10 @@
             
       </div>
       <div class="form-group col-sm-2">
-            {!! Form::text('credito_cfi', null, ['class' =>'form-control', 'required', 'minlength' =>'6'] ) !!}
-            {!! Form::text('credito_otros_bancos', null, ['class' =>'form-control'] ) !!}
-            {!! Form::text('aporte_propio', null, ['class' =>'form-control', 'required', 'minlength' =>'1'] ) !!}
-            {!! Form::text('credito_proveedores', null, ['class' =>'form-control'] ) !!}
+          <p class="form-control" style="margin-bottom: 0px"> {{ $seguimiento->credito_cfi }}</p>
+          <p class="form-control" style="margin-bottom: 0px">{{ $seguimiento->credito_otros_bancos }} </p>
+          <p class="form-control" style="margin-bottom: 0px">{{ $seguimiento->aporte_propio }} </p>
+          <p class="form-control" style="margin-bottom: 0px">{{ $seguimiento->credito_proveedores }} </p>
       </div>
       <div class="form-group col-sm-3" style="text-align: right">
             <label style="border: none; margin-bottom: 0" class="form-control" for="inv_preinversion">Preinversión</label>
@@ -145,10 +141,11 @@
             
       </div>
       <div class="form-group col-sm-2">
-            {!! Form::text('inv_preinversion', null, ['class' =>'form-control'] ) !!}
-            {!! Form::text('inv_activo_fijo', null, ['class' =>'form-control', 'required', 'minlength' =>'4'] ) !!}
-            {!! Form::text('inv_ct', null, ['class' =>'form-control', 'required', 'minlength' =>'1'] ) !!}
-            {!! Form::text('prefinanciacion', null, ['class' =>'form-control'] ) !!}
+          <p class="form-control" style="margin-bottom: 0px">{{ $seguimiento->inv_preinversion }} </p>
+          <p class="form-control" style="margin-bottom: 0px">{{ $seguimiento->inv_activo_fijo }} </p>
+          <p class="form-control" style="margin-bottom: 0px">{{ $seguimiento->inv_ct }} </p>
+          <p class="form-control" style="margin-bottom: 0px">{{ $seguimiento->prefinanciacion }} </p>
+
       </div>
      
 </div>
@@ -160,7 +157,7 @@
 </div>
 <div class="row">
     <div class="form-group col-sm-11">
-          {!! Form::textarea('detalle_inversiones', null, ['class' => 'form-control', 'rows' => 3, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
+      <span class="form-control">   {{ $seguimiento->detalle_inversiones }}  </span>
     </div>
 </div>
 
@@ -173,6 +170,6 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-          {!! Form::textarea('plazos_frecuencias_vigentes', null, ['class' => 'form-control', 'rows' => 3, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
+      <span class="form-control">   {{ $seguimiento->plazos_frecuencias_vigentes }} </span>
     </div>
 </div>

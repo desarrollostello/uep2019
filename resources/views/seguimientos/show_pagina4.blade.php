@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="form-group col-sm-3">
-        {{ $seguimiento->inv_verificacion_si_no }}
+        <span class="form-control"> {{ $seguimiento->inv_verificacion_si_no }} </span>
     </div>
 </div>
 
@@ -20,13 +20,13 @@
       <table id="table" class="table table-striped table-bordered">
           <thead>
           <tr>
-              <th>* FORMA DE VERIFICACION</th>
+              <th class="form-control">* FORMA DE VERIFICACION</th>
           </tr>
           </thead>
          
           <tbody>
               <tr>
-                  <td> {{ $seguimiento->forma_de_verificacion }}</td>
+                  <td class="form-control"> {{ $seguimiento->forma_de_verificacion }}</td>
               </tr>
             
           </tbody>
@@ -48,12 +48,12 @@
         <table id="table" class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th>SI / NO* / PARCIAL*</th>
+                <th class="form-control">SI / NO* / PARCIAL*</th>
             </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td> {{ $seguimiento->inv_proyectadas_si_no }}   </td> 
+                    <td class="form-control"> {{ $seguimiento->inv_proyectadas_si_no }}   </td> 
                 </tr>
             </tbody>
         </table>
@@ -68,7 +68,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-         {{ $seguimiento->11_5_inv_proyectadas_razones }}  
+         <span class="form-control"> {{ $seguimiento->razones_11_5 }}   </span>
           
     </div>
 </div>
@@ -86,14 +86,14 @@
       <table id="table" class="table table-striped table-bordered">
           <thead>
           <tr>
-              <th class="text-center">SI / NO</th>
-              <th class="text-center">MONTO APROXIMADO</th>
+              <th class="text-center form-control">SI / NO</th>
+              <th class="text-center form-control">MONTO APROXIMADO</th>
           </tr>
           </thead>
           <tbody>
               <tr>
-                  <td> {{ $seguimiento->nuevas_inv_si_no }}   </td> 
-                  <td> {{ $seguimiento->monto_aprox_nuevas_inversiones }}  </td> 
+                  <td class="form-control"> {{ $seguimiento->nuevas_inv_si_no }}   </td> 
+                  <td class="form-control"> {{ $seguimiento->monto_aprox_nuevas_inversiones }}  </td> 
               </tr>
           </tbody>
       </table>
@@ -109,7 +109,7 @@
 
 <div class="row">
     <div class="form-group col-sm-9">
-      {{ $seguimiento->12_1_detalle_nuevas_inversiones }}   
+     <span class="form-control">  {{ $seguimiento->d_nuevas_inv_12_1 }}   </span>
           
     </div>
 </div>
@@ -125,7 +125,7 @@
 
 <div class="row">
     <div class="form-group col-sm-3">
-        {{ $seguimiento->nuevas_inv_verificacion_si_no }} 
+      <span class="form-control">   {{ $seguimiento->nuevas_inv_verificacion_si_no }} </span>
     </div>
     <div class="form-group col-sm-5">
         <table id="table" class="table table-striped table-bordered">
@@ -137,7 +137,7 @@
            
             <tbody>
                 <tr>
-                    <td>  {{ $seguimiento->forma_verificacion_nuevas_inv }} </td>
+                    <td class="form-control">  {{ $seguimiento->forma_verificacion_nuevas_inv }} </td>
                     
                 </tr>
               

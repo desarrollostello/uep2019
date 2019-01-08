@@ -99,7 +99,7 @@ class SeguimientoRequest extends FormRequest
                     'problema_5'   => 'nullable',
                     'problema_6'   => 'nullable',
                     'problema_7'   => 'nullable',
-                    '10_2_describir_razones_consignadas'   => 'nullable',
+                    'razones_10_2'   => 'nullable',
                     'inv_previstas_si_no'   => 'nullable',
                     'inv_previstas_desvios'   => 'nullable',
 
@@ -112,15 +112,15 @@ class SeguimientoRequest extends FormRequest
                     'desvio_inv_problema_7'   => 'nullable',
                     'desvio_inv_problema_8'   => 'nullable',
 
-                    '11_2_describir_razones_consignadas'   => 'nullable',
+                    'razones_11_2'   => 'nullable',
 
                     'inv_verificacion_si_no'   => 'nullable',
                     'forma_de_verificacion'   => 'nullable',
                     'inv_proyectadas_si_no'   => 'nullable',
-                    '11_5_inv_proyectadas_razones'   => 'nullable',
+                    'razones_11_5'   => 'nullable',
                     'nuevas_inv_si_no'   => 'nullable',
                     'monto_aprox_nuevas_inversiones'   => 'nullable',
-                    '12_1_detalle_nuevas_inversiones'   => 'nullable',
+                    'd_nuevas_inv_12_1'   => 'nullable',
                     'nuevas_inv_verificacion_si_no'   => 'nullable',
                     'forma_verificacion_nuevas_inv'   => 'nullable',
 
@@ -129,28 +129,28 @@ class SeguimientoRequest extends FormRequest
                     'pagina4_12_3_disminucion_costos'   => 'nullable',
                     'pagina4_12_3_otros'   => 'nullable',
 
-                    '13_materia_prima_si_no'   => 'nullable',
-                    '13_materia_prima_porcentaje'   => 'nullable',
-                    '13_materia_prima_razones'   => 'nullable',
+                    'm_p_si_no_13'   => 'nullable',
+                    'm_p_porcentaje_13'   => 'nullable',
+                    'm_p_razones_13'   => 'nullable',
 
-                    '13_insumos_si_no'   => 'nullable',
-                    '13_insumos_porcentaje'   => 'nullable',
-                    '13_insumos_razones'   => 'nullable',
+                    'insumos_si_no_13'   => 'nullable',
+                    'insumos_porcentaje_13'   => 'nullable',
+                    'insumos_razones_13'   => 'nullable',
 
-                    '13_mano_obra_si_no'   => 'nullable',
-                    '13_mano_obra_porcentaje'   => 'nullable',
-                    '13_mano_obra_razones'   => 'nullable',
+                    'mano_obra_si_no_13'   => 'nullable',
+                    'mano_obra_porcentaje_13'   => 'nullable',
+                    'mano_obra_razones_13'   => 'nullable',
 
-                    '13_otros_si_no'   => 'nullable',
-                    '13_otros_porcentaje'   => 'nullable',
-                    '13_otros_razones'   => 'nullable',
+                    'otros_si_no_13'   => 'nullable',
+                    'otros_porcentaje_13'   => 'nullable',
+                    'otros_razones_13'   => 'nullable',
 
                     'mo_antes_del_credito'   => 'nullable',
                     'mo_con_el_credito'   => 'nullable',
                     'mo_permanente'   => 'nullable',
                     'mo_temporaria'   => 'nullable',
 
-                    '14_mo_aclaraciones'   => 'nullable',
+                    'mo_aclaraciones_14'   => 'nullable',
                     'p_f_si_no'   => 'nullable',
 
 
@@ -166,62 +166,66 @@ class SeguimientoRequest extends FormRequest
                     'p_cli_15_1' => 'nullable',
                     'p_otros_15_1' => 'nullable',
 
-                    '15_2_descripcion_problmeas'   => 'nullable',
+                    'descripcion_problmeas_15_2'   => 'nullable',
 
                     'ingresos_aumentaron_16'   => 'nullable',
                     'ingresos_disminuyeron_16'   => 'nullable',
                     'ingresos_no_variaron_16'   => 'nullable',
-                    '16_ingresos_proporcion'   => 'nullable',
+                    'ingresos_proporcion_16'   => 'nullable',
 
                     'precio_productos_si_no_16_1'   => 'nullable',
-                    '16_1_precio_productos_variacion'   => 'nullable',
+                    'p_prod_variacion_16_1'   => 'nullable',
 
                     'volumen_vta_si_no_16_1'   => 'nullable',
-                    '16_1_volumen_vta_variacion'   => 'nullable',
+
+
+
+
+                    'volumen_vta_variacion_16_1'   => 'nullable',
 
                     'gtos_comercializacion_si_no_16_1'   => 'nullable',
-                    '16_1_gtos_comercializacion_variacion'   => 'nullable',
+                    'gtos_comercializacion_variacion_16_1'   => 'nullable',
 
                     'nivel_prod_si_no_16_1'   => 'nullable',
-                    '16_1_nivel_prod_variacion'   => 'nullable',
+                    'nivel_prod_variacion_16_1'   => 'nullable',
 
                     'otros_si_no_16_1'   => 'nullable',
-                    '16_1_otros_variacion'   => 'nullable',
+                    'otros_variacion_16_1'   => 'nullable',
 
-                    '16_2_observaciones'   => 'nullable',
+                    'observaciones_16_2'   => 'nullable',
 
                     'p_a_ingresos_aumentaron_16_3'   => 'nullable',
                     'p_a_ingresos_disminuyeron_16_3'   => 'nullable',
                     'p_a_ingresos_no_variaron_16_3'   => 'nullable',
-                    '16_3_p_a_ingresos_proporcion'   => 'nullable',
+                    'p_a_ingresos_proporcion_16_3'   => 'nullable',
 
-                    '16_4_periodo_anterior_ingresos_porque'   => 'nullable',
+                    'periodo_anterior_ingresos_porque_16_4'   => 'nullable',
 
-                    '17_perspectiva_futuro'   => 'nullable',
-                    '17_perspectiva_futuro_porque'   => 'nullable',
+                    'perspectiva_futuro_17'   => 'nullable',
+                    'perspectiva_futuro_porque_17'   => 'nullable',
 
-                    '18_problemas_pago_credito'   => 'nullable',
-                    '18_problemas_pago_si_actuales_futuros'   => 'nullable',
-                    '18_problmeas_pago_razones'   => 'nullable',
+                    'problemas_pago_credito_18'   => 'nullable',
+                    'problemas_pago_si_actuales_futuros_18'   => 'nullable',
+                    'problmeas_pago_razones_18'   => 'nullable',
 
-                    '19_problemas_entrevista_anterior'   => 'nullable',
-                    '19_problemas_entrevista_anterior_como'   => 'nullable',
-                    '19_1_entrevista_anterior_razones'   => 'nullable',
+                    'problemas_entrevista_anterior_19'   => 'nullable',
+                    'problemas_entrevista_anterior_como_19'   => 'nullable',
+                    'entrevista_anterior_razones_19_1'   => 'nullable',
 
-                    '20_asistencia_financiera'   => 'nullable',
+                    'asistencia_financiera_20'   => 'nullable',
 
-                    '20_asistencia_financiera_en_que'   => 'nullable',
-                    '20_1_asistencia_financiera_ampliacion'   => 'nullable',
+                    'asistencia_financiera_en_que_20'   => 'nullable',
+                    'asistencia_financiera_ampliacion_20_1'   => 'nullable',
 
-                    '20_2_anteriormente_capacitacion'   => 'nullable',
-                    '20_2_anteriormente_capac_tipo_cargo'   => 'nullable',
-                    '20_3_recibir_capacitacion'   => 'nullable',
-                    '20_3_en_que_temas'   => 'nullable',
-                    '21_importancia_actividad'   => 'nullable',
+                    'anteriormente_capacitacion_20_2'   => 'nullable',
+                    'anteriormente_capac_tipo_cargo_20_2'   => 'nullable',
+                    'recibir_capacitacion_20_3'   => 'nullable',
+                    'en_que_temas_20_3'   => 'nullable',
+                    'importancia_actividad_21'   => 'nullable',
 
-                    '21_1_actividad_ppal_perspectiva'   => 'nullable',
-                    '21_2_observaciones'   => 'nullable',
-                    '22_opinion_responsable'   => 'nullable',
+                    'actividad_ppal_perspectiva_21_1'   => 'nullable',
+                    'observaciones_21_2'   => 'nullable',
+                    'opinion_responsable_22'   => 'nullable',
                     'slug'       => 'nullable'
 
                  ];
@@ -296,7 +300,7 @@ class SeguimientoRequest extends FormRequest
                     'problema_5'   => 'nullable',
                     'problema_6'   => 'nullable',
                     'problema_7'   => 'nullable',
-                    '10_2_describir_razones_consignadas'   => 'nullable',
+                    'razones_10_2'   => 'nullable',
                     'inv_previstas_si_no'   => 'nullable',
                     'inv_previstas_desvios'   => 'nullable',
 
@@ -309,15 +313,15 @@ class SeguimientoRequest extends FormRequest
                     'desvio_inv_problema_7'   => 'nullable',
                     'desvio_inv_problema_8'   => 'nullable',
 
-                    '11_2_describir_razones_consignadas'   => 'nullable',
+                    'razones_11_2'   => 'nullable',
 
                     'inv_verificacion_si_no'   => 'nullable',
                     'forma_de_verificacion'   => 'nullable',
                     'inv_proyectadas_si_no'   => 'nullable',
-                    '11_5_inv_proyectadas_razones'   => 'nullable',
+                    'razones_11_5'   => 'nullable',
                     'nuevas_inv_si_no'   => 'nullable',
                     'monto_aprox_nuevas_inversiones'   => 'nullable',
-                    '12_1_detalle_nuevas_inversiones'   => 'nullable',
+                    'd_nuevas_inv_12_1'   => 'nullable',
                     'nuevas_inv_verificacion_si_no'   => 'nullable',
                     'forma_verificacion_nuevas_inv'   => 'nullable',
 
@@ -326,28 +330,28 @@ class SeguimientoRequest extends FormRequest
                     'pagina4_12_3_disminucion_costos'   => 'nullable',
                     'pagina4_12_3_otros'   => 'nullable',
 
-                    '13_materia_prima_si_no'   => 'nullable',
-                    '13_materia_prima_porcentaje'   => 'nullable',
-                    '13_materia_prima_razones'   => 'nullable',
+                    'm_p_si_no_13'   => 'nullable',
+                    'm_p_porcentaje_13'   => 'nullable',
+                    'm_p_razones_13'   => 'nullable',
 
-                    '13_insumos_si_no'   => 'nullable',
-                    '13_insumos_porcentaje'   => 'nullable',
-                    '13_insumos_razones'   => 'nullable',
+                    'insumos_si_no_13'   => 'nullable',
+                    'insumos_porcentaje_13'   => 'nullable',
+                    'insumos_razones_13'   => 'nullable',
 
-                    '13_mano_obra_si_no'   => 'nullable',
-                    '13_mano_obra_porcentaje'   => 'nullable',
-                    '13_mano_obra_razones'   => 'nullable',
+                    'mano_obra_si_no_13'   => 'nullable',
+                    'mano_obra_porcentaje_13'   => 'nullable',
+                    'mano_obra_razones_13'   => 'nullable',
 
-                    '13_otros_si_no'   => 'nullable',
-                    '13_otros_porcentaje'   => 'nullable',
-                    '13_otros_razones'   => 'nullable',
+                    'otros_si_no_13'   => 'nullable',
+                    'otros_porcentaje_13'   => 'nullable',
+                    'otros_razones_13'   => 'nullable',
 
                     'mo_antes_del_credito'   => 'nullable',
                     'mo_con_el_credito'   => 'nullable',
                     'mo_permanente'   => 'nullable',
                     'mo_temporaria'   => 'nullable',
 
-                    '14_mo_aclaraciones'   => 'nullable',
+                    'mo_aclaraciones_14'   => 'nullable',
                     'p_f_si_no'   => 'nullable',
 
 
@@ -363,62 +367,65 @@ class SeguimientoRequest extends FormRequest
                     'p_cli_15_1' => 'nullable',
                     'p_otros_15_1' => 'nullable',
 
-                    '15_2_descripcion_problmeas'   => 'nullable',
+                    'descripcion_problmeas_15_2'   => 'nullable',
 
                     'ingresos_aumentaron_16'   => 'nullable',
                     'ingresos_disminuyeron_16'   => 'nullable',
                     'ingresos_no_variaron_16'   => 'nullable',
-                    '16_ingresos_proporcion'   => 'nullable',
+                    'ingresos_proporcion_16'   => 'nullable',
 
                     'precio_productos_si_no_16_1'   => 'nullable',
-                    '16_1_precio_productos_variacion'   => 'nullable',
 
-                    'volumen_vta_si_no_16_1'   => 'nullable',
-                    '16_1_volumen_vta_variacion'   => 'nullable',
+
+                    'volumen_vta_variacion_16_1'   => 'nullable',
 
                     'gtos_comercializacion_si_no_16_1'   => 'nullable',
-                    '16_1_gtos_comercializacion_variacion'   => 'nullable',
+                    'gtos_comercializacion_variacion_16_1'   => 'nullable',
 
                     'nivel_prod_si_no_16_1'   => 'nullable',
-                    '16_1_nivel_prod_variacion'   => 'nullable',
+                    'nivel_prod_variacion_16_1'   => 'nullable',
 
                     'otros_si_no_16_1'   => 'nullable',
-                    '16_1_otros_variacion'   => 'nullable',
+                    'otros_variacion_16_1'   => 'nullable',
 
-                    '16_2_observaciones'   => 'nullable',
+                    'observaciones_16_2'   => 'nullable',
 
                     'p_a_ingresos_aumentaron_16_3'   => 'nullable',
                     'p_a_ingresos_disminuyeron_16_3'   => 'nullable',
                     'p_a_ingresos_no_variaron_16_3'   => 'nullable',
-                    '16_3_p_a_ingresos_proporcion'   => 'nullable',
+                    'p_a_ingresos_proporcion_16_3'   => 'nullable',
 
-                    '16_4_periodo_anterior_ingresos_porque'   => 'nullable',
+                    'periodo_anterior_ingresos_porque_16_4'   => 'nullable',
 
-                    '17_perspectiva_futuro'   => 'nullable',
-                    '17_perspectiva_futuro_porque'   => 'nullable',
 
-                    '18_problemas_pago_credito'   => 'nullable',
-                    '18_problemas_pago_si_actuales_futuros'   => 'nullable',
-                    '18_problmeas_pago_razones'   => 'nullable',
 
-                    '19_problemas_entrevista_anterior'   => 'nullable',
-                    '19_problemas_entrevista_anterior_como'   => 'nullable',
-                    '19_1_entrevista_anterior_razones'   => 'nullable',
 
-                    '20_asistencia_financiera'   => 'nullable',
 
-                    '20_asistencia_financiera_en_que'   => 'nullable',
-                    '20_1_asistencia_financiera_ampliacion'   => 'nullable',
+                    'perspectiva_futuro_17'   => 'nullable',
+                    'perspectiva_futuro_porque_17'   => 'nullable',
 
-                    '20_2_anteriormente_capacitacion'   => 'nullable',
-                    '20_2_anteriormente_capac_tipo_cargo'   => 'nullable',
-                    '20_3_recibir_capacitacion'   => 'nullable',
-                    '20_3_en_que_temas'   => 'nullable',
-                    '21_importancia_actividad'   => 'nullable',
+                    'problemas_pago_credito_18'   => 'nullable',
+                    'problemas_pago_si_actuales_futuros_18'   => 'nullable',
+                    'problmeas_pago_razones_18'   => 'nullable',
 
-                    '21_1_actividad_ppal_perspectiva'   => 'nullable',
-                    '21_2_observaciones'   => 'nullable',
-                    '22_opinion_responsable'   => 'nullable',
+                    'problemas_entrevista_anterior_19'   => 'nullable',
+                    'problemas_entrevista_anterior_como_19'   => 'nullable',
+                    'entrevista_anterior_razones_19_1'   => 'nullable',
+
+                    'asistencia_financiera_20'   => 'nullable',
+
+                    'asistencia_financiera_en_que_20'   => 'nullable',
+                    'asistencia_financiera_ampliacion_20_1'   => 'nullable',
+
+                    'anteriormente_capacitacion_20_2'   => 'nullable',
+                    'anteriormente_capac_tipo_cargo_20_2'   => 'nullable',
+                    'recibir_capacitacion_20_3'   => 'nullable',
+                    'en_que_temas_20_3'   => 'nullable',
+                    'importancia_actividad_21'   => 'nullable',
+
+                    'actividad_ppal_perspectiva_21_1'   => 'nullable',
+                    'observaciones_21_2'   => 'nullable',
+                    'opinion_responsable_22'   => 'nullable',
                     'slug'       => 'nullable|unique:seguimientos,slug,' . $seguimiento->id,
                  ];
              }

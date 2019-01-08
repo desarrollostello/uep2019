@@ -85,7 +85,7 @@ class Seguimiento extends Model
         'problema_5',
         'problema_6',
         'problema_7',
-        '10_2_describir_razones_consignadas',
+        'razones_10_2',
         'inv_previstas_si_no',
         'inv_previstas_desvios',
 
@@ -98,15 +98,15 @@ class Seguimiento extends Model
         'desvio_inv_problema_7',
         'desvio_inv_problema_8',
 
-        '11_2_describir_razones_consignadas',
+        'razones_11_2',
 
         'inv_verificacion_si_no',
         'forma_de_verificacion',
         'inv_proyectadas_si_no',
-        '11_5_inv_proyectadas_razones',
+        'razones_11_5',
         'nuevas_inv_si_no',
         'monto_aprox_nuevas_inversiones',
-        '12_1_detalle_nuevas_inversiones',
+        'd_nuevas_inv_12_1',
         'nuevas_inv_verificacion_si_no',
         'forma_verificacion_nuevas_inv',
 
@@ -115,28 +115,28 @@ class Seguimiento extends Model
         'pagina4_12_3_disminucion_costos',
         'pagina4_12_3_otros',
 
-        '13_materia_prima_si_no',
-        '13_materia_prima_porcentaje',
-        '13_materia_prima_razones',
+        'm_p_si_no_13',
+        'm_p_porcentaje_13',
+        'm_p_razones_13',
 
-        '13_insumos_si_no',
-        '13_insumos_porcentaje',
-        '13_insumos_razones',
+        'insumos_si_no_13',
+        'insumos_porcentaje_13',
+        'insumos_razones_13',
 
-        '13_mano_obra_si_no',
-        '13_mano_obra_porcentaje',
-        '13_mano_obra_razones',
+        'mano_obra_si_no_13',
+        'mano_obra_porcentaje_13',
+        'mano_obra_razones_13',
 
-        '13_otros_si_no',
-        '13_otros_porcentaje',
-        '13_otros_razones',
+        'otros_si_no_13',
+        'otros_porcentaje_13',
+        'otros_razones_13',
 
         'mo_antes_del_credito',
         'mo_con_el_credito',
         'mo_permanente',
         'mo_temporaria',
 
-        '14_mo_aclaraciones',
+        'mo_aclaraciones_14',
         'p_f_si_no',
 
 
@@ -151,62 +151,62 @@ class Seguimiento extends Model
         'p_cli_15_1',
         'p_otros_15_1',
 
-        '15_2_descripcion_problmeas',
+        'descripcion_problmeas_15_2',
 
         'ingresos_aumentaron_16',
         'ingresos_disminuyeron_16',
         'ingresos_no_variaron_16',
-        '16_ingresos_proporcion',
+        'ingresos_proporcion_16',
 
         'precio_productos_si_no_16_1',
-        '16_1_precio_productos_variacion',
+        'p_prod_variacion_16_1',
 
         'volumen_vta_si_no_16_1',
-        '16_1_volumen_vta_variacion',
+        'volumen_vta_variacion_16_1',
 
         'gtos_comercializacion_si_no_16_1',
-        '16_1_gtos_comercializacion_variacion',
+        'gtos_comercializacion_variacion_16_1',
 
         'nivel_prod_si_no_16_1',
-        '16_1_nivel_prod_variacion',
+        'nivel_prod_variacion_16_1',
 
         'otros_si_no_16_1',
-        '16_1_otros_variacion',
+        'otros_variacion_16_1',
 
-        '16_2_observaciones',
+        'observaciones_16_2',
 
         'p_a_ingresos_aumentaron_16_3',
         'p_a_ingresos_disminuyeron_16_3',
         'p_a_ingresos_no_variaron_16_3',
-        '16_3_p_a_ingresos_proporcion',
+        'p_a_ingresos_proporcion_16_3',
 
-        '16_4_periodo_anterior_ingresos_porque',
+        'periodo_anterior_ingresos_porque_16_4',
 
-        '17_perspectiva_futuro',
-        '17_perspectiva_futuro_porque',
+        'perspectiva_futuro_17',
+        'perspectiva_futuro_porque_17',
 
-        '18_problemas_pago_credito',
-        '18_problemas_pago_si_actuales_futuros',
-        '18_problmeas_pago_razones',
+        'problemas_pago_credito_18',
+        'problemas_pago_si_actuales_futuros_18',
+        'problmeas_pago_razones_18',
 
-        '19_problemas_entrevista_anterior',
-        '19_problemas_entrevista_anterior_como',
-        '19_1_entrevista_anterior_razones',
+        'problemas_entrevista_anterior_19',
+        'problemas_entrevista_anterior_como_19',
+        'entrevista_anterior_razones_19_1',
 
-        '20_asistencia_financiera',
+        'asistencia_financiera_20',
 
-        '20_asistencia_financiera_en_que',
-        '20_1_asistencia_financiera_ampliacion',
+        'asistencia_financiera_en_que_20',
+        'asistencia_financiera_ampliacion_20_1',
 
-        '20_2_anteriormente_capacitacion',
-        '20_2_anteriormente_capac_tipo_cargo',
-        '20_3_recibir_capacitacion',
-        '20_3_en_que_temas',
-        '21_importancia_actividad',
+        'anteriormente_capacitacion_20_2',
+        'anteriormente_capac_tipo_cargo_20_2',
+        'recibir_capacitacion_20_3',
+        'en_que_temas_20_3',
+        'importancia_actividad_21',
 
-        '21_1_actividad_ppal_perspectiva',
-        '21_2_observaciones',
-        '22_opinion_responsable',
+        'actividad_ppal_perspectiva_21_1',
+        'observaciones_21_2',
+        'opinion_responsable_22',
         'slug'
       ];
 

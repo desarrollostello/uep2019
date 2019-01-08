@@ -112,7 +112,7 @@ class CreateSeguimientosTable extends Migration
             $table->string('problema_7',3)->nullable();
 
             // Punto 10.2 Describir Razones consignadas
-            $table->text('10_2_describir_razones_consignadas',3)->nullable();
+            $table->text('razones_10_2',3)->nullable();
             
             // 11 Inversiones Realizadas son las Previstas en el proyecto
             // En este  campo hacer un combo con SI / NO / PARCIAL
@@ -132,7 +132,7 @@ class CreateSeguimientosTable extends Migration
             $table->string('desvio_inv_problema_8',3)->nullable();
 
             //11.2 Descripción de las Razones Consignadas
-            $table->text('11_2_describir_razones_consignadas',3)->nullable();
+            $table->text('razones_11_2',3)->nullable();
 
             //11.3 Las inversiones se han podido verificar
             // En este  campo hacer un combo con SI / NO / PARCIAL
@@ -144,7 +144,7 @@ class CreateSeguimientosTable extends Migration
             $table->string('inv_proyectadas_si_no',9)->nullable();
 
             //11.5 Razones
-            $table->text('11_5_inv_proyectadas_razones')->nullable();
+            $table->text('razones_11_5')->nullable();
 
             //12 Se han registrado nuevas inversiones
             // En este  campo hacer un combo con SI / NO
@@ -152,7 +152,7 @@ class CreateSeguimientosTable extends Migration
             $table->double('monto_aprox_nuevas_inversiones')->nullable();
 
             //12.1 Si responde que si y pone el monto tenemos que describir cuales son
-            $table->text('12_1_detalle_nuevas_inversiones')->nullable();
+            $table->text('d_nuevas_inv_12_1')->nullable();
 
             //12.2 Las nuevas inversiones fueron verificadas
             // En este  campo hacer un combo con SI / NO
@@ -169,26 +169,26 @@ class CreateSeguimientosTable extends Migration
             //13. Se han observado cambios significativos en los costos totales??
             
             //Materia Prima SI NO, PORCENTAJE y Razones
-            $table->string('13_materia_prima_si_no',2)->nullable();
-            $table->string('13_materia_prima_porcentaje',10)->nullable();
-            $table->string('13_materia_prima_razones',100)->nullable();
+            $table->string('m_p_si_no_13',2)->nullable();
+            $table->string('m_p_porcentaje_13',10)->nullable();
+            $table->string('m_p_razones_13',100)->nullable();
 
 
             //Insunos SI NO, PORCENTAJE y Razones
-            $table->string('13_insumos_si_no',2)->nullable();
-            $table->string('13_insumos_porcentaje',10)->nullable();
-            $table->string('13_insumos_razones',100)->nullable();
+            $table->string('insumos_si_no_13',2)->nullable();
+            $table->string('insumos_porcentaje_13',10)->nullable();
+            $table->string('insumos_razones_13',100)->nullable();
 
 
             //Mano de OBRA SI NO, PORCENTAJE y Razones
-            $table->string('13_mano_obra_si_no',2)->nullable();
-            $table->string('13_mano_obra_porcentaje',10)->nullable();
-            $table->string('13_mano_obra_razones',100)->nullable();
+            $table->string('mano_obra_si_no_13',2)->nullable();
+            $table->string('mano_obra_porcentaje_13',10)->nullable();
+            $table->string('mano_obra_razones_13',100)->nullable();
 
             //Otros SI NO, PORCENTAJE y Razones
-            $table->string('13_otros_si_no',2)->nullable();
-            $table->string('13_otros_porcentaje',10)->nullable();
-            $table->string('13_otros_razones',100)->nullable();
+            $table->string('otros_si_no_13',2)->nullable();
+            $table->string('otros_porcentaje_13',10)->nullable();
+            $table->string('otros_razones_13',100)->nullable();
 
             //14. Mano de Obra empleada
             $table->integer('mo_antes_del_credito')->nullable();
@@ -198,7 +198,7 @@ class CreateSeguimientosTable extends Migration
             $table->integer('mo_temporaria')->nullable();
 
             //14 Aclaraciones
-            $table->text('14_mo_aclaraciones')->nullable();
+            $table->text('mo_aclaraciones_14')->nullable();
 
             //15 La empresa tiene problema para su funcionamiento
             $table->string('p_f_si_no',2)->nullable();
@@ -219,122 +219,122 @@ class CreateSeguimientosTable extends Migration
             $table->string('p_otros_15_1',2)->nullable();
             
             //15.2 Descripcion Problema y posibles soluciones
-            $table->text('15_2_descripcion_problmeas')->nullable();
+            $table->text('descripcion_problmeas_15_2')->nullable();
 
             //16 Evolucion de los Ingresos
             $table->string('ingresos_aumentaron_16',2)->nullable();
             $table->string('ingresos_disminuyeron_16',2)->nullable();
             $table->string('ingresos_no_variaron_16',2)->nullable();
-            $table->string('16_ingresos_proporcion',20)->nullable();
+            $table->string('ingresos_proporcion_16',20)->nullable();
 
             //16.1 RAZONES
             
             //Precio de los Productos
             $table->string('precio_productos_si_no_16_1',2)->nullable();
-            $table->string('16_1_precio_productos_variacion',20)->nullable();
+            $table->string('p_prod_variacion_16_1',20)->nullable();
 
             //Volúmen de Ventas
             $table->string('volumen_vta_si_no_16_1',2)->nullable();
-            $table->string('16_1_volumen_vta_variacion',20)->nullable();
+            $table->string('volumen_vta_variacion_16_1',20)->nullable();
 
             //Gtos Comercialización
             $table->string('gtos_comercializacion_si_no_16_1',2)->nullable();
-            $table->string('16_1_gtos_comercializacion_variacion',20)->nullable();
+            $table->string('gtos_comercializacion_variacion_16_1',20)->nullable();
 
             //Niveles de Produccion
             $table->string('nivel_prod_si_no_16_1',2)->nullable();
-            $table->string('16_1_nivel_prod_variacion',20)->nullable();
+            $table->string('nivel_prod_variacion_16_1',20)->nullable();
 
             //OTROS
             $table->string('otros_si_no_16_1',2)->nullable();
-            $table->string('16_1_otros_variacion',20)->nullable();
+            $table->string('otros_variacion_16_1',20)->nullable();
 
             //16.2. Observaciones
-            $table->text('16_2_observaciones')->nullable();
+            $table->text('observaciones_16_2')->nullable();
 
             //16.3 Evolución ingresos con respecto al mes o periodo anterior. En caso de que la empresa sea estacional
             $table->string('p_a_ingresos_aumentaron_16_3',2)->nullable();
             $table->string('p_a_ingresos_disminuyeron_16_3',2)->nullable();
             $table->string('p_a_ingresos_no_variaron_16_3',2)->nullable();
-            $table->string('16_3_p_a_ingresos_proporcion',20)->nullable();
+            $table->string('p_a_ingresos_proporcion_16_3',20)->nullable();
 
             // 16.4. Porque?
-            $table->text('16_4_periodo_anterior_ingresos_porque')->nullable();
+            $table->text('periodo_anterior_ingresos_porque_16_4')->nullable();
 
             //17 Perspectiva Futuro
             // Hacer un combo con Mejor, Algo Mejor, Igual, Algo Peor, Peor
-            $table->string('17_perspectiva_futuro',15)->nullable();
-            $table->text('17_perspectiva_futuro_porque')->nullable();
+            $table->string('perspectiva_futuro_17',15)->nullable();
+            $table->text('perspectiva_futuro_porque_17')->nullable();
 
 
 
             // 18. La empresa tiene problemas para el pago del Credito con el CFI
             // Si dice que SI estos son problemas Actuales o a Futuro
             // Hacer un combo con SI / NO
-            $table->string('18_problemas_pago_credito',2)->nullable();
+            $table->string('problemas_pago_credito_18',2)->nullable();
 
             // Hacer un combo con las opciones ACTUALES y FUTURO y que aparezca cuando eligen SI que tienen
             // problemas para el pago del crdito
-            $table->string('18_problemas_pago_si_actuales_futuros',20)->nullable();
+            $table->string('problemas_pago_si_actuales_futuros_18',20)->nullable();
 
-            $table->text('18_problmeas_pago_razones')->nullable();
+            $table->text('problmeas_pago_razones_18')->nullable();
 
 
             //19 Los problemas planteados en la ENTREVISTA anterior han sido solucionados?
             // COMBO SI / NO
-            $table->string('19_problemas_entrevista_anterior',2)->nullable();
+            $table->string('problemas_entrevista_anterior_19',2)->nullable();
 
             // Si es SI tienen que responder a la pregunta COMO ???
-            $table->string('19_problemas_entrevista_anterior_como',250)->nullable();
+            $table->string('problemas_entrevista_anterior_como_19',250)->nullable();
 
-            $table->text('19_1_entrevista_anterior_razones')->nullable();
+            $table->text('entrevista_anterior_razones_19_1')->nullable();
 
             // 20. Asistencia Tecnica
             // COMBO SI / NO
-            $table->string('20_asistencia_financiera',2)->nullable();
+            $table->string('asistencia_financiera_20',2)->nullable();
 
             //Si responde SI compleatar esto
             //Combo con los siguientes valroes
             //1. Técnicos - Productivos
             //2. Gestión Admin-Financiera
             //3. Mercado y Comercialización
-            $table->string('20_asistencia_financiera_en_que',50)->nullable();
-            $table->text('20_1_asistencia_financiera_ampliacion')->nullable();            
+            $table->string('asistencia_financiera_en_que_20',50)->nullable();
+            $table->text('asistencia_financiera_ampliacion_20_1')->nullable();            
 
 
 
 
             // 20_2. Ha recibido Anteriormente capacitacion
             // COMBO SI / NO
-            $table->string('20_2_anteriormente_capacitacion',2)->nullable();
+            $table->string('anteriormente_capacitacion_20_2',2)->nullable();
 
             //Si responde SI compleatar esto
-            $table->text('20_2_anteriormente_capac_tipo_cargo')->nullable();
+            $table->text('anteriormente_capac_tipo_cargo_20_2')->nullable();
 
 
              // 20_3. El empresario esta interesado en recibir capacitación
             // COMBO SI / NO / NO SABE
-            $table->string('20_3_recibir_capacitacion',10)->nullable();
+            $table->string('recibir_capacitacion_20_3',10)->nullable();
 
             //Si responde en que temas
-            $table->text('20_3_en_que_temas')->nullable();
+            $table->text('en_que_temas_20_3')->nullable();
 
 
             // 21 Importancia de la Actividad, combo con
             // a. Unica
             // b. Principal
             // c. Secundaria
-            $table->string('21_importancia_actividad',20)->nullable();
+            $table->string('importancia_actividad_21',20)->nullable();
 
             // 21.1 Perspectiva para que se convierta en Actividad Ppal si no la es
             // COMBO con SI / NO
-            $table->string('21_1_actividad_ppal_perspectiva',2)->nullable();
+            $table->string('actividad_ppal_perspectiva_21_1',2)->nullable();
 
             //21.2 Observaciones
-            $table->text('21_2_observaciones')->nullable();
+            $table->text('observaciones_21_2')->nullable();
 
             //22 Opinion del Responsable 
-            $table->text('22_opinion_responsable')->nullable();
+            $table->text('opinion_responsable_22')->nullable();
 
 
             $table->string('slug')->unique();

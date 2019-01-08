@@ -10,7 +10,7 @@
 
 <div class="row">
       <div class="form-group col-sm-5">
-        {{ $seguimiento->17_perspectiva_futuro }} 
+      <span class="form-control">   {{ $seguimiento->perspectiva_futuro_17 }} </span>
       </div>
 </div>
 
@@ -22,7 +22,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-        {{ $seguimiento->17_perspectiva_futuro_porque }} 
+      <span class="form-control">   {{ $seguimiento->perspectiva_futuro_porque_17 }} </span>
     </div>
 </div>
 
@@ -38,11 +38,11 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-        {{ $seguimiento->18_problemas_pago_credito }}
+      <span class="form-control">   {{ $seguimiento->problemas_pago_credito_18 }} </span>
 
       </div>
       <div class="form-group col-sm-4">
-        {{ $seguimiento->18_problemas_pago_si_actuales_futuros }}
+      <span class="form-control">   {{ $seguimiento->problemas_pago_si_actuales_futuros_18 }} </span>
          
       </div>
 </div>
@@ -56,7 +56,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-         {{ $seguimiento->18_problmeas_pago_razones }}
+        <span class="form-control">  {{ $seguimiento->problmeas_pago_razones_18 }} </span>
           
     </div>
 </div>
@@ -72,12 +72,12 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          {{ $seguimiento->19_problemas_entrevista_anterior }}
+        <span class="form-control">   {{ $seguimiento->problemas_entrevista_anterior_19 }} </span>
           
       </div>
       <div class="form-group col-sm-7">
           * COMO?
-          {{ $seguimiento->19_problemas_entrevista_anterior_como }} 
+          <span class="form-control">  {{ $seguimiento->problemas_entrevista_anterior_como_19 }}  </span>
       </div>
 </div>
 
@@ -91,6 +91,6 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-        {{ $seguimiento->19_1_entrevista_anterior_razones }}           
+        <span class="form-control">  {{ $seguimiento->entrevista_anterior_razones_19_1 }} </span>
     </div>
 </div>

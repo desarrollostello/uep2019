@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-       {{ $seguimiento->20_3_en_que_temas }} 
+       <span class="form-control">  {{ $seguimiento->en_que_temas_20_3 }}  </span>
           
     </div>
 </div>
@@ -26,7 +26,7 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          {{ $seguimiento->21_importancia_actividad }} 
+         <span class="form-control">  {{ $seguimiento->importancia_actividad_21 }} </span>
       </div>
 </div>
 
@@ -40,7 +40,7 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          {{ $seguimiento->21_1_actividad_ppal_perspectiva }} 
+          <span class="form-control">   {{ $seguimiento->actividad_ppal_perspectiva_21_1 }} </span>
       </div>
 </div>
 
@@ -55,7 +55,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-        {{ $seguimiento->21_2_observaciones }} 
+       <span class="form-control">   {{ $seguimiento->observaciones_21_2 }} </span>
     </div>
 </div>
 

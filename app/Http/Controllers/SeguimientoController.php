@@ -124,7 +124,7 @@ class SeguimientoController extends Controller
     public function show(seguimiento $seguimiento)
     {
         $anexos  = AnexoSeguimiento::where('seguimiento_id', $seguimiento->id)->get();
-        return view('seguimiento.show', [
+        return view('seguimientos.show', [
             'seguimiento'   => $seguimiento,
             'anexos'        => $anexos,
             'action'        => 'show'

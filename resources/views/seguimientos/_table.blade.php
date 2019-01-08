@@ -7,7 +7,7 @@
       
 
 
-        <th style="width: 15%">Opciones</th>
+        <th style="width: 20%">Opciones</th>
     </tr>
     </thead>
    
@@ -23,6 +23,7 @@
             @endif
           
             <td>
+                <a href="{{ route('seguimiento.show', $td) }}" class="btn btn-info btn-xs pull-rigth">Ver</a>
                 @can('seguimiento.edit')
                 <a href="{{ route('seguimiento.edit', $td) }}" class="btn btn-info btn-xs pull-rigth">Editar</a>
                 @endcan

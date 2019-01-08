@@ -42,7 +42,7 @@
     </div>
     <div class="form-group col-sm-5">
           EN QUE PROPORCIÓN
-          {{ $seguimiento->16_ingresos_proporcion }} 
+          <span class="form-control"> {{ $seguimiento->ingresos_proporcion_16 }} </span>
     </div>
 </div>
 
@@ -68,7 +68,7 @@
                            
                       </div>
                       <div class="form-group col-sm-3">
-                          <td> {{ $seguimiento->16_1_precio_productos_variacion }}  </td>
+                          <td> {{ $seguimiento->p_prod_variacion_16_1 }}  </td>
                       </div>
                  </div>
             </li>
@@ -83,7 +83,7 @@
                            
                       </div>
                       <div class="form-group col-sm-3">
-                          <td> {{ $seguimiento->16_1_volumen_vta_variacion }} </td>
+                          <td class="form-control"> {{ $seguimiento->volumen_vta_variacion_16_1 }} </td>
                       </div>
                  </div>
             </li>
@@ -98,7 +98,7 @@
                            
                       </div>
                       <div class="form-group col-sm-3">
-                          <td> {{ $seguimiento->16_1_gtos_comercializacion_variacion }}  </td>
+                          <td class="form-control"> {{ $seguimiento->gtos_comercializacion_variacion_16_1 }}  </td>
                       </div>
                  </div>
             </li>
@@ -114,7 +114,7 @@
                            
                       </div>
                       <div class="form-group col-sm-3">
-                          <td> {{ $seguimiento->16_1_nivel_prod_variacion }} </td>
+                          <td class="form-control"> {{ $seguimiento->nivel_prod_variacion_16_1 }} </td>
                       </div>
                  </div>
             </li>
@@ -128,7 +128,7 @@
                            
                       </div>
                       <div class="form-group col-sm-3">
-                          <td> {{ $seguimiento->16_1_otros_variacion }}  </td>
+                          <td class="form-control"> {{ $seguimiento->otros_variacion_16_1 }}  </td>
                       </div>
                  </div>
             </li>
@@ -149,7 +149,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-          {{ $seguimiento->16_2_observaciones }}             
+        <<span class="form-control">  {{ $seguimiento->observaciones_16_2 }} </span>
     </div>
 </div>
 
@@ -193,7 +193,7 @@
     </div>
     <div class="form-group col-sm-5">
           EN QUE PROPORCIÓN
-          {{ $seguimiento->16_3_p_a_ingresos_proporcion }} 
+          <<span  class="form-control">{{ $seguimiento->p_a_ingresos_proporcion_16_3 }} </span>
     </div>
 </div>
 
@@ -207,6 +207,6 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-        {{ $seguimiento->16_4_periodo_anterior_ingresos_porque }}          
+      <<span  class="form-control"> {{ $seguimiento->periodo_anterior_ingresos_porque_16_4 }}  </span>
     </div>
 </div>

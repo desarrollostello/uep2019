@@ -15,9 +15,9 @@
             <thead>
             <tr>
                 <th>CONCEPTO</th>
-                <th  class="text-center" width="15%">SI / NO</th>
-                <th  class="text-center" width="10%">%</th>
-                <th  class="text-center" width="50%">RAZONES</th>
+                <th  class="text-center form-control" width="15%">SI / NO</th>
+                <th  class="text-center form-control" width="10%">%</th>
+                <th  class="text-center form-control" width="50%">RAZONES</th>
                 
             </tr>
             </thead>
@@ -25,30 +25,30 @@
             <tbody>
                 <tr>
                     <td>Materia Prima</td>
-                    <td class="text-center"> {{ $seguimiento->13_materia_prima_si_no }}  </td>
-                    <td> {{ $seguimiento->13_materia_prima_porcentaje }}  </td>
-                    <td> {{ $seguimiento->13_materia_prima_razones }}  </td>
+                    <td class="text-center form-control"> {{ $seguimiento->m_p_si_no_13 }}  </td>
+                    <td class="form-control"> {{ $seguimiento->m_p_porcentaje_13 }}  </td>
+                    <td class="form-control"> {{ $seguimiento->m_p_razones_13 }}  </td>
                 </tr>
 
                 <tr>
                     <td>Insumos</td>
-                    <td class="text-center"> {{ $seguimiento->13_insumos_si_no }} </td>
-                    <td>  {{ $seguimiento->13_insumos_porcentaje }} </td>
-                    <td> {{ $seguimiento->13_insumos_razones }} </td>
+                    <td class="text-center form-control"> {{ $seguimiento->insumos_si_no_13 }} </td>
+                    <td class="form-control">  {{ $seguimiento->insumos_porcentaje_13 }} </td>
+                    <td class="form-control"> {{ $seguimiento->insumos_razones_13 }} </td>
                 </tr>
 
                 <tr>
                     <td>Mano de Obra</td>
-                    <td class="text-center"> {{ $seguimiento->13_mano_obra_si_no }} </td>
-                    <td> {{ $seguimiento->13_mano_obra_porcentaje }}  </td>
-                    <td> {{ $seguimiento->13_mano_obra_razones }}  </td>
+                    <td class="text-center form-control"> {{ $seguimiento->mano_obra_si_no_13 }} </td>
+                    <td class="form-control"> {{ $seguimiento->mano_obra_porcentaje_13 }}  </td>
+                    <td class="form-control"> {{ $seguimiento->mano_obra_razones_13 }}  </td>
                 </tr>
 
                 <tr>
                     <td>Otros</td>
-                    <td class="text-center"> {{ $seguimiento->13_otros_si_no }}  </td>
-                    <td> {{ $seguimiento->13_otros_porcentaje }}   </td>
-                    <td> {{ $seguimiento->13_otros_razones }}  </td>
+                    <td class="text-center form-control"> {{ $seguimiento->otros_si_no_13 }}  </td>
+                    <td class="form-control"> {{ $seguimiento->otros_porcentaje_13 }}   </td>
+                    <td class="form-control"> {{ $seguimiento->otros_razones_13 }}  </td>
                 </tr>
               
             </tbody>
@@ -70,23 +70,23 @@
          
           <tr>
               <th>ANTES DEL CRÉDITO</th>
-              <td> {{ $seguimiento->mo_antes_del_credito }}  </td>
+              <td class="form-control"> {{ $seguimiento->mo_antes_del_credito }}  </td>
              
           </tr>
           <tr>
             <th>CON EL CRÉDITO</th>
-            <td> {{ $seguimiento->mo_con_el_credito }} </td>
+            <td class="form-control"> {{ $seguimiento->mo_con_el_credito }} </td>
            
           </tr>
 
           <tr>
               <th>PERMANENTE</th>
-              <td> {{ $seguimiento->mo_permanente }}  </td>
+              <td class="form-control"> {{ $seguimiento->mo_permanente }}  </td>
               
           </tr>
           <tr>
             <th>TEMPORARIA</th>
-            <td> {{ $seguimiento->mo_temporaria }}   </td>
+            <td class="form-control"> {{ $seguimiento->mo_temporaria }}   </td>
             
           </tr>
       </table>
@@ -101,7 +101,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-        {{ $seguimiento->14_mo_aclaraciones }} 
+        <span  class="form-control"> {{ $seguimiento->mo_aclaraciones_14 }} </span>
     </div>
 </div>
 
@@ -121,7 +121,7 @@
           </thead>
           <tbody>
               <tr>
-                  <td> {{ $seguimiento->problemas_funcionamiento_si_no }}  </td>
+                  <td class="form-control"> {{ $seguimiento->problemas_funcionamiento_si_no }}  </td>
               </tr>
           </tbody>
       </table>
@@ -144,7 +144,6 @@
             <li class="list-group-item">
                 a. Administrativos-contables
                 <div class="material-switch pull-right">
-                    
                     <input type="checkbox" name="p_admin_15_1" id="p_admin_15_1" {{$seguimiento->p_admin_15_1 == 'on'?"checked":''}}>
                     <label for="p_admin_15_1" class="label-primary"></label>
                 </div>
@@ -160,7 +159,6 @@
             <li class="list-group-item">
                 c. En cuanto a la disponibilidad de mano de obra
                 <div class="material-switch pull-right">
-                  
                   <input type="checkbox" name="p_disp_mo_15_1" id="p_disp_mo_15_1" {{$seguimiento->p_disp_mo_15_1 == 'on'?"checked":''}}>
                   <label for="p_disp_mo_15_1" class="label-primary"></label>
                 </div>
@@ -243,7 +241,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-        {{ $seguimiento->15_2_descripcion_problmeas }} 
+      <span  class="form-control">  {{ $seguimiento->descripcion_problmeas_15_2 }}  </span>
           
     </div>
 </div>

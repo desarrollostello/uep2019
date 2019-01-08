@@ -9,10 +9,10 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          {{ $seguimiento->20_asistencia_financiera }}
+         <span class="form-control">  {{ $seguimiento->asistencia_financiera_20 }} </span>
       </div>
       <div class="form-group col-sm-4">
-        {{ $seguimiento->20_asistencia_financiera_en_que }} 
+        <span class="form-control">  {{ $seguimiento->asistencia_financiera_en_que_20 }} </span>
       </div>
 </div>
 
@@ -26,7 +26,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-      {{ $seguimiento->20_1_asistencia_financiera_ampliacion }} 
+      <span class="form-control">  {{ $seguimiento->asistencia_financiera_ampliacion_20_1 }} </span>
           
     </div>
 </div>
@@ -42,7 +42,7 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          {{ $seguimiento->20_2_anteriormente_capacitacion }} 
+         <span class="form-control">  {{ $seguimiento->anteriormente_capacitacion_20_2 }}  </span>
       </div>
 </div>
 
@@ -55,7 +55,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-      {{ $seguimiento->20_2_anteriormente_capac_tipo_cargo }} 
+      <span class="form-control">  {{ $seguimiento->anteriormente_capac_tipo_cargo_20_2 }} </span>
     </div>
 </div>
 
@@ -70,7 +70,7 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          {{ $seguimiento->20_3_recibir_capacitacion }} 
+          <span class="form-control">  {{ $seguimiento->recibir_capacitacion_20_3 }} </span>
       </div>
 </div>
 
