@@ -1,0 +1,49 @@
+.circular {border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%};
+.circular img { opacity: 0; filter: alpha(opacity=0); }
+.img-user-edit{
+   width: 200px; height: 200px;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {background-color: #000ccc !Important}
+.form-control{
+      font-size: 12px !Important;
+}
+body{
+    font-size: 12px;
+    font-family: 'Helvetica', 'Arial';
+}
+
+div.dt-buttons{
+    padding-left: 10px !Important;
+    padding-top: 15px; !Important;
+    padding-bottom: 20px !Important;
+}
+.dataTables_filter{
+    padding: 15px;
+}
+.dataTables_info{
+    padding-left: 15px;
+}
+.dataTables_paginate{
+    padding-right: 15px;
+}
+
+.content-wrapper, .main-footer{
+      margin-left: 15% !Important;
+}
+.main-sidebar{
+      width: 185px !Important;
+      padding-top: 30px !Important;
+}
+
+.main-header .navbar{
+      margin-left: 15% !Important;
+}
+.panel-body{
+      padding-right: 0px !Important;
+}
+
+@media (min-width: 1200px){
+.container {
+    width: 1055px;
+}
+}
