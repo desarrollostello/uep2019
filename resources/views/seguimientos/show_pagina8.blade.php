@@ -9,39 +9,10 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          
-          {!! Form::select(
-                '20_asistencia_financiera', 
-                [
-                    ''=>'Seleccione', 
-                    'SI'=>'SI', 
-                    'NO'=>'NO'
-                ], 
-                null, 
-                [
-                    'class' => 'form-control', 
-                    'id' => '20_asistencia_financiera', 
-                    'data-live-search' => 'true', 
-                    'data-max-options' => '1'
-                ])  !!}
-         
+          {{ $seguimiento->20_asistencia_financiera }}
       </div>
       <div class="form-group col-sm-4">
-          {!! Form::select(
-                '20_asistencia_financiera_en_que', 
-                [
-                    ''=>'Seleccione', 
-                    'TÉCNICO - PRODUCTIVOS'=>'TÉCNICO - PRODUCTIVOS', 
-                    'GESTION ADMINISTRATIVA-FINANCIERA'=>'GESTION ADMINISTRATIVA-FINANCIERA',
-                    'MERCADO Y COMERCIALIZACION'=>'MERCADO Y COMERCIALIZACION', 
-                ], 
-                null, 
-                [
-                    'class' => 'form-control', 
-                    'id' => '20_asistencia_financiera_en_que', 
-                    'data-live-search' => 'true', 
-                    'data-max-options' => '1'
-                ])  !!}
+        {{ $seguimiento->20_asistencia_financiera_en_que }} 
       </div>
 </div>
 
@@ -55,7 +26,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-          {!! Form::textarea('20_1_asistencia_financiera_ampliacion', null, ['class' => 'form-control', 'rows' => 3, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
+      {{ $seguimiento->20_1_asistencia_financiera_ampliacion }} 
           
     </div>
 </div>
@@ -71,22 +42,7 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          
-          {!! Form::select(
-                '20_2_anteriormente_capacitacion', 
-                [
-                    ''=>'Seleccione', 
-                    'SI'=>'SI', 
-                    'NO'=>'NO'
-                ], 
-                null, 
-                [
-                    'class' => 'form-control',
-                    'id' => '20_2_anteriormente_capacitacion', 
-                    'data-live-search' => 'true', 
-                    'data-max-options' => '1'
-                ])  !!}
-         
+          {{ $seguimiento->20_2_anteriormente_capacitacion }} 
       </div>
 </div>
 
@@ -99,8 +55,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-          {!! Form::textarea('20_2_anteriormente_capac_tipo_cargo', null, ['class' => 'form-control', 'rows' => 3, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
-          
+      {{ $seguimiento->20_2_anteriormente_capac_tipo_cargo }} 
     </div>
 </div>
 
@@ -115,24 +70,7 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          
-          {!! Form::select(
-                '20_3_recibir_capacitacion', 
-                [
-                    ''=>'Seleccione', 
-                    'SI'=>'SI', 
-                    'NO'=>'NO',
-                    'NO SABE'=>'NO SABE'
-
-                ], 
-                null, 
-                [
-                    'class' => 'form-control', 
-                    'id' => '20_3_recibir_capacitacion', 
-                    'data-live-search' => 'true', 
-                    'data-max-options' => '1'
-                ])  !!}
-         
+          {{ $seguimiento->20_3_recibir_capacitacion }} 
       </div>
 </div>
 

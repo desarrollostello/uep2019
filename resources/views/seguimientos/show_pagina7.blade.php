@@ -10,24 +10,7 @@
 
 <div class="row">
       <div class="form-group col-sm-5">
-          {!! Form::select(
-                '17_perspectiva_futuro', 
-                [
-                    ''=>'Seleccione', 
-                    'MEJOR'=>'MEJOR', 
-                    'ALGO MEJOR'=>'ALGO MEJOR',
-                    'IGUAL'=>'IGUAL',
-                    'ALGO PEOR'=>'ALGO PEOR',
-                    'PEOR'=>'PEOR',
-                ], 
-                null, 
-                [
-                    'class' => 'form-control', 
-                    'id' => '13_otros_si_no', 
-                    'data-live-search' => 'true', 
-                    'data-max-options' => '1'
-                ])  !!}
-          
+        {{ $seguimiento->17_perspectiva_futuro }} 
       </div>
 </div>
 
@@ -39,7 +22,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-          {!! Form::textarea('17_perspectiva_futuro_porque', null, ['class' => 'form-control', 'rows' => 3, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
+        {{ $seguimiento->17_perspectiva_futuro_porque }} 
     </div>
 </div>
 
@@ -55,38 +38,12 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          
-          {!! Form::select(
-                '18_problemas_pago_credito', 
-                [
-                    ''=>'Seleccione', 
-                    'SI'=>'SI', 
-                    'NO'=>'NO'
-                ], 
-                null, 
-                [
-                    'class' => 'form-control', 
-                    'id' => '18_problemas_pago_credito', 
-                    'data-live-search' => 'true', 
-                    'data-max-options' => '1'
-                ])  !!}
-         
+        {{ $seguimiento->18_problemas_pago_credito }}
+
       </div>
       <div class="form-group col-sm-4">
-          {!! Form::select(
-                '18_problemas_pago_si_actuales_futuros', 
-                [
-                    ''=>'Seleccione', 
-                    'ACTUALES'=>'ACTUALES', 
-                    'FUTURO'=>'FUTURO'
-                ], 
-                null, 
-                [
-                    'class' => 'form-control', 
-                    'id' => '18_problemas_pago_si_actuales_futuros', 
-                    'data-live-search' => 'true', 
-                    'data-max-options' => '1'
-                ])  !!}
+        {{ $seguimiento->18_problemas_pago_si_actuales_futuros }}
+         
       </div>
 </div>
 
@@ -99,7 +56,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-          {!! Form::textarea('18_problmeas_pago_razones', null, ['class' => 'form-control', 'rows' => 3, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
+         {{ $seguimiento->18_problmeas_pago_razones }}
           
     </div>
 </div>
@@ -115,26 +72,12 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
+          {{ $seguimiento->19_problemas_entrevista_anterior }}
           
-          {!! Form::select(
-                '19_problemas_entrevista_anterior', 
-                [
-                    ''=>'Seleccione', 
-                    'SI'=>'SI', 
-                    'NO'=>'NO'
-                ], 
-                null, 
-                [
-                    'class' => 'form-control', 
-                    'id' => '19_problemas_entrevista_anterior', 
-                    'data-live-search' => 'true', 
-                    'data-max-options' => '1'
-                ])  !!}
-         
       </div>
       <div class="form-group col-sm-7">
-          {!! Form::label('19_problemas_entrevista_anterior_como', '* COMO?') !!}
-          {!! Form::text('19_problemas_entrevista_anterior_como', null, ['class' => 'form-control']) !!}
+          * COMO?
+          {{ $seguimiento->19_problemas_entrevista_anterior_como }} 
       </div>
 </div>
 
@@ -148,7 +91,6 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-          {!! Form::textarea('19_1_entrevista_anterior_razones', null, ['class' => 'form-control', 'rows' => 3, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
-          
+        {{ $seguimiento->19_1_entrevista_anterior_razones }}           
     </div>
 </div>

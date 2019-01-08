@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-          {!! Form::textarea('22_opinion_responsable', null, ['class' => 'form-control', 'rows' => 8, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
+        {{ $seguimiento->22_opinion_responsable }}
           
     </div>
 </div>

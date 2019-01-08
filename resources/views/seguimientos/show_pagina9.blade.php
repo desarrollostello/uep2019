@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-          {!! Form::textarea('20_3_en_que_temas', null, ['class' => 'form-control', 'rows' => 3, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
+       {{ $seguimiento->20_3_en_que_temas }} 
           
     </div>
 </div>
@@ -26,23 +26,7 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          
-          {!! Form::select(
-                '21_importancia_actividad', 
-                [
-                    ''=>'Seleccione', 
-                    'UNICA'=>'UNICA', 
-                    'PRINCIPAL'=>'PRINCIPAL',
-                    'SECUNDARIA'=>'SECUNDARIA'
-                ], 
-                null, 
-                [
-                    'class' => 'form-control',
-                    'id' => '21_importancia_actividad', 
-                    'data-live-search' => 'true', 
-                    'data-max-options' => '1'
-                ])  !!}
-         
+          {{ $seguimiento->21_importancia_actividad }} 
       </div>
 </div>
 
@@ -56,22 +40,7 @@
 
 <div class="row">
       <div class="form-group col-sm-4">
-          
-          {!! Form::select(
-                '21_1_actividad_ppal_perspectiva', 
-                [
-                    ''=>'Seleccione', 
-                    'SI'=>'SI', 
-                    'NO'=>'NO'
-                ], 
-                null, 
-                [
-                    'class' => 'form-control',
-                    'id' => '21_1_actividad_ppal_perspectiva', 
-                    'data-live-search' => 'true', 
-                    'data-max-options' => '1'
-                ])  !!}
-         
+          {{ $seguimiento->21_1_actividad_ppal_perspectiva }} 
       </div>
 </div>
 
@@ -86,8 +55,7 @@
 
 <div class="row">
     <div class="form-group col-sm-11">
-          {!! Form::textarea('21_2_observaciones', null, ['class' => 'form-control', 'rows' => 3, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
-          
+        {{ $seguimiento->21_2_observaciones }} 
     </div>
 </div>
 
