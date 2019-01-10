@@ -70,11 +70,12 @@ class CreateProyectosTable extends Migration
             $table->date('fechaComunicaTran')->nullable();
             $table->date('fechaDesembolso')->nullable();
             $table->date('fechaEfectivizacion')->nullable();
+            $table->date('fechaPrimerAmort')->nullable();
             $table->date('fechaDesistido')->nullable();
 
 
             //$table->integer('refinanciacion_id')->unsigned();
-
+            
             $table->date('fechaJudicial')->nullable();
             $table->date('fechaCancelado')->nullable();
             $table->date('fechaArchivado')->nullable();

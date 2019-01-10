@@ -19,6 +19,7 @@ class Alerta extends Model
         'mensaje',
         'estado',
         'color',
+        'codigo',
         'sql_alerta',
         'dias',
         'observaciones',

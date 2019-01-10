@@ -35,6 +35,7 @@ use Illuminate\Database\Query\Builder;
 class ProyectoController extends Controller
 {
 
+   
 
     public function datatable()
     {
@@ -575,9 +576,7 @@ class ProyectoController extends Controller
         //dd($proyectoRequest);
 
         $data = $proyectoRequest->all();
-        //dd($data);
-        $data['fechaIngreso'] = Carbon::parse($data['fechaIngreso'])->format('Y-m-d');
-
+      
         /*******************************************************/
         /************** COMPROBACIONES *************************/
 
@@ -702,7 +701,7 @@ class ProyectoController extends Controller
             }
         }
 
-        if ($data['monto'] < 0 || $data['monto'] > 2500000)
+        if ($data['monto'] < 0 || $data['monto'] > 4000000)
         {
             Session::flash('message-warning', 'Monto Incorrecto');
             return redirect()->back();
@@ -715,12 +714,10 @@ class ProyectoController extends Controller
 
         if($proyecto->fill($data)->update())
         {
-
-            
+          //  dd($proyecto);
             if ($proyectoRequest->hasfile('filename'))
             {
                
-                
                 foreach ($proyectoRequest->file('filename') as $key => $value)
                 {
                     $extension = \File::extension($value->getClientOriginalName());

@@ -16,6 +16,7 @@ class SeguimientoController extends Controller
 
     public function __construct()
     {
+
         $this->seguimiento = $this->getSeguimiento();
     }
     /**

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Log;
 use App\Events\ProyectoCreated;
 
 class Proyecto extends Model
@@ -82,6 +83,7 @@ class Proyecto extends Model
         'fechaComunicaTran',
         'fechaDesembolso',
         'fechaEfectivizacion',
+        'fechaPrimerAmort',
         'fechaDesistido',
         'fechaJudicial',
         'fechaCancelado',
@@ -143,242 +145,7 @@ class Proyecto extends Model
           if ( ! $user->isValid()) return false;
       });
 
-*/
-       public function setFechaIngresoAttribute($val)
-      {
-          $this->attributes['fechaIngreso'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaIngresoAttribute()
-      {
-        if($this->attributes['fechaIngreso'] != null)
-            return  \Carbon\Carbon::parse($this->attributes['fechaIngreso'])->format('d-m-Y');
-      }
-
-      /*******************/
-
-      public function setFechaEnvioBancoAttribute($val)
-      {
-          $this->attributes['fechaEnvioBanco'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-      public function getFechaEnvioBancoAttribute()
-      {
-          if($this->attributes['fechaEnvioBanco'] != null)
-              return  \Carbon\Carbon::parse($this->attributes['fechaEnvioBanco'])->format('d-m-Y');
-      }
-
-      /****************************/
-
-      public function setFechaRespuestaBancoAttribute($val)
-      {
-          $this->attributes['fechaRespuestaBanco'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-      public function getFechaRespuestaBancoAttribute()
-      {
-          if($this->attributes['fechaRespuestaBanco'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaRespuestaBanco'])->format('d-m-Y');
-      }
-      
-      /*********************************/
-     
-     public function setFechaPresupuestosAttribute($val)
-      {
-
-          $this->attributes['fechaPresupuestos'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaPresupuestosAttribute()
-      {
-          if($this->attributes['fechaPresupuestos'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaPresupuestos'])->format('d-m-Y');
-      }
-
-      /**********************************/
-      
-     
-       public function setFechaAprobadoUepAttribute($val)
-      {
-          $this->attributes['fechaAprobadoUep'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaAprobadoUepAttribute()
-      {
-          if($this->attributes['fechaAprobadoUep'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaAprobadoUep'])->format('d-m-Y');
-      }
-
-
-       /*******************/
-      public function setFechaAprobadoCfiAttribute($val)
-      {
-          $this->attributes['fechaAprobadoCfi'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaAprobadoCfiAttribute()
-      {
-          if($this->attributes['fechaAprobadoCfi'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaAprobadoCfi'])->format('d-m-Y');
-      }
-
-       /*******************/
-
-      public function setFechaTramdispoAttribute($val)
-      {
-          $this->attributes['fechaTramdispo'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaTramdispoAttribute()
-      {
-          if($this->attributes['fechaTramdispo'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaTramdispo'])->format('d-m-Y');
-      }
-
-       /*******************/
-
-
-       public function setFechaComunicaTranAttribute($val)
-      {
-          $this->attributes['fechaComunicaTran'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaComunicaTranAttribute()
-      {
-          if($this->attributes['fechaComunicaTran'] != null)
-              return  \Carbon\Carbon::parse($this->attributes['fechaComunicaTran'])->format('d-m-Y');
-      }
-
-       /*******************/
-
-      public function setFechaAprobadoDesembolsoAttribute($val)
-      {
-          $this->attributes['fechaDesembolso'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaAprobadoDesembolsoAttribute()
-      {
-          if($this->attributes['fechaDesembolso'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaDesembolso'])->format('d-m-Y');
-      }
-
-       /*******************/
-      public function setFechaEfectivizacionAttribute($val)
-      {
-          $this->attributes['fechaEfectivizacion'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaEfectivizacionAttribute()
-      {
-          if($this->attributes['fechaEfectivizacion'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaEfectivizacion'])->format('d-m-Y');
-      }
-
-      /*******************/
-
-      public function setFechaArchivadoAttribute($val)
-      {
-          $this->attributes['fechaArchivado'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaArchivadoAttribute()
-      {
-          if($this->attributes['fechaArchivado'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaArchivado'])->format('d-m-Y');
-      }
-
-      /*******************/
-
-      public function setFechaUltimoMovimientoAttribute($val)
-      {
-          $this->attributes['fechaUltimoMovimiento'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaUltimoMovimientoAttribute()
-      {
-          if($this->attributes['fechaUltimoMovimiento'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaUltimoMovimiento'])->format('d-m-Y');
-      }
-
-      /*******************/
-
-
-      public function setFechaDesistidoAttribute($val)
-      {
-          $this->attributes['fechaDesistido'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaDesistidoAttribute()
-      {
-          if($this->attributes['fechaDesistido'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaDesistido'])->format('d-m-Y');
-      }
-
-      /*******************/
-
-      public function setFechaJudicialAttribute($val)
-      {
-          $this->attributes['fechaJudicial'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaJudicialAttribute()
-      {
-          if($this->attributes['fechaJudicial'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaJudicial'])->format('d-m-Y');
-      }
-
-      /*******************/
-
-      public function setFechaCanceladoAttribute($val)
-      {
-          $this->attributes['fechaCancelado'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaCanceladoAttribute()
-      {
-          if($this->attributes['fechaCancelado'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaCancelado'])->format('d-m-Y');
-      }
-
-      /*******************/
-
-      public function setFechaEnviadoCfiAttribute($val)
-      {
-          $this->attributes['fechaEnviadoCfi'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-
-      
-      public function getFechaEnviadoCfiAttribute()
-      {
-          if($this->attributes['fechaEnviadoCfi'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaEnviadoCfi'])->format('d-m-Y');
-      }
-
-    
-      /**************************************/
-      
-      public function setFechaCaducoBancoAttribute($val)
-      {
-          $this->attributes['fechaCaducoBanco'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
-      }
-      public function getFechaCaducoBancoAttribute()
-      {
-          if($this->attributes['fechaCaducoBanco'] != null)
-          return  \Carbon\Carbon::parse($this->attributes['fechaCaducoBanco'])->format('d-m-Y');
-      }
-
-      
+        */
 
 
       /**
@@ -450,4 +217,29 @@ class Proyecto extends Model
       {
           return $this->belongsTo('App\User', 'user_id');
       }
+
+
+      public static function boot() {
+          parent::boot();
+
+          static::creating(function ($model) {
+         
+      
+          });
+
+          static::updating(function($proyecto) {
+            
+            return $proyecto->fechaPrimerAmort = \Carbon\Carbon::parse($proyecto->fechaIngreso)->format('Y-m-d');
+          });
+
+          static::updated(function($proyecto) {
+         
+          });
+
+        
+          static::created(function ($model) {
+         
+          });
+      }
+      
 }

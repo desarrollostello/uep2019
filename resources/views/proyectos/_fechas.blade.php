@@ -1,6 +1,9 @@
 <div class="col-md-11" style="border-bottom: 2px solid #cccccc">
       <div class="row">
          <div class="form-group col-sm-3">
+              
+                {!! Form::text('fechaPrimerAmort', null, ['class' =>'form-control fechas'] ) !!}
+                
                  {!! Form::label('fechaEnvioBanco', 'Envío Banco') !!}
                  {!! Form::text('fechaEnvioBanco', null, ['class' =>'form-control fechas', 'readOnly'] ) !!}
          </div>

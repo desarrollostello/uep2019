@@ -15,7 +15,7 @@ class ProyectoCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $proyect;
+    public $proyecto;
 
     /**
      * Create a new event instance.
@@ -25,7 +25,7 @@ class ProyectoCreated
     
     public function __construct(Proyecto $proyecto)
     {
-        $this->proyect = $proyecto;
+        $this->proyecto = $proyecto;
     }
 
     /**
