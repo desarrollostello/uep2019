@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Proyecto;
+use App\AlertaProyecto;
 use App\Alerta;
 
 class LogSuccessfulLogin
@@ -48,35 +49,59 @@ class LogSuccessfulLogin
 
         4to:  Sacar la cuenta y ver si corresponde cargar Proyectos_Alertas
 
-
         */
+       
 
+       /****
+        1ero
+        ***/
+
+        $proyecto = Proyecto::whereHas('estado', function ($query) {
+                $query->where('nombre', 'like', "%EFECTIVIZADO%");
+            })
+            ->where('fechaDesistido', null)
+            ->where('fechaCancelado', null)
+            ->where('fechaArchivado', null)
+            ->where('fechaJudicial', null)
+            ->get();
+
+        
+        /************************/
+
+        /*** 2do ***/
         $alerta = Alerta::where('codigo','amortizar')
                         ->where('estado', 'activada')
                         ->first();
-       // dd($alerta);
-        $date = \Carbon\Carbon::now();
-
-
-
-       // $primerAmortizacion = date("Y-m-d", strtotime("$fecha + $plazo months"));
-
-
-        $dias = $date->subDays($alerta->dias);
-
-
-        $sql = Proyecto::whereHas('estado', function ($query) {
-                $query->where('nombre', 'like', "%EFECTIVIZADO%");
-            })
-            ->where('fechaEfectivizacion', '<', \Carbon\Carbon::parse($dias)->format('Y-m-d'))
-            ->get();
-            
+        // 10 dias en este caso
+        /*** fin 2do ****/
         
-        foreach ($sql as $key => $value) {
-            echo $value->plazoGracia . "<br />";
+        $fecha2 = \Carbon\Carbon::now();
+
+        foreach ($proyecto as $p) {
+            $efectivizacion = \Carbon\Carbon::parse($p->fechaEfectivizacion)->format('Y-m-d');
+            $gracia = $p->plazoGracia;
+            
+            $dt = \Carbon\Carbon::parse($p->fechaEfectivizacion);
+            $fecha1 = $dt->addMonths($p->plazoGracia);
+            $diasDiferencia = $fecha2->diffInDays($fecha1);
+
+            /*
+                Hasta acá tengola diferencia en DIAS entre hoy y la fecha de efectivizacion sumandole los meses de gracia
+                Ahora solo me falta comprar entre este valor y el valor que está en la alerta
+                Si este valor es igual o menor al de la alerta tiene que salir el mensaje
+             */
+            
+            if($diasDiferencia <= $alerta->dias)
+            {
+                $alertaProyecto = new AlertaProyecto();
+                $alertaProyecto->proyecto_id = $p->id;
+                $alertaProyecto->alerta_id = $alerta->id;
+                $alertaProyecto->slug = str_slug($alerta->nombre) . '-' . rand(5,100);
+                $alertaProyecto->save();
+            
+            }
+
         }
-       // dd('llegue');
-       // dd($proyectos);
-       // dd($event->user);
+
     }
 }
