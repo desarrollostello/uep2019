@@ -61,6 +61,7 @@ class CreateProyectosTable extends Migration
             //$table->integer('sujetoCredito_id')->unsigned();
             $table->integer('sujetoCredito')->nullable(); // este campo es para facilitar los filtros y demas tiene 1 o 0 segun la tabla de sujeto de creditos
             $table->date('fechaEnvioBanco')->nullable();
+            $table->date('fechaTitular')->nullable();
             $table->date('fechaRespuestaBanco')->nullable();
             $table->date('fechaCaducoBanco')->nullable();
             $table->date('fechaAprobadoUep')->nullable();
@@ -80,6 +81,7 @@ class CreateProyectosTable extends Migration
             $table->date('fechaCancelado')->nullable();
             $table->date('fechaArchivado')->nullable();
             $table->date('fechaUltimoMovimiento')->nullable();
+            $table->date('fechaBaja')->nullable();
 
             $table->text('observaciones')->nullable();
 

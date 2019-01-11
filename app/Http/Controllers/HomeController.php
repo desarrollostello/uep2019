@@ -160,72 +160,7 @@ class HomeController extends Controller
             ]);
         }
 
-
-        AlertaProyecto::whereNotNull('id')->delete();
-
-        $alertas = Alerta::all();
-
-
-        foreach ($alertas as $alerta)
-        {
-            $sql = null;
-            if ($alerta->codigo == 'Amortizando' AND $alerta->estado = "activa")
-            {
-                $date = \Carbon\Carbon::now();
-                $meses = $date->subMonths($alerta->dias);
-                $sql = Proyecto::whereHas('estado', function ($query) {
-                        $query->where('nombre', 'like', "%EFECTIVIZADO%");
-                    })
-                    ->where('fechaEfectivizacion', '<', \Carbon\Carbon::parse($meses)->format('Y-m-d'))
-                    ->get();
-                
-            }
-            if ($alerta->codigo == 'Ingreso' AND $alerta->estado = "activa")
-            {
-                $sql = Proyecto::whereHas('estado', function ($query) {
-                        $query->where('nombre', 'like', "%UEP%");
-                    })
-                    ->where('fechaIngreso', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
-                    ->get();
-            }
-
-            if ($alerta->codigo == 'BancoSujeto' AND $alerta->estado = "activa")
-            {
-                $sql = Proyecto::whereHas('estado', function ($query) {
-                        $query->where('nombre', 'like', "%BANCO%");
-                    })
-                    ->where('fechaEnvioBanco', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
-                    ->get();
-            }
-            if ($alerta->codigo == 'SujetoUep' AND $alerta->estado = "activa")
-            {
-                $sql = Proyecto::whereHas('estado', function ($query) {
-                        $query->where('nombre', 'like', "%UEP%");
-                    })
-                    ->where('fechaRespuestaBanco', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
-                    ->get();
-            }
-
-
-            if ($sql)
-            {
-                foreach ($sql as $p) {
-                    $nueva = new AlertaProyecto;
-                    $nueva->proyecto_id = $p->id;
-                    $nueva->alerta_id = $alerta->id;
-                    $nueva->slug = 'alerta-' . $alerta->id . '-' . rand(1,10000);
-                    if ($nueva->save())
-                    {
-                        $proyecto = Proyecto::find($p->id);
-                        $proyecto->update([
-                            'color' => $alerta->color
-                        ]);
-                    }
-                }
-            }
-        }
-
-        $alerta_proyectos    = DB::select("SELECT ap.*, a.*, p.* FROM alerta_proyecto ap, alertas a, proyectos p WHERE ap.alerta_id = a.id AND ap.proyecto_id = p.id");
+        $alerta_proyectos    = DB::select("SELECT ap.*, a.*, p.nombre AS nombreProyecto, p.id, p.slug as slugProyecto FROM alerta_proyecto ap, alertas a, proyectos p WHERE ap.alerta_id = a.id AND ap.proyecto_id = p.id");
 
         //dd($alerta_proyectos);
 

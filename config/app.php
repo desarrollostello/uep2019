@@ -67,6 +67,8 @@ return [
 
     'timezone' => 'America/Argentina/Buenos_Aires',
 
+    'date_format' => 'd-m-Y',
+    'date_format_js' => 'dd-mm-yy',
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

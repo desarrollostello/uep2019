@@ -75,6 +75,7 @@ class Proyecto extends Model
         'garantia_id',
         'sucursal_id',
         'descripcionGarantia',
+        'fechaTitular',
         'fechaCaducoBanco',
         'fechaAprobadoUep',
         'fechaEnviadoCfi',
@@ -92,6 +93,7 @@ class Proyecto extends Model
         'fechaRespuestaBanco',
         'fechaPresupuestos',
         'fechaUltimoMovimiento',
+        'fechaBaja',
         'refinanciado',
         'user_id',
         'titular',
@@ -217,6 +219,277 @@ class Proyecto extends Model
       {
           return $this->belongsTo('App\User', 'user_id');
       }
+
+
+      /*** trabajando sobre las fechas ***/
+
+
+
+      public function setFechaIngresoAttribute($value): void
+      {
+        $this->attributes['fechaIngreso'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaIngresoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaPrimerAmortAttribute($value): void
+      {
+        $this->attributes['fechaPrimerAmort'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaPrimerAmortAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaEnvioBancoAttribute($value): void
+      {
+        $this->attributes['fechaEnvioBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaEnvioBancoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaCaducoBancoAttribute($value): void
+      {
+        $this->attributes['fechaCaducoBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaCaducoBancoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaAprobadoUepAttribute($value): void
+      {
+        $this->attributes['fechaAprobadoUep'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaAprobadoUepAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaEnviadoCfiAttribute($value): void
+      {
+        $this->attributes['fechaEnviadoCfi'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaEnviadoCfiAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaAprobadoCfiAttribute($value): void
+      {
+        $this->attributes['fechaAprobadoCfi'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaAprobadoCfiAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaTramdispoAttribute($value): void
+      {
+        $this->attributes['fechaTramdispo'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaTramdispoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaComunicaTranAttribute($value): void
+      {
+        $this->attributes['fechaComunicaTran'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaComunicaTranAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaDesembolsoAttribute($value): void
+      {
+        $this->attributes['fechaDesembolso'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaDesembolsoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaEfectivizacionAttribute($value): void
+      {
+        $this->attributes['fechaEfectivizacion'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaEfectivizacionAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaDesistidoAttribute($value): void
+      {
+        $this->attributes['fechaDesistido'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaDesistidoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaJudicialAttribute($value): void
+      {
+        $this->attributes['fechaJudicial'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaJudicialAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaCanceladoAttribute($value): void
+      {
+        $this->attributes['fechaCancelado'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaCanceladoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaArchivadoAttribute($value): void
+      {
+        $this->attributes['fechaArchivado'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaArchivadoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaRespuestaBancoAttribute($value): void
+      {
+        $this->attributes['fechaRespuestaBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaRespuestaBancoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaPresupuestosAttribute($value): void
+      {
+        $this->attributes['fechaPresupuestos'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaPresupuestosAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaUltimoMovimientoAttribute($value): void
+      {
+        $this->attributes['fechaUltimoMovimiento'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaUltimoMovimientoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaTitularAttribute($value): void
+      {
+        $this->attributes['fechaTitular'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaTitularAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+      public function setFechaBajaAttribute($value): void
+      {
+        $this->attributes['fechaBaja'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaBajaAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
+
+
+      /**** TERMINE trabajando sobre las fechas ************/
+
+       
+
 
 
       public static function boot() {

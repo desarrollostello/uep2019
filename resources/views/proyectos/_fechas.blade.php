@@ -2,7 +2,7 @@
       <div class="row">
          <div class="form-group col-sm-3">
               
-                {!! Form::text('fechaPrimerAmort', null, ['class' =>'form-control fechas'] ) !!}
+              <!--  {!! Form::text('fechaPrimerAmort', null, ['class' =>'form-control fechas'] ) !!}-->
                 
                  {!! Form::label('fechaEnvioBanco', 'Envío Banco') !!}
                  {!! Form::text('fechaEnvioBanco', null, ['class' =>'form-control fechas', 'readOnly'] ) !!}
@@ -14,6 +14,10 @@
          <div class="form-group col-sm-3">
                  {!! Form::label('fechaPresupuestos', 'Presupuestos') !!}
                  {!! Form::text('fechaPresupuestos', null, ['class' => 'form-control fechas']) !!}
+         </div>
+         <div class="form-group col-sm-3">
+                 {!! Form::label('fechaTitular', 'En Titular') !!}
+                 {!! Form::text('fechaTitular', null, ['class' => 'form-control fechas']) !!}
          </div>
       </div>
       <hr />
@@ -80,6 +84,10 @@
             <div class="form-group col-sm-3">
                    {!! Form::label('fechaUltimoMovimiento', 'Último Movimiento') !!}
                    {!! Form::text('fechaUltimoMovimiento', null, ['class' => 'form-control fechas']) !!}
+            </div>
+            <div class="form-group col-sm-3">
+                   {!! Form::label('fechaBaja', 'BAJA') !!}
+                   {!! Form::text('fechaBaja', null, ['class' => 'form-control fechas']) !!}
             </div>
             <div class="form-group col-sm-3">
                    {!! Form::label('refinanciado', 'Refinanciado?') !!}

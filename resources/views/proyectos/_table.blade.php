@@ -49,38 +49,40 @@
                    <td style="text-align:center">{{ $x->lineaCredito->nombre }}</td>
                 @elseif($c->nombre == 'sucursal_id')
                    <td style="text-align:center">{{  $x->sucursal->nombre }}</td>
+
                 @elseif($c->nombre == 'fechaIngreso')
                     <td style="text-align:center">{{ $x->fechaIngreso }}</td>
                 @elseif($c->nombre == 'fechaUltimoMovimiento')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaUltimoMovimiento)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaUltimoMovimiento }}</td>
                 @elseif($c->nombre == 'fechaArchivado')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaArchivado)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaArchivado }}</td>
                 @elseif($c->nombre == 'fechaCancelado')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaCancelado)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaCancelado }}</td>
                 @elseif($c->nombre == 'fechaJudicial')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaJudicial)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaJudicial }}</td>
                 @elseif($c->nombre == 'fechaDesistido')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaDesistido)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaDesistido }}</td>
                 @elseif($c->nombre == 'fechaEfectivizacion')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaEfectivizacion)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaEfectivizacion }}</td>
                 @elseif($c->nombre == 'fechaDesembolso')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaDesembolso)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaDesembolso }}</td>
                 @elseif($c->nombre == 'fechaComunicaTran')
-                   <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaComunicaTran)->format('d-m-Y') }}</td>
+                   <td style="text-align:center">{{ $x->fechaComunicaTran }}</td>
                 @elseif($c->nombre == 'fechaTramdispo')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaComunicaTran)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaComunicaTran }}</td>
                 @elseif($c->nombre == 'fechaAprobadoCfi')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaAprobadoCfi)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaAprobadoCfi }}</td>
                 @elseif($c->nombre == 'fechaEnviadoCfi')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaEnviadoCfi)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaEnviadoCfi }}</td>
                 @elseif($c->nombre == 'fechaAprobadoUep')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaAprobadoUep)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaAprobadoUep }}</td>
                 @elseif($c->nombre == 'fechaCaducoBanco')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaCaducoBanco)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaCaducoBanco }}</td>
                 @elseif($c->nombre == 'fechaRespuestaBanco')
-                    <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaRespuestaBanco)->format('d-m-Y') }}</td>
+                    <td style="text-align:center">{{ $x->fechaRespuestaBanco }}</td>
                 @elseif($c->nombre == 'fechaEnvioBanco')
-                   <td style="text-align:center">{{ \Carbon\Carbon::parse($x->fechaEnvioBanco)->format('d-m-Y') }}</td>
+                   <td style="text-align:center">{{ $x->fechaEnvioBanco }}</td>
+
                 @else
                     <td style="text-align:center">{{  $x->$nombre }}</td>
                 @endif

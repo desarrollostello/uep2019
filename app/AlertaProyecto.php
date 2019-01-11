@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Proyecto;
+use App\Alerta;
 use Illuminate\Database\Eloquent\Model;
 use Yajra\DataTables\Services\DataTable;
 
@@ -19,6 +21,17 @@ class AlertaProyecto extends Model
         'alerta_id',
         'slug'
     ];
+
+
+    public function proyecto()
+    {
+        return $this->belongsTo('App\Proyecto', 'proyecto_id');
+    }
+
+    public function alerta()
+    {
+        return $this->belongsTo('App\Alerta', 'alerta_id');
+    }
 
 /*
     public function setNombreAttribute($val)

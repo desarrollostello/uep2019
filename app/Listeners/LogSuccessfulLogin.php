@@ -77,7 +77,8 @@ class LogSuccessfulLogin
         
         $fecha2 = \Carbon\Carbon::now();
 
-        foreach ($proyecto as $p) {
+        foreach ($proyecto as $p) 
+        {
             $efectivizacion = \Carbon\Carbon::parse($p->fechaEfectivizacion)->format('Y-m-d');
             $gracia = $p->plazoGracia;
             
@@ -93,15 +94,204 @@ class LogSuccessfulLogin
             
             if($diasDiferencia <= $alerta->dias)
             {
-                $alertaProyecto = new AlertaProyecto();
-                $alertaProyecto->proyecto_id = $p->id;
-                $alertaProyecto->alerta_id = $alerta->id;
-                $alertaProyecto->slug = str_slug($alerta->nombre) . '-' . rand(5,100);
-                $alertaProyecto->save();
+                $ap = AlertaProyecto::where('proyecto_id', $p->id)
+                                    ->where('alerta_id', $alerta->id)
+                                    ->exists();
+
+                if(!($ap))
+                {
+
+                    $alertaProyecto = new AlertaProyecto();
+                    $alertaProyecto->proyecto_id = $p->id;
+                    $alertaProyecto->alerta_id = $alerta->id;
+                    $alertaProyecto->slug = str_slug($alerta->nombre) . '-' . rand(100,10000);
+                    if(!($alertaProyecto->save())){
+                        dd('No se pudo guardar');
+                     //  Aca debería crear como un LOG para guardar este error sin mostrarlo
+                    }else{
+                       // dd('Se guardo la Alerta');
+                    }
+                }else{
+                  //  dd('Alerta de Proyecto ya Creada');
+                }
             
             }
 
         }
+        /**** HASTA ACA ALERTA DE QUE PRONTO COMIENZA A AMORTIZAR***/
+
+        $alerta = Alerta::where('codigo','ingreso')
+                        ->where('estado', 'activada')
+                        ->first();
+
+        if($alerta)
+        {
+            $sql = Proyecto::whereHas('estado', function ($query) {
+                        $query->where('nombre', 'like', "%UEP%");
+                    })
+                    ->where('fechaIngreso', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
+                    ->get();
+            if ($sql)
+            {
+                foreach ($sql as $s) {
+                    $alertaProyecto = new AlertaProyecto();
+                    $alertaProyecto->proyecto_id = $s->id;
+                    $alertaProyecto->alerta_id = $alerta->id;
+                    $alertaProyecto->slug = str_slug($alerta->nombre) . '-' . rand(100,10000);
+                    if(!($alertaProyecto->save())){
+                        dd('No se pudo guardar alerta de ingreso');
+                     //  Aca debería crear como un LOG para guardar este error sin mostrarlo
+                    }
+                }
+            }
+                    
+        }            
+        /******* TERMINE LA ALERTA DE TANTOS DIAS DE UN PROYECTO EN ESTADO UEP ********/
+
+        $alerta = Alerta::where('codigo','banco')
+                        ->where('estado', 'activada')
+                        ->first();
+
+        if($alerta)
+        {
+            $sql = Proyecto::whereHas('estado', function ($query) {
+                            $query->where('nombre', 'like', "%BANCO%");
+                        })
+                        ->where('fechaEnvioBanco', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
+                        ->get();
+
+            if ($sql)
+            {
+                foreach ($sql as $s) {
+                    $alertaProyecto = new AlertaProyecto();
+                    $alertaProyecto->proyecto_id = $s->id;
+                    $alertaProyecto->alerta_id = $alerta->id;
+                    $alertaProyecto->slug = str_slug($alerta->nombre) . '-' . rand(100,10000);
+                    if(!($alertaProyecto->save())){
+                        dd('No se pudo guardar alerta de mucho tiempo un proyecto en el banco');
+                     //  Aca debería crear como un LOG para guardar este error sin mostrarlo
+                    }
+                }
+            }
+
+        }
+        /****** TERMINE LA ALERTAD E MUCHO TIEMPO EN BANCO **************/
+
+        $alerta = Alerta::where('codigo','sujeto')
+                        ->where('estado', 'activada')
+                        ->first();
+
+        if($alerta)
+        {
+            $sql = Proyecto::whereHas('estado', function ($query) {
+                        $query->where('nombre', 'like', "%UEP%");
+                    })
+                    ->where('fechaRespuestaBanco', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
+                    ->get();
+
+            if ($sql)
+            {
+                foreach ($sql as $s) {
+                    $alertaProyecto = new AlertaProyecto();
+                    $alertaProyecto->proyecto_id = $s->id;
+                    $alertaProyecto->alerta_id = $alerta->id;
+                    $alertaProyecto->slug = str_slug($alerta->nombre) . '-' . rand(100,10000);
+                    if(!($alertaProyecto->save())){
+                        dd('No se pudo guardar alerta de mucho tiempo un proyecto en el banco');
+                     //  Aca debería crear como un LOG para guardar este error sin mostrarlo
+                    }
+                }
+            }
+
+        }
+        /******** TERMINE ALERTA QUE NO SALE EL SUJETO DEL BANCO ***********/
+
+        $alerta = Alerta::where('codigo','titular')
+                        ->where('estado', 'activada')
+                        ->first();
+
+        if($alerta)
+        {
+            $sql = Proyecto::whereHas('estado', function ($query) {
+                        $query->where('nombre', 'like', "%TITULAR%");
+                    })
+                    ->where('fechaTitular', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
+                    ->get();
+
+            if ($sql)
+            {
+                foreach ($sql as $s) {
+                    $alertaProyecto = new AlertaProyecto();
+                    $alertaProyecto->proyecto_id = $s->id;
+                    $alertaProyecto->alerta_id = $alerta->id;
+                    $alertaProyecto->slug = str_slug($alerta->nombre) . '-' . rand(100,10000);
+                    if(!($alertaProyecto->save())){
+                        dd('No se pudo guardar alerta de mucho tiempo en titular');
+                     //  Aca debería crear como un LOG para guardar este error sin mostrarlo
+                    }
+                }
+            }
+
+        }
+        /******** TERMINE ALERTA EN TITULAR***********/
+
+        $alerta = Alerta::where('codigo','presupuesto')
+                        ->where('estado', 'activada')
+                        ->first();
+
+        if($alerta)
+        {
+            $sql = Proyecto::where('fechaAprobadoUep', null)
+                    ->where('fechaPresupuestos', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
+                    ->get();
+
+            if ($sql)
+            {
+                foreach ($sql as $s) {
+                    $alertaProyecto = new AlertaProyecto();
+                    $alertaProyecto->proyecto_id = $s->id;
+                    $alertaProyecto->alerta_id = $alerta->id;
+                    $alertaProyecto->slug = str_slug($alerta->nombre) . '-' . rand(100,10000);
+                    if(!($alertaProyecto->save())){
+                        dd('No se pudo guardar alerta de presupuestos');
+                     //  Aca debería crear como un LOG para guardar este error sin mostrarlo
+                    }
+                }
+            }
+
+        }
+        /******** TERMINE ALERTA PRESUPUESTOS ***********/
+
+        $alerta = Alerta::where('codigo','enviocfi')
+                        ->where('estado', 'activada')
+                        ->first();
+
+        if($alerta)
+        {
+            $sql = Proyecto::where('fechaAprobadoCfi', null)
+                    ->where('fechaArchivado', null)
+                    ->where('fechaDesistido', null)
+                    ->where('fechaBaja', null)
+                    ->where('fechaEnviadoCfi', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
+                    ->get();
+
+            if ($sql)
+            {
+                foreach ($sql as $s) {
+                    $alertaProyecto = new AlertaProyecto();
+                    $alertaProyecto->proyecto_id = $s->id;
+                    $alertaProyecto->alerta_id = $alerta->id;
+                    $alertaProyecto->slug = str_slug($alerta->nombre) . '-' . rand(100,10000);
+                    if(!($alertaProyecto->save())){
+                        dd('No se pudo guardar alerta de presupuestos');
+                     //  Aca debería crear como un LOG para guardar este error sin mostrarlo
+                    }
+                }
+            }
+
+        }
+        /******** TERMINE ALERTA ENVIO CFI ***********/
+
 
     }
 }

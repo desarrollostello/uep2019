@@ -8,6 +8,10 @@
                 Respuesta Banco:<br />
                 {{ $proyecto->fechaRespuestaBanco }}
          </div>
+         <div class="form-group col-sm-5" style="border: 1px solid #ccc">
+                En Titular:<br />
+                {{ $proyecto->fechaTitular }}
+         </div>
       </div>
       <hr />
 
@@ -73,6 +77,10 @@
             <div class="form-group col-sm-3" style="border: 1px solid #ccc">
                    Último Movimiento:<br />
                    {{ $proyecto->fechaUltimoMovimiento }}
+            </div>
+            <div class="form-group col-sm-3" style="border: 1px solid #ccc">
+                   Baja:<br />
+                   {{ $proyecto->fechaBaja }}
             </div>
             <div class="form-group col-sm-3" style="border: 1px solid #ccc">
                    Refinanciado?:<br />
