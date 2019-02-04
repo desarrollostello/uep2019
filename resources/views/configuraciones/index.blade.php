@@ -1,31 +1,29 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-    Estado
+    Configuración
 @endsection
 @section('main-content')
-
+@if(Session::has('message'))
+    {{Session::get('message')}}
+@endif
 <div class="container-fluid">
 
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Estado
-                    @can('estado.create')
-                    <a href="{{ route('estado.create') }}"
+                    Configuración
+                    <!--@can('localidad.create') -->
+                    <a href="{{ route('configuracion.create') }}"
                     class="btn btn-sm btn-primary pull-right">
                         Crear
                     </a>
-                    @endcan
+                    <!-- @endcan -->
                 </div>
-                @include('estados._table')
+                @include('configuraciones._table')
             </div>
         </div>
     </div>
 </div>
 @endsection
-@push('scripts')
-<script src="{{ asset('js/admin.js') }}"></script>
-
-@endpush

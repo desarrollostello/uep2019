@@ -28,7 +28,7 @@ class LocalidadController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */
+    */
     public function create()
     {
         $zonas = Zona::all()->pluck('nombre', 'id');
@@ -46,7 +46,7 @@ class LocalidadController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+    */
     public function store(LocalidadRequest $localidadRequest)
     {
         $data = $localidadRequest->all();

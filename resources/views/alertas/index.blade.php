@@ -12,12 +12,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Sector
-                    <!--@can('localidad.create') -->
+                    @role('admin_role')
                     <a href="{{ route('alerta.create') }}"
                     class="btn btn-sm btn-primary pull-right">
                         Crear
                     </a>
-                    <!-- @endcan -->
+                    @endrole
                 </div>
                 @include('alertas._table')
             </div>

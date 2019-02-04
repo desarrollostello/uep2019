@@ -27,10 +27,10 @@ class LogSuccessfulLogin
      * @param  Login  $event
      * @return void
      */
-    
+
     // Aca intento hacer algunas cosas para las Alertas , por ejemplo ver si algun proyecto
     // esta pronto a comenzar a pagar capital, se le termina el periodo de gracia digamos
-    // 
+    //
     public function handle(Login $event)
     {
 
@@ -50,14 +50,14 @@ class LogSuccessfulLogin
         4to:  Sacar la cuenta y ver si corresponde cargar Proyectos_Alertas
 
         */
-       
+
 
        /****
         1ero
         ***/
 
         $proyecto = Proyecto::whereHas('estado', function ($query) {
-                $query->where('nombre', 'like', "%EFECTIVIZADO%");
+                $query->where('codigo', 'like', "%EFECTIVIZADO%");
             })
             ->where('fechaDesistido', null)
             ->where('fechaCancelado', null)
@@ -65,7 +65,7 @@ class LogSuccessfulLogin
             ->where('fechaJudicial', null)
             ->get();
 
-        
+
         /************************/
 
         /*** 2do ***/
@@ -74,14 +74,14 @@ class LogSuccessfulLogin
                         ->first();
         // 10 dias en este caso
         /*** fin 2do ****/
-        
+
         $fecha2 = \Carbon\Carbon::now();
 
-        foreach ($proyecto as $p) 
+        foreach ($proyecto as $p)
         {
             $efectivizacion = \Carbon\Carbon::parse($p->fechaEfectivizacion)->format('Y-m-d');
             $gracia = $p->plazoGracia;
-            
+
             $dt = \Carbon\Carbon::parse($p->fechaEfectivizacion);
             $fecha1 = $dt->addMonths($p->plazoGracia);
             $diasDiferencia = $fecha2->diffInDays($fecha1);
@@ -91,7 +91,7 @@ class LogSuccessfulLogin
                 Ahora solo me falta comprar entre este valor y el valor que está en la alerta
                 Si este valor es igual o menor al de la alerta tiene que salir el mensaje
              */
-            
+
             if($diasDiferencia <= $alerta->dias)
             {
                 $ap = AlertaProyecto::where('proyecto_id', $p->id)
@@ -114,7 +114,7 @@ class LogSuccessfulLogin
                 }else{
                   //  dd('Alerta de Proyecto ya Creada');
                 }
-            
+
             }
 
         }
@@ -127,7 +127,7 @@ class LogSuccessfulLogin
         if($alerta)
         {
             $sql = Proyecto::whereHas('estado', function ($query) {
-                        $query->where('nombre', 'like', "%UEP%");
+                        $query->where('codigo', 'like', "%UEP%");
                     })
                     ->where('fechaIngreso', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
                     ->get();
@@ -144,8 +144,8 @@ class LogSuccessfulLogin
                     }
                 }
             }
-                    
-        }            
+
+        }
         /******* TERMINE LA ALERTA DE TANTOS DIAS DE UN PROYECTO EN ESTADO UEP ********/
 
         $alerta = Alerta::where('codigo','banco')
@@ -184,7 +184,7 @@ class LogSuccessfulLogin
         if($alerta)
         {
             $sql = Proyecto::whereHas('estado', function ($query) {
-                        $query->where('nombre', 'like', "%UEP%");
+                        $query->where('codigo', 'like', "%UEP%");
                     })
                     ->where('fechaRespuestaBanco', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
                     ->get();
@@ -213,7 +213,7 @@ class LogSuccessfulLogin
         if($alerta)
         {
             $sql = Proyecto::whereHas('estado', function ($query) {
-                        $query->where('nombre', 'like', "%TITULAR%");
+                        $query->where('codigo', 'like', "%TITULAR%");
                     })
                     ->where('fechaTitular', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
                     ->get();

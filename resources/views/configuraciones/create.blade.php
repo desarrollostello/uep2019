@@ -1,26 +1,27 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-    Estado
+    Anexos de Seguimientos
 @endsection
+
 
 @section('main-content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Editando Estado
+                <div class="panel-heading">Nuevo Anexo al Seguimiento
                   <p class="pull-right">
-                    <a href="{{ route('estado.index') }}" class="btn btn-sm btn-primary pull-right">
+                    <a href="{{ route('anexoSeguimiento.index') }}" class="btn btn-sm btn-primary pull-right">
                       Volver
                     </a>
                   </p>
                 </div>
 
                 <div class="panel-body">
-                  {!! Form::model($estado, ['method' => 'PATCH', 'route' => ['estado.update', $estado]]) !!}
-                        @include('estados._form')
-                  {!! Form::close() !!}
+                    {!! Form::open(['route' => ['anexoSeguimiento.store'], 'enctype' => 'multipart/form-data']) !!}
+                        @include('anexosseguimientos.form')
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>

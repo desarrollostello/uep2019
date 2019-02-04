@@ -4,7 +4,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => 'auth'], function () 
+Route::group(['middleware' => 'auth'], function ()
 {
     Route::get('listado', 'UserController@index')->name('users.index');
     Route::get('informeEstados', 'HomeController@informeEstados')->name('informeEstados');
@@ -20,14 +20,14 @@ Route::group(['middleware' => 'auth'], function ()
     Route::get('roles/{role}', 'RoleController@show')->name('roles.show')->middleware('permission:roles.show');
     Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permission:roles.destroy');
     Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('permission:roles.edit');
-    
+
 
     Route::resource('provincia','ProvinciaController');
     Route::resource('zona','ZonaController');
 
     Route::resource('departamento','DepartamentoController');
     Route::resource('banco','BancoController');
-    Route::resource('estado','EstadoController');
+    //Route::resource('estado','EstadoController');
     Route::resource('sector','SectorController');
     Route::resource('garantia','GarantiaController');
     Route::resource('estadoCivil','EstadoCivilController');
@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function ()
     Route::resource('periodicidad','PeriodicidadController');
     //Route::resource('sujetoCredito','SujetoCreditoController');
 
-    
+
 
 
     Route::resource('auditoria','AuditoriaController');
@@ -181,6 +181,17 @@ Route::group(['middleware' => 'auth'], function ()
             Route::get('eliminar/{alerta}', 'AlertaController@destroy')->name('alerta.delete')->middleware('permission:alerta.delete');
     });
 
+    Route::group(['prefix' => 'estado'], function () {
+            Route::get('listado', 'EstadoController@index')->name('estado.index')->middleware('permission:estado.index');
+            Route::get('nuevo', 'EstadoController@create')->name('estado.create')->middleware('permission:estado.create');
+            Route::get('nuevo', 'EstadoController@create')->name('estado.createAviso');
+            Route::post('nuevo', 'EstadoController@store')->name('estado.store')->middleware('permission:estado.store');
+            Route::get('editar/{estado}', 'EstadoController@edit')->name('estado.edit')->middleware('permission:estado.edit');
+            //Route::get('ver/{alerta}', 'AlertaController@show')->name('alerta.show')->middleware('permission:alerta.show');
+            Route::patch('editar/{estado}', 'EstadoController@update')->name('estado.update')->middleware('permission:estado.update');
+            //Route::get('eliminar/{alerta}', 'AlertaController@destroy')->name('alerta.delete')->middleware('permission:alerta.delete');
+    });
+
     Route::group(['prefix' => 'checklist'], function () {
             Route::get('listado', 'ChecklistController@index')->name('checklist.index');
             Route::get('nuevo', 'ChecklistController@create')->name('checklist.create');
@@ -289,21 +300,21 @@ Route::group(['middleware' => 'auth'], function ()
     $role = \Caffeinated\Shinobi\Models\Role::find(1);
         dd($role->getPermissions());
     });
-     
+
     Route::get('/assign_permissions', function()
     {
         $role = \Caffeinated\Shinobi\Models\Role::find(1);
         $role->assignPermission(3);
         $role->save();
     });
-     
+
     Route::get('/revoke_permission', function()
     {
         $role = \Caffeinated\Shinobi\Models\Role::find(1);
         $role->revokePermission(3);
         $role->save();
     });
-     
+
     Route::get('/revoke_all_permission', function()
     {
         $role = \Caffeinated\Shinobi\Models\Role::find(1);

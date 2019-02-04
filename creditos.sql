@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-12-2018 a las 17:11:34
+-- Tiempo de generación: 11-01-2019 a las 17:05:16
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -33,6 +33,7 @@ CREATE TABLE `alertas` (
   `nombre` varchar(120) CHARACTER SET utf8 NOT NULL,
   `estado` varchar(120) CHARACTER SET utf8 NOT NULL,
   `color` varchar(120) CHARACTER SET utf8 NOT NULL,
+  `codigo` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mensaje` text CHARACTER SET utf8 NOT NULL,
   `dias` int(11) NOT NULL,
   `sql_alerta` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -46,9 +47,14 @@ CREATE TABLE `alertas` (
 -- Volcado de datos para la tabla `alertas`
 --
 
-INSERT INTO `alertas` (`id`, `nombre`, `estado`, `color`, `mensaje`, `dias`, `sql_alerta`, `observaciones`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'ALERTA VENCIMIENTO SUJETO DE CREDITO', 'activada', '#b54141', 'ALERTA VENCIMIENTO SUJETO DE CREDITO', 30, NULL, 'Esta Alerta estará activa cuando el proyecto tenga la Respuesta del Banco con fecha superior a los x días (según se complete en el campo correspondiente) y que NO ESTE APROBADO POR LA UEP', 'alerta-vencimiento-sujeto-de-credito9412', '2018-12-17 15:15:19', '2018-12-18 12:29:12'),
-(2, 'ALERTA VENCIMIENTO PRESUPUESTOS', 'activada', '#b5d1c0', 'ALERTA VENCIMIENTO PRESUPUESTOS', 120, NULL, 'Esta Alerta se mostrará siempre que el campo Fecha Presupuesto tenga datos y el proyecto no esté Aprobado por la UEP ó Dato de Baja', 'alerta-vencimiento-presupuestos4300', '2018-12-18 12:43:22', '2018-12-18 12:45:15');
+INSERT INTO `alertas` (`id`, `nombre`, `estado`, `color`, `codigo`, `mensaje`, `dias`, `sql_alerta`, `observaciones`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'ALERTA VENCIMIENTO SUJETO DE CREDITO', 'activada', '#b54141', 'sujeto', 'ALERTA VENCIMIENTO SUJETO DE CREDITO', 30, NULL, 'Esta Alerta estará activa cuando el proyecto tenga la Respuesta del Banco con fecha superior a los x días (según se complete en el campo correspondiente) y que NO ESTE APROBADO POR LA UEP', 'alerta-vencimiento-sujeto-de-credito9412', '2018-12-17 15:15:19', '2018-12-18 12:29:12'),
+(2, 'ALERTA VENCIMIENTO PRESUPUESTOS', 'activada', '#b5d1c0', 'presupuesto', 'ALERTA VENCIMIENTO PRESUPUESTOS', 120, NULL, 'Esta Alerta se mostrará siempre que el campo Fecha Presupuesto tenga datos y el proyecto no esté Aprobado por la UEP ó Dato de Baja', 'alerta-vencimiento-presupuestos4300', '2018-12-18 12:43:22', '2018-12-18 12:45:15'),
+(3, 'ALERTA ENVIADO AL CFI', 'activada', '#bde397', 'enviocfi', 'PROYECTOS CON MUCHOS DÍAS EN EL CFI SIN RESPUESTA', 45, NULL, 'Esta Alerta aparecerá siempre que tenga establecida una fecha de \"Enviado al CFI\" y que la fecha \"Ultimo Movimiento\" sea mayor a la cantidad de días establecidos en la Alerta, siempre y cuando no esté Aporobado por el CFI', 'alerta-enviado-al-cfi4646', '2018-12-21 11:40:36', '2018-12-21 11:44:03'),
+(4, 'ALERTA INICIO AMORTIZACIÓN', 'activada', '#b5a241', 'amortizar', 'ESTOS PROYECTOS ESTÁN A POCOS DÍAS DE COMENZAR LA AMORTIZACIÓN DE SU CRÉDITO', 10, NULL, 'Esta Alerta comenzará cuando la fecha de Efectivización sumandole los meses de plazo de gracias estén en un mes antes de la fecha de ingreso al Sistema. Es decir, cuando falte un mes para la amortización aparece la alerta', 'alerta-inicio-amortizacion3790', '2018-12-21 11:42:45', '2019-01-09 14:01:40'),
+(5, 'ALERTA PROYECTO EN UEP', 'activada', '#de2d2d', 'ingreso', 'ESTOS PROYECTOS TIENEN ESTADO UEP CON UN TIEMPO PRUDENCIAL', 10, NULL, NULL, 'alerta-proyecto-en-uep5265', '2019-01-11 14:45:30', '2019-01-11 14:45:30'),
+(6, 'ALERTA PROYECTO EN BANCO', 'activada', '#a589c2', 'banco', 'PROYECTOS QUE ESTÁN HACE MUCHO EN EL BANCO', 15, NULL, NULL, 'alerta-proyecto-en-banco3753', '2019-01-11 14:52:09', '2019-01-11 14:55:32'),
+(7, 'ALERTA MUCHO TIEMPO EN TITULAR', 'activada', '#dea7a7', 'titular', 'ESTOS PROYECTOS ESTÁN EN EL TITULAR', 20, NULL, NULL, 'alerta-mucho-tiempo-en-titular8545', '2019-01-11 15:41:56', '2019-01-11 15:41:56');
 
 -- --------------------------------------------------------
 
@@ -64,6 +70,13 @@ CREATE TABLE `alerta_proyecto` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `alerta_proyecto`
+--
+
+INSERT INTO `alerta_proyecto` (`id`, `proyecto_id`, `alerta_id`, `slug`, `created_at`, `updated_at`) VALUES
+(7, 3, 4, 'alerta-inicio-amortizacion-6375', '2019-01-11 15:06:10', '2019-01-11 15:06:10');
 
 -- --------------------------------------------------------
 
@@ -83,6 +96,25 @@ CREATE TABLE `anexos_proyectos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `anexos_seguimientos`
+--
+
+CREATE TABLE `anexos_seguimientos` (
+  `id` int(11) NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `seguimiento_id` int(10) UNSIGNED NOT NULL,
+  `fecha` date NOT NULL,
+  `file` varchar(120) NOT NULL,
+  `icon` varchar(120) NOT NULL,
+  `nombre_archivo` varchar(120) NOT NULL,
+  `slug` varchar(120) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -388,6 +420,15 @@ CREATE TABLE `destino_credito` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `destino_credito`
+--
+
+INSERT INTO `destino_credito` (`id`, `nombre`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'CAPITAL DE TRABAJO', 'capital-de-trabajo', '2018-12-26 13:16:44', '2018-12-26 13:19:32'),
+(2, 'ACTIVO FIJO', 'activo-fijo', '2018-12-26 13:17:19', '2018-12-26 13:19:40'),
+(3, 'MIXTO', 'mixto', '2018-12-26 13:19:48', '2018-12-26 13:19:48');
+
 -- --------------------------------------------------------
 
 --
@@ -567,7 +608,6 @@ CREATE TABLE `localidades` (
 --
 
 INSERT INTO `localidades` (`id`, `nombre`, `cp`, `provincia_id`, `zona_id`, `dpto_id`, `user_id`, `slug`, `created_at`, `updated_at`) VALUES
-(1, '11 DE OCTUBRE', '1111', 2, NULL, 6, 1, '11-de-octubre', '2018-10-16 16:43:07', '2018-10-16 16:43:07'),
 (2, 'AGUADA SAN ROQUE', '2222', 2, NULL, 2, 1, 'aguada-san-roque', '2018-10-16 16:48:50', '2018-10-16 16:48:50'),
 (3, 'ALUMINÉ', '2333', 2, NULL, 1, 1, 'alumine', '2018-10-16 16:49:47', '2018-10-16 16:49:47'),
 (4, 'ANDACOLLO', '4444', 2, NULL, 11, 1, 'andacollo', '2018-10-16 16:50:04', '2018-10-16 16:50:04'),
@@ -579,7 +619,8 @@ INSERT INTO `localidades` (`id`, `nombre`, `cp`, `provincia_id`, `zona_id`, `dpt
 (10, 'BUTA RANQUIL', '4445', 2, NULL, 13, 1, 'buta-ranquil', '2018-10-16 16:54:11', '2018-10-16 16:54:11'),
 (11, 'CAVIAHUE', '5555', 2, NULL, 12, 1, 'caviahue', '2018-10-16 16:54:31', '2018-10-16 16:54:31'),
 (12, 'CENTENARIO', '1111', 2, NULL, 6, 1, 'centenario', '2018-10-17 11:41:58', '2018-10-17 11:41:58'),
-(13, 'CHORRIACA', '1111', 2, NULL, 9, 1, 'chorriaca', '2018-10-17 11:42:25', '2018-10-17 11:42:25');
+(13, 'CHORRIACA', '1111', 2, NULL, 9, 1, 'chorriaca', '2018-10-17 11:42:25', '2018-10-17 11:42:25'),
+(14, '11 de OCTUBRE', '11111', 2, NULL, 6, 1, '11-de-octubre', '2019-01-04 13:13:25', '2019-01-04 13:13:25');
 
 -- --------------------------------------------------------
 
@@ -635,7 +676,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (35, '2018_10_17_112628_create_desembolsos_table', 6),
 (36, '2018_11_01_082839_create_seguimientos_table', 7),
 (37, '2018_11_02_084748_create_columnasview_table', 8),
-(38, '2018_11_02_085005_create_columnasexcel_table', 9);
+(38, '2018_11_02_085005_create_columnasexcel_table', 9),
+(39, '2019_01_04_143916_create_anexos_seguimientos_table', 1);
 
 -- --------------------------------------------------------
 
@@ -897,7 +939,13 @@ INSERT INTO `permissions` (`id`, `name`, `slug`, `description`, `created_at`, `u
 (170, 'movimiento.removedata', 'movimiento.removedata', NULL, NULL, NULL),
 (171, 'movimiento.store', 'movimiento.store', NULL, NULL, NULL),
 (172, 'movimiento.update', 'movimiento.update', NULL, NULL, NULL),
-(173, 'titular.removedata', 'titular.removedata', NULL, NULL, NULL);
+(173, 'titular.removedata', 'titular.removedata', NULL, NULL, NULL),
+(174, 'Listado de Seguimientos', 'seguimiento.index', 'Listado de Seguimientos', NULL, NULL),
+(175, 'Crear un Nuevo Seguimiento', 'seguimiento.create', 'Crear un Nuevo Seguimiento', NULL, NULL),
+(176, 'Guardar un Seguimiento', 'seguimiento.store', 'Guardar el Seguimiento', NULL, NULL),
+(177, 'Editar un Seguimiento', 'seguimiento.edit', 'Editar un Seguimiento', NULL, NULL),
+(178, 'Actualizar Seguimiento', 'seguimiento.update', 'Actualizar Seguimiento', NULL, NULL),
+(179, 'Borrar un Seguimiento', 'seguimiento.delete', 'Borrar un Seguimiento', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1183,7 +1231,7 @@ CREATE TABLE `proyectos` (
   `figuraLegal_id` int(10) UNSIGNED DEFAULT NULL,
   `periodicidad_id` int(10) UNSIGNED DEFAULT NULL,
   `destinoCredito_id` int(10) UNSIGNED DEFAULT NULL,
-  `refinanciado` int(11) DEFAULT '0',
+  `refinanciado` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT 'NO',
   `plazoGracia` int(11) DEFAULT NULL,
   `plazoAmortizacion` int(11) DEFAULT NULL,
   `cantidadDesembolsos` int(11) DEFAULT NULL,
@@ -1194,6 +1242,7 @@ CREATE TABLE `proyectos` (
   `fechaEnvioBanco` date DEFAULT NULL,
   `fechaRespuestaBanco` date DEFAULT NULL,
   `fechaPresupuestos` date DEFAULT NULL,
+  `fechaTitular` date DEFAULT NULL,
   `fechaCaducoBanco` date DEFAULT NULL,
   `fechaAprobadoUep` date DEFAULT NULL,
   `fechaEnviadoCfi` date DEFAULT NULL,
@@ -1202,11 +1251,13 @@ CREATE TABLE `proyectos` (
   `fechaComunicaTran` date DEFAULT NULL,
   `fechaDesembolso` date DEFAULT NULL,
   `fechaEfectivizacion` date DEFAULT NULL,
+  `fechaPrimerAmort` date DEFAULT NULL,
   `fechaDesistido` date DEFAULT NULL,
   `fechaJudicial` date DEFAULT NULL,
   `fechaCancelado` date DEFAULT NULL,
   `fechaArchivado` date DEFAULT NULL,
   `fechaUltimoMovimiento` date DEFAULT NULL,
+  `fechaBaja` date DEFAULT NULL,
   `observaciones` text CHARACTER SET utf8,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `sucursal_id` int(10) UNSIGNED DEFAULT NULL,
@@ -1219,9 +1270,10 @@ CREATE TABLE `proyectos` (
 -- Volcado de datos para la tabla `proyectos`
 --
 
-INSERT INTO `proyectos` (`id`, `fechaIngreso`, `nombre`, `numeroInterno`, `numeroCfi`, `localidad_id`, `lineaCredito_id`, `estado_id`, `estadoInterno_id`, `sector_id`, `tipo`, `titular`, `monto`, `tamanio`, `domicilioProyecto`, `domicilioLegal`, `telefono`, `email`, `web`, `productos`, `ciuu`, `mo`, `enuep`, `descripcion`, `inversionTotal`, `inversionRealizada`, `inversionARealizar_ct`, `inversionARealizar_af`, `figuraLegal_id`, `periodicidad_id`, `destinoCredito_id`, `refinanciado`, `plazoGracia`, `plazoAmortizacion`, `cantidadDesembolsos`, `tasa`, `garantia_id`, `descripcionGarantia`, `sujetoCredito`, `fechaEnvioBanco`, `fechaRespuestaBanco`, `fechaPresupuestos`, `fechaCaducoBanco`, `fechaAprobadoUep`, `fechaEnviadoCfi`, `fechaAprobadoCfi`, `fechaTramdispo`, `fechaComunicaTran`, `fechaDesembolso`, `fechaEfectivizacion`, `fechaDesistido`, `fechaJudicial`, `fechaCancelado`, `fechaArchivado`, `fechaUltimoMovimiento`, `observaciones`, `user_id`, `sucursal_id`, `slug`, `created_at`, `updated_at`) VALUES
-(1, '2018-12-20', 'NOMBRE DEL PROYECTO', NULL, NULL, 9, 1, 1, 1, 1, NULL, 'CARLOS', 1200000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2018-12-03', '2018-12-05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 'nombre-del-proyecto', '2018-10-17 14:02:15', '2018-12-20 16:05:07'),
-(2, '2018-12-20', 'Prueba Eventos', NULL, NULL, 8, 1, 1, 1, 2, NULL, 'Mauro Gabriel TELLO', 500000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'prueba-eventos', '2018-12-20 16:02:24', '2018-12-20 16:02:24');
+INSERT INTO `proyectos` (`id`, `fechaIngreso`, `nombre`, `numeroInterno`, `numeroCfi`, `localidad_id`, `lineaCredito_id`, `estado_id`, `estadoInterno_id`, `sector_id`, `tipo`, `titular`, `monto`, `tamanio`, `domicilioProyecto`, `domicilioLegal`, `telefono`, `email`, `web`, `productos`, `ciuu`, `mo`, `enuep`, `descripcion`, `inversionTotal`, `inversionRealizada`, `inversionARealizar_ct`, `inversionARealizar_af`, `figuraLegal_id`, `periodicidad_id`, `destinoCredito_id`, `refinanciado`, `plazoGracia`, `plazoAmortizacion`, `cantidadDesembolsos`, `tasa`, `garantia_id`, `descripcionGarantia`, `sujetoCredito`, `fechaEnvioBanco`, `fechaRespuestaBanco`, `fechaPresupuestos`, `fechaTitular`, `fechaCaducoBanco`, `fechaAprobadoUep`, `fechaEnviadoCfi`, `fechaAprobadoCfi`, `fechaTramdispo`, `fechaComunicaTran`, `fechaDesembolso`, `fechaEfectivizacion`, `fechaPrimerAmort`, `fechaDesistido`, `fechaJudicial`, `fechaCancelado`, `fechaArchivado`, `fechaUltimoMovimiento`, `fechaBaja`, `observaciones`, `user_id`, `sucursal_id`, `slug`, `created_at`, `updated_at`) VALUES
+(1, '2018-12-14', 'NOMBRE DEL PROYECTO 4H FG', NULL, NULL, 9, 1, 1, 1, 1, NULL, 'CARLOS v', 1200000, NULL, NULL, NULL, NULL, NULL, 'https://www.desarrollostello.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2018-12-03', '2018-12-05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 'nombre-del-proyecto-4h-fg', '2018-10-17 14:02:15', '2019-01-11 13:33:03'),
+(2, '2018-12-20', 'PRUEBA EVENTOS', NULL, NULL, 8, 1, 1, 1, 2, NULL, 'Mauro Gabriel TELLO', 500000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2019-01-09', '2019-01-09', '2019-01-02', NULL, NULL, '2019-01-03', '2019-01-04', '2019-01-05', '2019-01-06', '2019-01-06', '2019-01-07', '2019-01-07', NULL, NULL, NULL, NULL, NULL, '2019-01-09', NULL, NULL, NULL, NULL, 'prueba-eventos', '2018-12-20 16:02:24', '2019-01-09 15:16:52'),
+(3, '2019-01-03', 'PROYECTO PARA SEGUIMIENTO', NULL, '2014-RN-0018', 10, 1, 9, 6, 1, NULL, 'TELLO MAURO', 2000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 2, 'NO', 12, 36, 1, NULL, 2, NULL, 0, '2019-01-02', '2019-01-03', '2019-01-09', NULL, '2019-01-09', '2019-01-15', '2019-01-16', '2019-01-17', '2019-01-09', '2019-01-09', '2019-01-18', '2018-01-19', NULL, NULL, NULL, NULL, NULL, '2019-01-09', NULL, NULL, NULL, 1, 'proyecto-para-seguimiento', '2019-01-02 15:53:46', '2019-01-09 14:06:13');
 
 -- --------------------------------------------------------
 
@@ -1326,7 +1378,8 @@ INSERT INTO `sectores` (`id`, `nombre`, `slug`, `created_at`, `updated_at`) VALU
 CREATE TABLE `seguimientos` (
   `id` int(10) UNSIGNED NOT NULL,
   `proyecto_id` int(10) UNSIGNED DEFAULT NULL,
-  `fecha_seguimiento` date DEFAULT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `fechaSeguimiento` date DEFAULT NULL,
   `profesional_cfi` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `profesional_uep` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `grado_morosidad` int(11) DEFAULT NULL,
@@ -1334,6 +1387,15 @@ CREATE TABLE `seguimientos` (
   `evaluador_sectorial_cfi` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `localizacion` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tipo_proyecto` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `beneficiario1` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `domicilio_beneficiario1` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono_beneficiario1` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `beneficiario2` int(11) DEFAULT NULL,
+  `domicilio_beneficiario2` int(11) DEFAULT NULL,
+  `telefono_beneficiario2` int(11) DEFAULT NULL,
+  `beneficiario3` int(11) DEFAULT NULL,
+  `domicilio_beneficiario3` int(11) DEFAULT NULL,
+  `telefono_beneficiario3` int(11) DEFAULT NULL,
   `personal_permanente` int(11) DEFAULT NULL,
   `personal_temporario` int(11) DEFAULT NULL,
   `personal_a_incorporar` int(11) DEFAULT NULL,
@@ -1350,9 +1412,7 @@ CREATE TABLE `seguimientos` (
   `cant_cuotas` int(11) DEFAULT NULL,
   `frecuencia_amortizacion` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `frecuencia_gracia` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `empresa_activa` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `empresa_inactiva` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `empresa_parcial` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `empresa_activa_inactiva_parcial` varchar(15) CHARACTER SET utf8 DEFAULT NULL,
   `cambio_nomina` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cambio_afectan_empresa` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cambio_afectan_empresa_medida` text COLLATE utf8mb4_unicode_ci,
@@ -1371,16 +1431,16 @@ CREATE TABLE `seguimientos` (
   `nueva_localizacion_telefono` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nueva_localizacion_cp` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nueva_localizacion_provincia` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `puesta_en_marcha_nuevo_ampliacion` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `puesta_en_marcha_si_no` varchar(9) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problema_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problema_2` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problema_3` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problema_4` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problema_5` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problema_6` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `problema_7` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `10_2_describir_razones_consignadas` text COLLATE utf8mb4_unicode_ci,
+  `puesta_en_marcha_nuevo_ampliacion` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `puesta_en_marcha_si_no_parcial` varchar(9) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problema_1` varchar(3) CHARACTER SET utf8 DEFAULT 'off',
+  `problema_2` varchar(3) CHARACTER SET utf8 DEFAULT 'off',
+  `problema_3` varchar(3) CHARACTER SET utf8 DEFAULT 'off',
+  `problema_4` varchar(3) CHARACTER SET utf8 DEFAULT 'off',
+  `problema_5` varchar(3) CHARACTER SET utf8 DEFAULT 'off',
+  `problema_6` varchar(3) CHARACTER SET utf8 DEFAULT 'off',
+  `problema_7` varchar(3) CHARACTER SET utf8 DEFAULT 'off',
+  `razones_10_2` text COLLATE utf8mb4_unicode_ci,
   `inv_previstas_si_no` varchar(9) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `inv_previstas_desvios` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `desvio_inv_problema_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1391,93 +1451,100 @@ CREATE TABLE `seguimientos` (
   `desvio_inv_problema_6` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `desvio_inv_problema_7` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `desvio_inv_problema_8` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `11_2_describir_razones_consignadas` text COLLATE utf8mb4_unicode_ci,
+  `razones_11_2` text COLLATE utf8mb4_unicode_ci,
   `inv_verificacion_si_no` varchar(9) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `forma_de_verificacion` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `inv_proyectadas_si_no` varchar(9) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `11_5_inv_proyectadas_razones` text COLLATE utf8mb4_unicode_ci,
-  `nuevas_inv_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `razones_11_5` text COLLATE utf8mb4_unicode_ci,
+  `nuevas_inv_si_no` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `monto_aprox_nuevas_inversiones` double DEFAULT NULL,
-  `12_1_detalle_nuevas_inversiones` text COLLATE utf8mb4_unicode_ci,
-  `nuevas_inv_verificacion_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `d_nuevas_inv_12_1` text COLLATE utf8mb4_unicode_ci,
+  `nuevas_inv_verificacion_si_no` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `forma_verificacion_nuevas_inv` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `12_3_aumento_produccion` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `12_3_calidad_productos` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `12_3_disminucion_costos` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `12_3_otros` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_materia_prima_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_materia_prima_porcentaje` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_materia_prima_razones` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_insumos_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_insumos_porcentaje` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_insumos_razones` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_mano_obra_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_mano_obra_porcentaje` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_mano_obra_razones` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_otros_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_otros_porcentaje` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `13_otros_razones` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pagina4_12_3_aumento_produccion` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pagina4_12_3_calidad_productos` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pagina4_12_3_disminucion_costos` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pagina4_12_3_otros` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `m_p_si_no_13` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `m_p_porcentaje_13` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `m_p_razones_13` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `insumos_si_no_13` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `insumos_porcentaje_13` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `insumos_razones_13` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mano_obra_si_no_13` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mano_obra_porcentaje_13` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mano_obra_razones_13` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `otros_si_no_13` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `otros_porcentaje_13` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `otros_razones_13` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mo_antes_del_credito` int(11) DEFAULT NULL,
   `mo_con_el_credito` int(11) DEFAULT NULL,
   `mo_permanente` int(11) DEFAULT NULL,
   `mo_temporaria` int(11) DEFAULT NULL,
-  `14_mo_aclaraciones` text COLLATE utf8mb4_unicode_ci,
-  `problemas_funcionamiento_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_administrativos_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_provision_mp_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_disponibilidad_mo_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_calificacion_mo_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_proceso_prod_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_comercializacion_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_financieros_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_servicios_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_comunicaciones_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_climaticos_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_1_problemas_otros_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `15_2_descripcion_problmeas` text COLLATE utf8mb4_unicode_ci,
-  `16_ingresos_aumentaron` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_ingresos_disminuyeron` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_ingresos_no_variaron` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_ingresos_proporcion` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_1_precio_productos_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_1_precio_productos_variacion` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_1_volumen_vta_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_1_volumen_vta_variacion` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_1_gtos_comercializacion_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_1_gtos_comercializacion_variacion` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_1_nivel_prod_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_1_nivel_prod_variacion` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_1_otros_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_1_otros_variacion` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_2_observaciones` text COLLATE utf8mb4_unicode_ci,
-  `16_3_periodo_anterior_ingresos_aumentaron` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_3_periodo_anterior_ingresos_disminuyeron` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_3_periodo_anterior_ingresos_no_variaron` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_3_periodo_anterior_ingresos_proporcion` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `16_4_periodo_anterior_ingresos_porque` text COLLATE utf8mb4_unicode_ci,
-  `17_perspectiva_futuro` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `17_perspectiva_futuro_porque` text COLLATE utf8mb4_unicode_ci,
-  `18_problemas_pago_credito` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `18_problemas_pago_si_actuales_futuros` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `18_problmeas_pago_razones` text COLLATE utf8mb4_unicode_ci,
-  `19_problemas_entrevista_anterior` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `19_problemas_entrevista_anterior_como` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `19_1_entrevista_anterior_razones` text COLLATE utf8mb4_unicode_ci,
-  `20_asistencia_financiera` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `20_asistencia_financiera_en_que` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `20_1_asistencia_financiera_ampliacion` text COLLATE utf8mb4_unicode_ci,
-  `20_2_anteriormente_capacitacion` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `20_2_anteriormente_capac_tipo_cargo` text COLLATE utf8mb4_unicode_ci,
-  `20_3_recibir_capacitacion` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `20_3_en_que_temas` text COLLATE utf8mb4_unicode_ci,
-  `21_importancia_actividad` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `21_1_actividad_ppal_perspectiva` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `21_2_observaciones` text COLLATE utf8mb4_unicode_ci,
-  `22_opinion_responsable` text COLLATE utf8mb4_unicode_ci,
+  `mo_aclaraciones_14` text COLLATE utf8mb4_unicode_ci,
+  `p_f_si_no` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_admin_15_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_mp_15_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_disp_mo_15_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_calif_mo_15_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_proc_prod_15_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_comer_15_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_finan_15_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_serv_15_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_cli_15_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_otros_15_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion_problmeas_15_2` text COLLATE utf8mb4_unicode_ci,
+  `ingresos_aumentaron_16` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ingresos_disminuyeron_16` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ingresos_no_variaron_16` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ingresos_proporcion_16` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `precio_productos_si_no_16_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_prod_variacion_16_1` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `volumen_vta_si_no_16_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `volumen_vta_variacion_16_1` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gtos_comercializacion_si_no_16_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gtos_comercializacion_variacion_16_1` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nivel_prod_si_no_16_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nivel_prod_variacion_16_1` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `otros_si_no_16_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `otros_variacion_16_1` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observaciones_16_2` text COLLATE utf8mb4_unicode_ci,
+  `p_a_ingresos_aumentaron_16_3` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_a_ingresos_disminuyeron_16_3` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_a_ingresos_no_variaron_16_3` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `p_a_ingresos_proporcion_16_3` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `periodo_anterior_ingresos_porque_16_4` text COLLATE utf8mb4_unicode_ci,
+  `perspectiva_futuro_17` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `perspectiva_futuro_porque_17` text COLLATE utf8mb4_unicode_ci,
+  `problemas_pago_credito_18` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problemas_pago_si_actuales_futuros_18` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problmeas_pago_razones_18` text COLLATE utf8mb4_unicode_ci,
+  `problemas_entrevista_anterior_19` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problemas_entrevista_anterior_como_19` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entrevista_anterior_razones_19_1` text COLLATE utf8mb4_unicode_ci,
+  `asistencia_financiera_20` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `asistencia_financiera_en_que_20` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `asistencia_financiera_ampliacion_20_1` text COLLATE utf8mb4_unicode_ci,
+  `anteriormente_capacitacion_20_2` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `anteriormente_capac_tipo_cargo_20_2` text COLLATE utf8mb4_unicode_ci,
+  `recibir_capacitacion_20_3` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `en_que_temas_20_3` text COLLATE utf8mb4_unicode_ci,
+  `importancia_actividad_21` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `actividad_ppal_perspectiva_21_1` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observaciones_21_2` text COLLATE utf8mb4_unicode_ci,
+  `opinion_responsable_22` text COLLATE utf8mb4_unicode_ci,
   `slug` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `seguimientos`
+--
+
+INSERT INTO `seguimientos` (`id`, `proyecto_id`, `user_id`, `fechaSeguimiento`, `profesional_cfi`, `profesional_uep`, `grado_morosidad`, `nro_entrevista`, `evaluador_sectorial_cfi`, `localizacion`, `tipo_proyecto`, `beneficiario1`, `domicilio_beneficiario1`, `telefono_beneficiario1`, `beneficiario2`, `domicilio_beneficiario2`, `telefono_beneficiario2`, `beneficiario3`, `domicilio_beneficiario3`, `telefono_beneficiario3`, `personal_permanente`, `personal_temporario`, `personal_a_incorporar`, `credito_cfi`, `credito_otros_bancos`, `aporte_propio`, `credito_proveedores`, `inv_preinversion`, `inv_activo_fijo`, `inv_ct`, `prefinanciacion`, `detalle_inversiones`, `plazos_frecuencias_vigentes`, `cant_cuotas`, `frecuencia_amortizacion`, `frecuencia_gracia`, `empresa_activa_inactiva_parcial`, `cambio_nomina`, `cambio_afectan_empresa`, `cambio_afectan_empresa_medida`, `especificar_nombre1`, `especificar_domicilio_telefono1`, `especificar_nombre2`, `especificar_domicilio_telefono2`, `especificar_nombre3`, `especificar_domicilio_telefono3`, `especificar_nombre4`, `especificar_domicilio_telefono4`, `cambios_localizacion`, `cambios_localizacion_causas`, `nueva_localizacion_domicilio`, `nueva_localizacion_localidad`, `nueva_localizacion_telefono`, `nueva_localizacion_cp`, `nueva_localizacion_provincia`, `puesta_en_marcha_nuevo_ampliacion`, `puesta_en_marcha_si_no_parcial`, `problema_1`, `problema_2`, `problema_3`, `problema_4`, `problema_5`, `problema_6`, `problema_7`, `razones_10_2`, `inv_previstas_si_no`, `inv_previstas_desvios`, `desvio_inv_problema_1`, `desvio_inv_problema_2`, `desvio_inv_problema_3`, `desvio_inv_problema_4`, `desvio_inv_problema_5`, `desvio_inv_problema_6`, `desvio_inv_problema_7`, `desvio_inv_problema_8`, `razones_11_2`, `inv_verificacion_si_no`, `forma_de_verificacion`, `inv_proyectadas_si_no`, `razones_11_5`, `nuevas_inv_si_no`, `monto_aprox_nuevas_inversiones`, `d_nuevas_inv_12_1`, `nuevas_inv_verificacion_si_no`, `forma_verificacion_nuevas_inv`, `pagina4_12_3_aumento_produccion`, `pagina4_12_3_calidad_productos`, `pagina4_12_3_disminucion_costos`, `pagina4_12_3_otros`, `m_p_si_no_13`, `m_p_porcentaje_13`, `m_p_razones_13`, `insumos_si_no_13`, `insumos_porcentaje_13`, `insumos_razones_13`, `mano_obra_si_no_13`, `mano_obra_porcentaje_13`, `mano_obra_razones_13`, `otros_si_no_13`, `otros_porcentaje_13`, `otros_razones_13`, `mo_antes_del_credito`, `mo_con_el_credito`, `mo_permanente`, `mo_temporaria`, `mo_aclaraciones_14`, `p_f_si_no`, `p_admin_15_1`, `p_mp_15_1`, `p_disp_mo_15_1`, `p_calif_mo_15_1`, `p_proc_prod_15_1`, `p_comer_15_1`, `p_finan_15_1`, `p_serv_15_1`, `p_cli_15_1`, `p_otros_15_1`, `descripcion_problmeas_15_2`, `ingresos_aumentaron_16`, `ingresos_disminuyeron_16`, `ingresos_no_variaron_16`, `ingresos_proporcion_16`, `precio_productos_si_no_16_1`, `p_prod_variacion_16_1`, `volumen_vta_si_no_16_1`, `volumen_vta_variacion_16_1`, `gtos_comercializacion_si_no_16_1`, `gtos_comercializacion_variacion_16_1`, `nivel_prod_si_no_16_1`, `nivel_prod_variacion_16_1`, `otros_si_no_16_1`, `otros_variacion_16_1`, `observaciones_16_2`, `p_a_ingresos_aumentaron_16_3`, `p_a_ingresos_disminuyeron_16_3`, `p_a_ingresos_no_variaron_16_3`, `p_a_ingresos_proporcion_16_3`, `periodo_anterior_ingresos_porque_16_4`, `perspectiva_futuro_17`, `perspectiva_futuro_porque_17`, `problemas_pago_credito_18`, `problemas_pago_si_actuales_futuros_18`, `problmeas_pago_razones_18`, `problemas_entrevista_anterior_19`, `problemas_entrevista_anterior_como_19`, `entrevista_anterior_razones_19_1`, `asistencia_financiera_20`, `asistencia_financiera_en_que_20`, `asistencia_financiera_ampliacion_20_1`, `anteriormente_capacitacion_20_2`, `anteriormente_capac_tipo_cargo_20_2`, `recibir_capacitacion_20_3`, `en_que_temas_20_3`, `importancia_actividad_21`, `actividad_ppal_perspectiva_21_1`, `observaciones_21_2`, `opinion_responsable_22`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, '2019-01-24', 'thhrthrth wg tg eg weg', 'wergwer gwerg werg weg weg we', 1, 1, NULL, NULL, 'AMPLIACION', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2500000, NULL, 400000, 0, 0, 100000, 500000, 0, NULL, NULL, 34, '21', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'off', 'off', 'on', 'off', 'off', 'on', 'off', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-01-24-3-12', '2019-01-03 03:00:00', '2019-01-04 15:15:11'),
+(2, 3, 1, '2019-01-04', 'fgbfgbfgbdgfbgbgbgb', 'sgsgsfgsdgsdfgfgsdfgsdf', 0, 1, NULL, NULL, 'AMPLIACION', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1500000, NULL, 400000, NULL, NULL, 1200000, 300000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'off', 'off', 'off', 'off', 'on', 'off', 'off', NULL, NULL, NULL, 'off', 'off', 'off', 'off', 'off', 'off', 'off', 'off', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'off', 'off', 'off', 'off', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'off', 'off', 'off', 'off', 'off', 'off', 'off', 'off', 'off', 'off', NULL, 'off', 'off', 'off', NULL, 'off', NULL, 'off', NULL, 'off', NULL, 'off', NULL, 'off', NULL, NULL, 'off', 'off', 'off', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-01-04-3-30', '2019-01-04 12:50:07', '2019-01-07 15:17:13');
 
 -- --------------------------------------------------------
 
@@ -1533,7 +1600,8 @@ CREATE TABLE `sujeto_credito` (
 --
 
 INSERT INTO `sujeto_credito` (`id`, `proyecto_id`, `sucursal_id`, `user_id`, `fecha_envio_banco`, `fecha_respuesta_banco`, `sujeto_credito`, `descripcion`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 3, '2018-12-03', '2018-12-05', 'SI', 'ggg', '1-1-150', '2018-11-12 12:23:36', '2018-12-20 13:28:59');
+(1, 1, 1, 3, '2018-12-03', '2018-12-05', 'SI', 'ggg', '1-1-150', '2018-11-12 12:23:36', '2018-12-20 13:28:59'),
+(2, 3, 1, 1, '2019-01-02', '2019-01-03', 'SI', '443r34r34r34r34r', '3-1-169', '2019-01-02 15:59:29', '2019-01-02 15:59:29');
 
 -- --------------------------------------------------------
 
@@ -1596,7 +1664,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `telefono`, `avatar`, `created_at`, `updated_at`) VALUES
-(1, 'Mauro Tello', 'maurotello73@gmail.com', '$2y$10$zZNRSzPhHDlvSQsJ7HLaKergufw02ZEl8BU4VNRguk67IKPTx4a4a', NULL, NULL, NULL, '2018-10-16 14:46:11', '2018-10-16 14:46:11'),
+(1, 'Mauro Tello', 'maurotello73@gmail.com', '$2y$10$zZNRSzPhHDlvSQsJ7HLaKergufw02ZEl8BU4VNRguk67IKPTx4a4a', 'iSg9xF4IN8mHgjJF9rgxjg0WCIzkuSPFu2QHKUWHS5rVr5WJg90BPh5g6jOU', NULL, NULL, '2018-10-16 14:46:11', '2018-10-16 14:46:11'),
 (3, 'Mauro Gabriel', 'mauro-tello@hotmail.com', '$2y$10$Wmx79xIWhPLnMVrHCg8nFOqWVQsh0GO6XVjpyG5DUdWRzRe3nLJZm', 'KFbwXumfPTdATXut0OD6O37p4oEzaInj6QMMOj9g0yuQENOjETheWhZoz74T', NULL, NULL, '2018-10-19 12:25:17', '2018-10-19 12:25:17'),
 (4, 'Magdalena Perini', 'mperini@neuquen.gov.ar', '$2y$10$ec4x5eoGbcnEExIfgkKOjOYqIMr0w3tMPq5qn2Bfx2v9YvSTO4mta', 'zLbM6yIWBSlMKUpo2q0EGpFAIJozKYFfruM57vwdWFUjXaHRDDKBaaavmUwk', NULL, NULL, '2018-10-30 12:29:31', '2018-10-30 12:29:31'),
 (5, 'Gabriela Lavacara', 'glavacara@neuquen.gov.ar', '$2y$10$orPNyLxZPeYOVW8nffGMYuNkDHkULxewoaHs/tJIutsPif0XJaMgG', 'C9BHigLslWXSpYhJho4nILMuv3UAA36f9iV8vDV3l03yZcwOJI0zFqLnzgNo', NULL, NULL, '2018-10-30 12:30:35', '2018-10-30 12:30:35'),
@@ -1646,8 +1714,8 @@ ALTER TABLE `alertas`
 ALTER TABLE `alerta_proyecto`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `alerta_proyecto_slug_unique` (`slug`),
-  ADD KEY `alerta_proyecto_proyecto_id_foreign` (`proyecto_id`),
-  ADD KEY `alerta_proyecto_alerta_id_foreign` (`alerta_id`);
+  ADD KEY `alerta_proyecto_alerta_id_foreign` (`alerta_id`),
+  ADD KEY `alerta_proyecto_proyecto_id_foreign` (`proyecto_id`);
 
 --
 -- Indices de la tabla `anexos_proyectos`
@@ -1658,6 +1726,14 @@ ALTER TABLE `anexos_proyectos`
   ADD UNIQUE KEY `anexos_proyectos_slug_unique` (`slug`),
   ADD KEY `anexos_proyectos_user_id_foreign` (`user_id`),
   ADD KEY `anexos_proyectos_proyecto_id_foreign` (`proyecto_id`);
+
+--
+-- Indices de la tabla `anexos_seguimientos`
+--
+ALTER TABLE `anexos_seguimientos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id_index` (`user_id`),
+  ADD KEY `seguimiento_id_index` (`seguimiento_id`);
 
 --
 -- Indices de la tabla `auditoria`
@@ -1905,7 +1981,8 @@ ALTER TABLE `sectores`
 ALTER TABLE `seguimientos`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `seguimientos_slug_unique` (`slug`),
-  ADD KEY `seguimientos_proyecto_id_foreign` (`proyecto_id`);
+  ADD KEY `seguimientos_proyecto_id_foreign` (`proyecto_id`),
+  ADD KEY `user_id_index` (`user_id`);
 
 --
 -- Indices de la tabla `sucursales`
@@ -1961,19 +2038,25 @@ ALTER TABLE `zonas`
 -- AUTO_INCREMENT de la tabla `alertas`
 --
 ALTER TABLE `alertas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `alerta_proyecto`
 --
 ALTER TABLE `alerta_proyecto`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `anexos_proyectos`
 --
 ALTER TABLE `anexos_proyectos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `anexos_seguimientos`
+--
+ALTER TABLE `anexos_seguimientos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
@@ -2021,7 +2104,7 @@ ALTER TABLE `desembolsos`
 -- AUTO_INCREMENT de la tabla `destino_credito`
 --
 ALTER TABLE `destino_credito`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `estados`
@@ -2063,13 +2146,13 @@ ALTER TABLE `lineas_creditos`
 -- AUTO_INCREMENT de la tabla `localidades`
 --
 ALTER TABLE `localidades`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `movimientos_proyectos`
@@ -2087,7 +2170,7 @@ ALTER TABLE `periodicidades`
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
 
 --
 -- AUTO_INCREMENT de la tabla `permission_role`
@@ -2117,7 +2200,7 @@ ALTER TABLE `provincias`
 -- AUTO_INCREMENT de la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `refinanciaciones`
@@ -2147,7 +2230,7 @@ ALTER TABLE `sectores`
 -- AUTO_INCREMENT de la tabla `seguimientos`
 --
 ALTER TABLE `seguimientos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `sucursales`
@@ -2159,7 +2242,7 @@ ALTER TABLE `sucursales`
 -- AUTO_INCREMENT de la tabla `sujeto_credito`
 --
 ALTER TABLE `sujeto_credito`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `titular`
@@ -2187,8 +2270,8 @@ ALTER TABLE `zonas`
 -- Filtros para la tabla `alerta_proyecto`
 --
 ALTER TABLE `alerta_proyecto`
-  ADD CONSTRAINT `alerta_proyecto_alerta_id_foreign` FOREIGN KEY (`alerta_id`) REFERENCES `alertas` (`id`),
-  ADD CONSTRAINT `alerta_proyecto_proyecto_id_foreign` FOREIGN KEY (`proyecto_id`) REFERENCES `proyectos` (`id`);
+  ADD CONSTRAINT `alerta_proyecto_alerta_id_foreign` FOREIGN KEY (`alerta_id`) REFERENCES `alertas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `alerta_proyecto_proyecto_id_foreign` FOREIGN KEY (`proyecto_id`) REFERENCES `proyectos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `anexos_proyectos`
@@ -2196,6 +2279,13 @@ ALTER TABLE `alerta_proyecto`
 ALTER TABLE `anexos_proyectos`
   ADD CONSTRAINT `anexos_proyectos_proyecto_id_foreign` FOREIGN KEY (`proyecto_id`) REFERENCES `proyectos` (`id`),
   ADD CONSTRAINT `anexos_proyectos_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `anexos_seguimientos`
+--
+ALTER TABLE `anexos_seguimientos`
+  ADD CONSTRAINT `anexos_seguimientos_proyectos_foreign` FOREIGN KEY (`seguimiento_id`) REFERENCES `seguimientos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `anexos_seguimientos_user_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `auditoria`
@@ -2286,7 +2376,8 @@ ALTER TABLE `role_user`
 -- Filtros para la tabla `seguimientos`
 --
 ALTER TABLE `seguimientos`
-  ADD CONSTRAINT `seguimientos_proyecto_id_foreign` FOREIGN KEY (`proyecto_id`) REFERENCES `proyectos` (`id`);
+  ADD CONSTRAINT `seguimientos_proyecto_id_foreign` FOREIGN KEY (`proyecto_id`) REFERENCES `proyectos` (`id`),
+  ADD CONSTRAINT `seguimientos_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `proyectos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `sucursales`

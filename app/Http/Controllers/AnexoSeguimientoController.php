@@ -15,7 +15,7 @@ class AnexoSeguimientoController extends Controller
 {
 
 
-    
+
     public function index()
     {
         $seguimientos = Seguimiento::all();
@@ -33,7 +33,7 @@ class AnexoSeguimientoController extends Controller
          ]);
      }
 
-    
+
     public function store(AnexoSeguimientoRequest $anexoSeguimientoRequest)
     {
         $now = new \DateTime();
@@ -46,9 +46,9 @@ class AnexoSeguimientoController extends Controller
         {
             foreach ($anexoSeguimientoRequest->file('file') as $key => $value)
             {
-                $fullName = $value->getClientOriginalName(); 
-                $extension = $value->getClientOriginalExtension(); 
-                $onlyName = explode('.'.$extension,$fullName); 
+                $fullName = $value->getClientOriginalName();
+                $extension = $value->getClientOriginalExtension();
+                $onlyName = explode('.'.$extension,$fullName);
 
                 $filename = rand(1,10000) . "-"  . str_slug($now->format('d-m-Y H:i:s')) . "-" . $onlyName  . "." . $extension;
                 $check=in_array($extension,$allowedfileExtension);
@@ -58,7 +58,7 @@ class AnexoSeguimientoController extends Controller
                     $data['file'] = $filename;
                     $creado =  AnexoSeguimiento::create($data);
                     if ($creado)
-                    { 
+                    {
                         //$this->enviar($creado, Auth::user()->email);
                         Session::flash('message-success', 'Anexo guardado satisfactoriamente.');
                     }else{
@@ -71,7 +71,7 @@ class AnexoSeguimientoController extends Controller
             }
 
         }
-       
+
         return redirect()->route('anexoSeguimiento.index');
     }
 
@@ -81,13 +81,13 @@ class AnexoSeguimientoController extends Controller
          //return view('bancos.show', compact('banco'));
      }
 
- 
+
      public function edit(AnexoSeguimiento $anexoSeguimiento)
      {
           return view('anexoSeguimiento.edit', ['anexoSeguimiento' => $anexoSeguimiento]);
      }
 
-   
+
      public function update(AnexoSeguimientoRequest $anexoSeguimientoRequest, AnexoSeguimiento $anexoSeguimiento)
      {
         if($proyecto->fill($anexoSeguimientoRequest->all())->update())

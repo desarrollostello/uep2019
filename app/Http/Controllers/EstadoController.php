@@ -39,7 +39,7 @@ class EstadoController extends Controller
      */
     public function create()
     {
-        //return view('estados.create');
+        return view('estados.create');
     }
 
     /**
@@ -50,13 +50,13 @@ class EstadoController extends Controller
      */
      public function store(Request $request)
      {
-        if(Estado::create($request->all()))
+        if(Estado::create($estadoRequest->all()))
         {
             Session::flash('message-success', 'Estado creado satisfactoriamente.');
         }else{
             Session::flash('message-danger', 'Error al intentar crear un Estado');
         }
-        return back();
+        return redirect()->route('estado.index');
      }
 
     /**
@@ -78,7 +78,7 @@ class EstadoController extends Controller
      */
      public function edit(estado $estado)
      {
-        //  return view('estados.edit', ['estado' => $estado]);
+          return view('estados.edit', ['estado' => $estado]);
      }
 
     /**
@@ -89,16 +89,16 @@ class EstadoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function update(Request $request)
+     public function update(Request $request, estado $estado)
      {
-        $estado = Estado::findOrFail($request->id);
+        //$estado = Estado::findOrFail($request->id);
         if($estado->update($request->all()))
         {
             Session::flash('message-success', 'Estado actualizado satisfactoriamente.');
         }else{
             Session::flash('message-danger', 'Error al intentar actualizar un Estado');
         }
-        return back();
+        return redirect()->route('estado.index');
      }
 
     /**

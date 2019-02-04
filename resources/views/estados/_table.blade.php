@@ -8,16 +8,15 @@
     <tfoot>
     <tr>
         <th>Nombre</th>
+        
     </tr>
     </tfoot>
     <tbody>
-    @foreach($estado as $td)
+    @foreach($estados as $td)
         <tr>
             <td>{{ $td->nombre }}</td>
             <td>
                 <a href="{{ route('estado.edit', $td) }}" class="btn btn-info btn-xs pull-rigth">Editar</a>
-
-                <a href="{{ route('estado.delete', $td->slug) }}" class="btn btn-danger btn-xs pull-rigth" onclick="return confirm('Está seguro que desea eliminar este ítem?')" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
     @endforeach

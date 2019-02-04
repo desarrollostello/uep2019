@@ -30,8 +30,13 @@ class Configuracion extends Model
    * @var array
    */
     protected $fillable = [
-            'nombre',
+            'titulo',
             'user_id',
+            'domicilio',
+            'telefono',
+            'usuarioAdministrador_id',
+            'provincia_id',
+            'logo',
             'slug'
         ];
     /**
@@ -39,15 +44,15 @@ class Configuracion extends Model
    *
    * @param $val
    */
-    public function setNombreAttribute($val)
+    public function setTituloAttribute($val)
     {
-        $this->attributes['nombre'] = trim($val);
-        $this->attributes['slug'] = str_slug($val);
+        $this->attributes['titulo'] = trim($val);
+        $this->attributes['slug'] = str_slug($val) . '-' . rand(5,100);
     }
 
-    public function getNombreAttribute()
+    public function getTituloAttribute()
     {
-        return strtoupper($this->attributes['nombre']);
+        return strtoupper($this->attributes['titulo']);
     }
 
     /**
@@ -58,5 +63,9 @@ class Configuracion extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+    public function userAdmin()
+    {
+        return $this->belongsTo('App\User', 'usuarioAdministrador_id');
     }
 }

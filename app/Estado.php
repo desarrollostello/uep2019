@@ -29,7 +29,7 @@ class Estado extends Model
    *
    * @var array
    */
-    protected $fillable = ['nombre', 'slug'];
+    protected $fillable = ['nombre', 'codigo', 'slug'];
     /**
    * Normaliza y setea el nombre y el slug del Archivo
    *

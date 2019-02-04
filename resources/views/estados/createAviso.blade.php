@@ -19,11 +19,9 @@
                 </div>
 
                 <div class="panel-body">
-                    {{ Form::open(['route' => 'estado.store']) }}
-
-                        @include('estados._form')
-
-                    {{ Form::close() }}
+                    <p> Para crear un nuevo ESTADO deberá comunicarse con el Administrador del Sistema</p>
+                    <br>
+                    <p> <strong>Nombre:</strong> Mauro Tello | <strong>mail:</strong> desarrollostello@gmail.com | <strong>Tél.:</strong> +54 2920 538998 </p>
                 </div>
             </div>
         </div>

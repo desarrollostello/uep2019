@@ -33,6 +33,7 @@ class EstadoRequest extends FormRequest
              case 'POST': {
                  return [
                      'nombre'       => 'required|min:4|max:100|unique:estados,nombre',
+                     'codigo'       => 'required'
                      'slug'         => 'nullable',
                  ];
              }
@@ -40,6 +41,7 @@ class EstadoRequest extends FormRequest
              case 'PATCH': {
                  return [
                      'nombre'       => 'required|min:4|max:100|unique:estados,nombre',
+                     'codigo'       => 'required'
                      'slug'         => 'nullable|unique:estados,slug,' . $estado->id,
                  ];
              }
