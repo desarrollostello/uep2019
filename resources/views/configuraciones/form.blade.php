@@ -5,12 +5,32 @@
         !!}
     </div>
 </div>
+
+<div class="row">
+    <div class="form-group col-sm-10">
+        {!! Form::label('domicilio', 'Ingrese el Domicilio de la UEP') !!}
+        {!! Form::text('domicilio', null, ['class' => 'form-control'])
+        !!}
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-sm-10">
+        {!! Form::label('telefono', 'Ingrese el Teléfono de la UEP') !!}
+        {!! Form::text('telefono', null, ['class' => 'form-control'])
+        !!}
+    </div>
+</div>
+
+
 <div class="row">
     <div class="form-group col-sm-5">
-        <div class="form-group col-sm-3">
             {!! Form::label('usuarioAdministrador_id', 'Administrador') !!}
             {!! Form::select('usuarioAdministrador_id', $usuarios, null, ['placeholder'=>'Seleccione', 'class' => 'form-control',  'id' => 'select_usuarios', 'data-live-search' => 'true', 'data-max-options' => '1']  )  !!}
-        </div>
+    </div>
+    <div class="form-group col-sm-5">
+            {!! Form::label('provincia_id', 'Provincia') !!}
+            {!! Form::select('provincia_id', $provincias, null, ['placeholder'=>'Seleccione', 'class' => 'form-control',  'id' => 'select_usuarios', 'data-live-search' => 'true', 'data-max-options' => '1']  )  !!}
     </div>
 </div>
 
@@ -18,7 +38,7 @@
     <div class="form-group col-sm-9">
         <h4>Seleccione Logo</h4>
         <div class="control-group input-group" style="margin-top:5px">
-            <input id="file" type="filename" class="form-control " name="file" multiple />
+            <input id="file" type="file" class="form-control " name="file" multiple />
         </div>
     </div>
 </div>

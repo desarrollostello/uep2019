@@ -16,8 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
-
+        //$users = User::paginate();
+        $users = User::where('provincia_id', Auth::user()->provincia_id)->get();
         return view('users.index', compact('users'));
     }
 

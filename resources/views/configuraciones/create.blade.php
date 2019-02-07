@@ -1,7 +1,7 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-    Anexos de Seguimientos
+    Configuración
 @endsection
 
 
@@ -10,17 +10,17 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Nuevo Anexo al Seguimiento
+                <div class="panel-heading">Nueva Configuración
                   <p class="pull-right">
-                    <a href="{{ route('anexoSeguimiento.index') }}" class="btn btn-sm btn-primary pull-right">
+                    <a href="{{ route('configuracion.index') }}" class="btn btn-sm btn-primary pull-right">
                       Volver
                     </a>
                   </p>
                 </div>
 
                 <div class="panel-body">
-                    {!! Form::open(['route' => ['anexoSeguimiento.store'], 'enctype' => 'multipart/form-data']) !!}
-                        @include('anexosseguimientos.form')
+                    {!! Form::open(['route' => ['configuracion.store'], 'enctype' => 'multipart/form-data']) !!}
+                        @include('configuraciones.form')
                     {{ Form::close() }}
                 </div>
             </div>

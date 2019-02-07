@@ -20,7 +20,9 @@
 
 
                 <div class="panel-body">
-                    <p><strong>Nombre</strong>     {{ $permiso->name }}</p>
+                    <p><strong>Nombre</strong>     {{ Auth::user()->name }}</p>
+                    <p><strong>Email</strong>     {{ Auth::user()->email}}</p>
+
                     <p><strong>Slug</strong>       {{ $permiso->slug }}</p>
                     <p><strong>Descripción</strong>  {{ $permiso->description }}</p>
                 </div>

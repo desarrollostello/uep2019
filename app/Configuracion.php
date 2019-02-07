@@ -47,7 +47,6 @@ class Configuracion extends Model
     public function setTituloAttribute($val)
     {
         $this->attributes['titulo'] = trim($val);
-        $this->attributes['slug'] = str_slug($val) . '-' . rand(5,100);
     }
 
     public function getTituloAttribute()
@@ -67,5 +66,9 @@ class Configuracion extends Model
     public function userAdmin()
     {
         return $this->belongsTo('App\User', 'usuarioAdministrador_id');
+    }
+    public function provincia()
+    {
+        return $this->belongsTo('App\Provincia', 'provincia_id');
     }
 }

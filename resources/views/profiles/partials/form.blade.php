@@ -1,5 +1,6 @@
 <div class="col-md-4 text-center">
-	@if($profile->avatar)
+	
+	@if($profile)
 		<img src="{{ asset($profile->avatar) }}" width="100" class="img-user-edit circular" alt="Imagen de Perfil"/>
 	@else
 	<img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image"/>

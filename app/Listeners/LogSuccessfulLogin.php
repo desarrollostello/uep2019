@@ -69,7 +69,7 @@ class LogSuccessfulLogin
         /************************/
 
         /*** 2do ***/
-        $alerta = Alerta::where('codigo','amortizar')
+        $alerta = Alerta::where('codigo','amortizacion')
                         ->where('estado', 'activada')
                         ->first();
         // 10 dias en este caso

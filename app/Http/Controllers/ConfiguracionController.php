@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 use App\Configuracion;
+use App\Provincia;
+use App\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\ConfiguracionRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 
-class FiguraLegalController extends Controller
+class ConfiguracionController extends Controller
 {
 
     public function index()
     {
         //return view('figuralegal.index', ['figuralegal' => $this->figuralegal]);
-        $configuracion = Configuracion::all();
+        $configuracion = Configuracion::where('provincia_id', Auth::user()->provincia_id)->get();
         return view('configuraciones.index',compact('configuracion'));
     }
 
@@ -25,63 +27,81 @@ class FiguraLegalController extends Controller
      */
     public function create()
     {
-        return view('configuraciones.create');
+        $provincias = Provincia::all()->pluck('nombre', 'id');
+        $usuarios   = User::all()->pluck('name', 'id');
+        return view('configuraciones.create', [
+            'provincias' => $provincias,
+            'usuarios'  => $usuarios
+        ]);
     }
 
 
-    public function store(ConfiguracionRequest $configuracionRequest)
+    public function store(Request $request)
     {
-        if(Configuracion::create($configuracionRequest->all()))
+        $data = $request->all();
+        $data['provincia_id'] = Auth::user()->provincia_id;
+        $data['user_id'] = Auth::user()->id;
+        $data['slug'] = str_slug($data['titulo'] . '-' . $data['provincia_id']);
+
+        if(Configuracion::create($data))
         {
-            if ($configuracionRequest->hasfile('filename'))
+            if ($request->hasfile('file'))
             {
-                foreach ($configuracionRequest->file('filename') as $key => $value)
+                foreach ($request->file('file') as $key => $value)
                 {
                     $imageName = $value->getClientOriginalName() . '-' . rand(5,200);
                     $value->move(public_path('upload/configuracion/'), $imageName);
-                    $data['file'] = "upload/configuracion/" . $imageName;
+                    $data['logo'] = "upload/configuracion/" . $imageName;
                 }
 
             }
             Session::flash('message-success', 'Configuracion creada satisfactoriamente.');
+            return url('/home');
         }else{
             Session::flash('message-danger', 'Error al intentar crear una Configuración');
+            return redirect()->route('configuracion.index');
         }
-        return redirect()->route('configuracion.show', [
-            'id' => $configuracionRequest->id,
-        ]);
+
 
     }
 
 
      public function show($id)
      {
-        $configuracion = Configuracion::findOrFail($id)->get();
+        $configuracion = Configuracion::findOrFail($id)->all();
+        $configuracion = Configuracion::where('id', $id)->get();
+
         return view('configuraciones.show', [
-            'configuracion' => $configuracion,
+            'configuracion' => $configuracion[0],
         ]);
      }
 
 
-     public function edit(figuralegal $figuralegal)
+     public function edit(Configuracion $configuracion)
      {
-        return view('configuraciones.edit', ['configuracion' => $configuracion]);
+         $provincias = Provincia::all()->pluck('nombre', 'id');
+         $usuarios   = User::all()->pluck('name', 'id');
+        return view('configuraciones.edit', [
+            'configuracion' => $configuracion,
+            'provincias' => $provincias,
+            'usuarios'  => $usuarios,
+        ]);
      }
 
-     public function update(ConfiguracionRequest $configuracionRequest, Configuracion $configuracion)
+     public function update(Request $request, Configuracion $configuracion)
      {
         $user = Auth::user();
         if (Gate::forUser($user)->allows('update-configuracion', $configuracion))
         {
-            if($configuracion->fill($configuracionRequest->all())->update())
+            if($configuracion->fill($request->all())->update())
             {
-                if ($configuracionRequest->hasfile('filename'))
+                if ($request->hasfile('file'))
                 {
-                    foreach ($configuracionRequest->file('filename') as $key => $value)
+                    foreach ($request->file('file') as $key => $value)
                     {
                         $imageName = $value->getClientOriginalName() . '-' . rand(5,200);
                         $value->move(public_path('upload/configuracion/'), $imageName);
-                        $data['file'] = "upload/configuracion/" . $imageName;
+                        $data['logo'] = "upload/configuracion/" . $imageName;
                     }
 
                 }

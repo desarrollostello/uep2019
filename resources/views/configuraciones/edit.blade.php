@@ -1,7 +1,7 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-    Anexo del Seguimiento
+    Configuración
 @endsection
 
 @section('main-content')
@@ -9,17 +9,17 @@
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Editando Anexo
+                <div class="panel-heading">Editando Configuración
                   <p class="pull-right">
-                    <a href="{{ route('anexoSeguimiento.index') }}" class="btn btn-sm btn-primary pull-right">
-                      Volver
+                    <a href="{{ route('configuracion.show', $configuracion->id) }}" class="btn btn-sm btn-primary pull-right">
+                      Visualizar
                     </a>
                   </p>
                 </div>
 
                 <div class="panel-body">
-                  {!! Form::model($anexoSeguimiento, ['method' => 'PATCH', 'route' => ['anexoSeguimiento.update', $anexoSeguimiento], 'enctype' => 'multipart/form-data']) !!}
-                        @include('anexosseguimientos.form')
+                  {!! Form::model($configuracion, ['method' => 'PATCH', 'route' => ['configuracion.update', $configuracion], 'enctype' => 'multipart/form-data']) !!}
+                        @include('configuraciones.form')
                   {!! Form::close() !!}
                 </div>
             </div>

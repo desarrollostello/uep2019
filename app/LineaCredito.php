@@ -34,6 +34,7 @@ class LineaCredito extends Model
             'descripcion',
             'monto_maximo',
             'gracia_maximo',
+            'provincia_id',
             'amortizacion_maximo',
             'tasa',
             'user_id',
@@ -63,5 +64,9 @@ class LineaCredito extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+    public function provincia()
+    {
+        return $this->belongsTo('App\Provincia', 'provincia_id');
     }
 }

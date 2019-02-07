@@ -28,7 +28,12 @@ class ProfileController extends Controller
    */
   public function create()
   {
-      return view('profiles.create');
+      $usuario = Auth::user()->id;
+      $profile = Profile::where('user_id', $usuario)->get();
+      
+      return view('profiles.create', [
+          'profile' => $profile,
+        ]);
   }
 
   /**

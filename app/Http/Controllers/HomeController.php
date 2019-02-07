@@ -11,6 +11,7 @@ use App\AlertaProyecto;
 use App\Alerta;
 use App\Profile;
 use App\Localidad;
+use App\Configuracion;
 use App\Departamento;
 use App\Estado;
 use App\Sector;
@@ -40,7 +41,7 @@ class HomeController extends Controller
      *
      * @return Response
      */
-    
+
     public function informeEstados()
     {
         $proyectos = Proyecto::all();
@@ -104,7 +105,7 @@ class HomeController extends Controller
            'cant'        => $cant
 
         ]);
-        
+
     }
 
     public function informeSectores()
@@ -123,7 +124,7 @@ class HomeController extends Controller
            'cant'        => $cant
 
         ]);
-        
+
     }
 
 
@@ -144,7 +145,7 @@ class HomeController extends Controller
            'cant'  => $cant
 
         ]);
-        
+
     }
 
 
@@ -177,18 +178,39 @@ class HomeController extends Controller
 
 
 
-        $proyectos_aprobado_cfi = Proyecto::where('estado_id', $estado_aprobado_cfi['id'])->count();
-        $proyectos_en_uep =       Proyecto::where('estado_id', $estado_uep['id'])->count();
-        $proyectos_judicial =     Proyecto::where('estado_id', $estado_judicial['id'])->count();
-        $proyectos_cfi =          Proyecto::where('estado_id', $estado_cfi['id'])->count();
-        $proyectos_cancelado =    Proyecto::where('estado_id', $estado_cancelado['id'])->count();
-        $proyectos_archivado =    Proyecto::where('estado_id', $estado_archivado['id'])->count();
-        $proyectos_des =          Proyecto::where('estado_id', $estado_des['id'])->count();
-        $proyectos_titular =      Proyecto::where('estado_id', $estado_titular['id'])->count();
-        $proyectos_bco =          Proyecto::where('estado_id', $estado_bco['id'])->count();
-        $proyectos_efec =         Proyecto::where('estado_id', $estado_efec['id'])->count();
+        $proyectos_aprobado_cfi = Proyecto::where('estado_id', $estado_aprobado_cfi['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->count();
+        $proyectos_en_uep =       Proyecto::where('estado_id', $estado_uep['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->count();
+        $proyectos_judicial =     Proyecto::where('estado_id', $estado_judicial['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->count();
+        $proyectos_cfi =          Proyecto::where('estado_id', $estado_cfi['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->count();
+        $proyectos_cancelado =    Proyecto::where('estado_id', $estado_cancelado['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->count();
+        $proyectos_archivado =    Proyecto::where('estado_id', $estado_archivado['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->count();
+        $proyectos_des =          Proyecto::where('estado_id', $estado_des['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->count();
+        $proyectos_titular =      Proyecto::where('estado_id', $estado_titular['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->count();
+        $proyectos_bco =          Proyecto::where('estado_id', $estado_bco['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->count();
+        $proyectos_efec =         Proyecto::where('estado_id', $estado_efec['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->count();
 
-        $proyectos = Proyecto::all();
+        $proyectos = Proyecto::where('provincia_id', Auth::user()->provincia_id)->get();
+        $configuracion = Configuracion::where('provincia_id', Auth::user()->provincia_id)->get();
 
         return view('adminlte::home', [
             'p_aprobado_cfi' => $proyectos_aprobado_cfi,
@@ -202,6 +224,7 @@ class HomeController extends Controller
             'p_bco' => $proyectos_bco,
             'alerta_proyectos' =>$alerta_proyectos,
             'p_efec' => $proyectos_efec,
+            'configuracion' => $configuracion,
 
         ]);
     }

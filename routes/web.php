@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function ()
     Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('permission:roles.edit');
 
 
+
     Route::resource('provincia','ProvinciaController');
     Route::resource('zona','ZonaController');
 
@@ -81,9 +82,21 @@ Route::group(['middleware' => 'auth'], function ()
         Route::post('anexoProyecto/export', 'SujetoCreditoController@index')->name('sujetoCredito.export')->middleware('permission:sujetoCredito.export');
         Route::post('updateAjax', 'SujetoCreditoController@updateAjax')->name('sujetoCredito.updateAjax')->middleware('permission:sujetoCredito.updateAjax');
         Route::post('search', 'SujetoCreditoController@search')->name('sujetoCredito.search')->middleware('permission:sujetoCredito.search');
+    });
 
+    Route::group(['prefix' => 'configuracion'], function () {
+        Route::get('listado', 'ConfiguracionController@index')->name('configuracion.index');
+        Route::get('nuevo', 'ConfiguracionController@create')->name('configuracion.create');
+        Route::post('nuevo', 'ConfiguracionController@store')->name('configuracion.store');
+        Route::get('editar/{configuracion}', 'ConfiguracionController@edit')->name('configuracion.edit');
+        Route::get('ver/{configuracion}', 'ConfiguracionController@show')->name('configuracion.show');
+        Route::patch('editar/{configuracion}', 'ConfiguracionController@update')->name('configuracion.update');
+        Route::get('eliminar/{configuracion}', 'ConfiguracionController@destroy')->name('configuracion.delete');
+        Route::post('anexoProyecto/export', 'ConfiguracionController@index')->name('configuracion.export');
 
     });
+
+
     Route::group(['prefix' => 'proyecto'], function () {
             Route::get('listado', 'ProyectoController@index')->name('proyecto.index')->middleware('permission:proyecto.index');
             Route::get('excel', 'ProyectoController@excel')->name('proyecto.excel');

@@ -29,7 +29,7 @@ class Departamento extends Model
    *
    * @var array
    */
-    protected $fillable = ['nombre', 'slug'];
+    protected $fillable = ['nombre', 'provincia_id', 'slug'];
     /**
    * Normaliza y setea el nombre y el slug del Archivo
    *
@@ -44,5 +44,9 @@ class Departamento extends Model
     public function getNombreAttribute()
     {
         return strtoupper($this->attributes['nombre']);
+    }
+    public function provincia()
+    {
+      return $this->hasOne('App\Provincia');
     }
 }

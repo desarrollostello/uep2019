@@ -5,6 +5,7 @@ use App\Zona;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\ZonaRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ZonaController extends Controller
 {
@@ -18,7 +19,7 @@ class ZonaController extends Controller
         $this->middleware('permission:zona.edit')->only(['edit', 'update']);
         $this->middleware('permission:zona.show')->only('show');
         $this->middleware('permission:zona.destroy')->only('destroy');
-        $this->zona = $this->getZona();
+        //$this->zona = $this->getZona();
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class ZonaController extends Controller
      */
      public function index()
      {
-         $zonas = Zona::all();
+         $zonas = Zona::where('provincia_id', Auth::user()->provincia_id)->get();
          return view('zonas.index',compact('zonas'));
      }
      /*
@@ -55,7 +56,9 @@ class ZonaController extends Controller
      */
      public function store(Request $request)
      {
-        if(Zona::create($request->all()))
+        $data = $request->all();
+        $data['provincia_id'] = Auth::user()->provincia_id;
+        if(Zona::create($data))
         {
             Session::flash('message-success', 'Zona creada satisfactoriamente.');
         }else{

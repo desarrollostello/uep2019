@@ -76,7 +76,7 @@ class CreateProyectosTable extends Migration
 
 
             //$table->integer('refinanciacion_id')->unsigned();
-            
+
             $table->date('fechaJudicial')->nullable();
             $table->date('fechaCancelado')->nullable();
             $table->date('fechaArchivado')->nullable();
@@ -87,6 +87,7 @@ class CreateProyectosTable extends Migration
 
             $table->integer('user_id')->unsigned();
             $table->integer('sucursal_id')->unsigned();
+            $table->integer('provincia_id')->unsigned();
             $table->string('slug')->unique();
             $table->timestamps();
 
@@ -101,6 +102,7 @@ class CreateProyectosTable extends Migration
             $table->foreign('estado_id')->references('id')->on('estados');
             $table->foreign('periodicidad_id')->references('id')->on('periodicidades');
             $table->foreign('sector_id')->references('id')->on('sectores');
+            $table->foreign('provincia_id')->references('id')->on('provincias');
             $table->foreign('estadoInterno_id')->references('id')->on('estados_internos');
         });
     }

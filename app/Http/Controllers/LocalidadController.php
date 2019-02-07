@@ -17,7 +17,8 @@ class LocalidadController extends Controller
 
     public function index()
     {
-      $localidades = Localidad::all();
+        $prov = Auth::user()->provincia_id;
+      $localidades = Localidad::where('provincia_id', $prov)->get();
       return view('localidades.index', [
           'localidades' => $localidades
       ]);
@@ -31,8 +32,8 @@ class LocalidadController extends Controller
     */
     public function create()
     {
-        $zonas = Zona::all()->pluck('nombre', 'id');
-        $dptos = Departamento::all()->pluck('nombre', 'id');
+        $zonas = Zona::where('provincia_id', Auth::user()->provincia_id)->pluck('nombre', 'id');
+        $dptos = Departamento::where('provincia_id', Auth::user()->provincia_id)->pluck('nombre', 'id');
         $provincias = Provincia::all()->pluck('nombre', 'id');
         return view('localidades.create', [
             'zonas'         => $zonas,
@@ -79,8 +80,8 @@ class LocalidadController extends Controller
      */
      public function edit(localidad $localidad)
      {
-        $zonas = Zona::all()->pluck('nombre', 'id');
-        $dptos = Departamento::all()->pluck('nombre', 'id');
+        $zonas = Zona::where('provincia_id', Auth::user()->provincia_id)->pluck('nombre', 'id');
+        $dptos = Departamento::where('provincia_id', Auth::user()->provincia_id)->pluck('nombre', 'id');
         $provincias = Provincia::all()->pluck('nombre', 'id');
         return view('localidades.edit', [
             'localidad' => $localidad,

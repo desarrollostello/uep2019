@@ -9,9 +9,9 @@
     </thead>
 
     <tbody>
-    @foreach(configuracion as $p)
+    @foreach($configuracion as $p)
         <tr>
-            <td>{{ $p->userAdmin->nombre</td>
+            <td>{{ $p->userAdmin->nombre }}</td>
             <td>{{ $p->user->nombre }}</td>
             <td>{{ $p->titulo }}</td>
             <td>

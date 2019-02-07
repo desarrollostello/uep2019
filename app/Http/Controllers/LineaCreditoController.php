@@ -14,7 +14,7 @@ class LineaCreditoController extends Controller
 
     public function __construct()
     {
-        $this->lineacredito = $this->getLineaCredito();
+        //$this->lineacredito = $this->getLineaCredito();
     }
     /**
      * Display a listing of the resource.
@@ -23,21 +23,23 @@ class LineaCreditoController extends Controller
      */
     public function index()
     {
-       $lineacreditos = LineaCredito::all();
+       $lineacreditos = LineaCredito::where('provincia_id', Auth::user()->provincia_id)->get();
        return view('lineacreditos.index',compact('lineacreditos'));
     }
 
-   
+
     public function create()
     {
         return view('lineacreditos.create');
     }
 
-    
+
     public function store(LineaCreditoRequest $lineacreditoRequest)
     {
         $data = $lineacreditoRequest->all();
         $data['user_id'] = Auth::user()->id;
+        $data['provincia_id'] = Auth::user()->provincia_id;
+
         if(LineaCredito::create($data))
         {
             Session::flash('message-success', 'Línea de Crédito creada satisfactoriamente.');
@@ -47,22 +49,22 @@ class LineaCreditoController extends Controller
         return redirect()->route('lineacredito.index')->with('message', 'Linea de Credito ingresada.');
     }
 
-    
+
     public function show(lineacredito $lineacredito)
     {
         return view('lineacredito.show', compact('lineacredito'));
     }
 
-    
+
     public function edit(lineacredito $lineacredito)
     {
         return view('lineacreditos.edit', ['lineacredito' => $lineacredito]);
     }
 
-    
+
     public function update(LineaCreditoRequest $lineacreditoRequest, lineacredito $lineacredito)
     {
-       
+
         if($lineacredito->fill($lineacreditoRequest->all())->update())
         {
             Session::flash('message-success', 'Línea de Crédito actualizada satisfactoriamente.');
@@ -93,9 +95,11 @@ class LineaCreditoController extends Controller
         $this->lineacredito = $this->getLineaCredito();
         return redirect()->route('lineacredito.index');
      }
-
+/*
      private function getLineaCredito()
     {
-        return LineaCredito::all();
+
+        return LineaCredito::where('provincia_id', 1)->get();
     }
+    */
 }

@@ -96,6 +96,7 @@ class Proyecto extends Model
         'fechaBaja',
         'refinanciado',
         'user_id',
+        'provincia_id',
         'titular',
         'observaciones',
         'color',
@@ -121,7 +122,7 @@ class Proyecto extends Model
       {
           return strtoupper($this->attributes['nombre'] . ' - ' . $this->attributes['titular']);
       }
-    
+
 
       /*
       COMO USAR LOS SCOPES QUE NOS AYUDAN A HACER CONSULTAS
@@ -208,6 +209,10 @@ class Proyecto extends Model
       public function sucursal()
       {
           return $this->belongsTo('App\Sucursal', 'sucursal_id');
+      }
+      public function provincia()
+      {
+          return $this->belongsTo('App\Provincia', 'provincia_id');
       }
 
       /**
@@ -488,31 +493,30 @@ class Proyecto extends Model
 
       /**** TERMINE trabajando sobre las fechas ************/
 
-       
+
 
 
 
       public static function boot() {
           parent::boot();
 
-          static::creating(function ($model) {
-         
-      
+          static::creating(function ($proyecto) {
+              return $proyecto->provincia_id = Auth::user()->provincia_id;
           });
 
           static::updating(function($proyecto) {
-            
+
             return $proyecto->fechaPrimerAmort = \Carbon\Carbon::parse($proyecto->fechaIngreso)->format('Y-m-d');
           });
 
           static::updated(function($proyecto) {
-         
+
           });
 
-        
+
           static::created(function ($model) {
-         
+
           });
       }
-      
+
 }
