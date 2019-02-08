@@ -23,21 +23,12 @@
                     </div>
                 </div>
 
-                <!--
-                <div class="form-group col-sm-12">
-                        <label>Descripci{on del archivo</label>
-                        {!! Form::textarea('descripcion_archivo', null, ['class' => 'form-control', 'rows' => 3, 'data-toggle'=>'tooltip', 'data-placement'=>'bottom']) !!}
-                    </div>
-
-                -->
-
-                
                 <div class="row" style="margin-bottom: 35px;">
                     <h4>Seleccione archivos</h4>
                     <div class="control-group input-group" style="margin-top:5px">
                         <input id="uploadFile" type="file" class="form-control " name="filename[]" multiple />
                     </div>.
-                   
+
                 </div>
 
     </div>

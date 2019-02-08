@@ -11,7 +11,7 @@
             <div class="panel panel-default">
                 <div style="overflow: hidden; margin-bottom: 20px;" class="panel-heading">
                 	<div style="position: relative; float: left; width: 40%; overflow: hidden"><h5>Visualizando la Configuración</h5></div>
-                	
+
                     <div style="position: relative; float: right; width: 20%; overflow: hidden"><a href="{{ route('configuracion.edit', $configuracion) }}" class="btn btn-sm btn-primary pull-right">Editar</a></div>
 
                 </div>
@@ -46,7 +46,7 @@
 
 			            <div class="row">
 				            <div class="col-sm-12">
-				            	<h5 class="text-left"><strong>Logo: </strong> {{ $configuracion->logo }}</h5>
+				            	<h5 class="text-left"><strong>Logo Provincia: </strong> <img src="{{ asset('upload/configuracion/') . '/' . $configuracion->logo }}" width="100px" alt="Logo Provincia"/></h5>
 				            </div>
 			            </div>
 

@@ -88,32 +88,41 @@ class ConfiguracionController extends Controller
         ]);
      }
 
-     public function update(Request $request, Configuracion $configuracion)
-     {
-        $user = Auth::user();
-        if (Gate::forUser($user)->allows('update-configuracion', $configuracion))
+    public function update(Request $request, Configuracion $configuracion)
+    {
+        $data = $request->all();
+        if($configuracion->fill($data)->update())
         {
-            if($configuracion->fill($request->all())->update())
+            $now = new \DateTime();
+            
+            $allowedfileExtension=['jpeg','JPEG','jpg','png','JPG','PNG', 'gif', 'GIF'];
+            if ($request->hasfile('file'))
             {
-                if ($request->hasfile('file'))
+                $fullName = $request->file->getClientOriginalName();
+                $extension = $request->file->getClientOriginalExtension();
+                $onlyName = explode('.'.$extension,$fullName);
+                $filename = rand(1,10000) . "-"  . str_slug($now->format('d-m-Y H:i:s')) . "-" . $onlyName[0]  . "." . $extension;
+                $check=in_array($extension,$allowedfileExtension);
+                if($check)
                 {
-                    foreach ($request->file('file') as $key => $value)
-                    {
-                        $imageName = $value->getClientOriginalName() . '-' . rand(5,200);
-                        $value->move(public_path('upload/configuracion/'), $imageName);
-                        $data['logo'] = "upload/configuracion/" . $imageName;
-                    }
-
+                    $request->file->move('upload/configuracion/', $filename);
+                    $data['logo'] = $filename;
+                    $configuracion->fill($data)->update();
+                    Session::flash('message-success', 'Configuración guardada sin Logo');
+                    return view('configuraciones.index');
+                }else{
+                    Session::flash('message-danger', 'Tipo de Archivo no permitido');
                 }
-                Session::flash('message-success', 'Configuracion actualizada satisfactoriamente.');
             }else{
-                Session::flash('message-danger', 'Error al intentar actualizar la Configuracion');
+                Session::flash('message-success', 'Configuración guardada sin Logo');
+                return view('configuraciones.index');
             }
+        }else{
+            Session::flash('message-danger', 'Ocurrió un error al intentar guardar la Configuración');
+            return view('configuraciones.index');
         }
-        return view('configuraciones.show', [
-            'configuracion' => $configuracion,
-        ]);
-     }
+
+    }
 /*
      public function destroy(Request $request)
      {

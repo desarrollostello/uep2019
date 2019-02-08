@@ -36,7 +36,7 @@
 
 <div class="row" style="margin-bottom: 35px;">
     <div class="form-group col-sm-9">
-        <h4>Seleccione Logo</h4>
+        <h4>Seleccione Logo de la Provincia</h4>
         <div class="control-group input-group" style="margin-top:5px">
             <input id="file" type="file" class="form-control " name="file" multiple />
         </div>

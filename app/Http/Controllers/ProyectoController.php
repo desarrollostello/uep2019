@@ -10,6 +10,7 @@ use App\Desembolso;
 use App\SujetoCredito;
 use App\EstadoInterno;
 use App\Refinanciacion;
+use App\Checklist;
 use App\Sector;
 use App\Titular;
 use App\Sucursal;
@@ -22,7 +23,7 @@ use App\Seguimiento;
 use App\DestinoCredito;
 use Carbon\Carbon;
 use App\Garantia;
-use PHPExcel; 
+use PHPExcel;
 use PHPExcel_IOFactory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ use Illuminate\Database\Query\Builder;
 class ProyectoController extends Controller
 {
 
-   
+
 
     public function datatable()
     {
@@ -55,16 +56,16 @@ class ProyectoController extends Controller
 
     public function search()
     {
-        
-        
+
+
         $proyectos = Proyecto::where('user_id', '<>', null);
-        
+
         if(isset($_POST['fechaIngreso_desde']))
         {
             $fecha_desde = Carbon::parse($_POST['fechaIngreso_desde'])->format('Y-m-d');
             $fecha_hasta = Carbon::parse($_POST['fechaIngreso_hasta'])->format('Y-m-d');
             $proyectos->whereBetween('fechaIngreso', [$fecha_desde, $fecha_hasta]);
-            
+
         }
 
         if($_POST['fechaEnvioBanco_desde'])
@@ -191,13 +192,13 @@ class ProyectoController extends Controller
             'columnas'  => $columnas,
             'proyectos' => $proyectos->get()
         ]);
-       
+
     }
     public function excel()
     {
         $columnas = Columnasexcel::where('seleccionada', 'ON')->get();
 
-        
+
         $campos = Columnasexcel::select('nombre')->where('seleccionada', 'ON')->get()->toArray();
         dd($campos);
         $proyectos = Proyecto::all();
@@ -220,11 +221,11 @@ class ProyectoController extends Controller
                                         ->setTitle("Proyectos UEP Neuquén");
 
         $col = 1;
-      
+
         foreach($columnas as $c)
         {
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, 1, $c->descripcion);
-            
+
             $col++;
         }
 
@@ -232,8 +233,8 @@ class ProyectoController extends Controller
         {
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, 2, $c->descripcion);
         }
-        
-       
+
+
 
         // Rename worksheet
         $objPHPExcel->getActiveSheet()->setTitle('Proyectos');
@@ -263,6 +264,7 @@ class ProyectoController extends Controller
     {
       $proyectos = Proyecto::all();
       $columnas = Columnasview::where('seleccionada', 'ON')->get();
+
       return view('proyectos.index', [
           'proyectos' => $proyectos,
           'columnas'  => $columnas
@@ -335,13 +337,13 @@ class ProyectoController extends Controller
                 Session::flash('message-warning', 'Proyecto Aprobado por el CFI sin número de CFI');
                 return redirect()->back();
             }
-            
+
         }
 
 
-        
+
         $data['fechaIngreso'] = Carbon::parse($data['fechaIngreso'])->format('Y-m-d');
-        
+
         //$enviadoBco = SujetoCredito::where('proyecto_id', $data['id'])->count();
         if ($data['fechaCaducoBanco'])
         {
@@ -425,7 +427,7 @@ class ProyectoController extends Controller
 
         if ($data['fechaUltimoMovimiento'])
             $data['fechaUltimoMovimiento'] = Carbon::parse($data['fechaUltimoMovimiento'])->format('Y-m-d');
-        
+
         //dd($data);
         if (Proyecto::create($data))
         {
@@ -449,7 +451,7 @@ class ProyectoController extends Controller
         $sucursales       = Sucursal::all()->pluck('nombre', 'id');
         $seguimientos     = Seguimiento::where('proyecto_id', $proyecto->id)->get();
 
-        return view('proyectos.show', 
+        return view('proyectos.show',
             [
                 'proyecto'      =>$proyecto,
                 'anexos'        => $anexos,
@@ -487,7 +489,10 @@ class ProyectoController extends Controller
         $seguimientos     = Seguimiento::where('proyecto_id', $proyecto->id)->get();
         $cantidadDesembolsos = count($desembolsos);
         $cantidadSujetoCredito = count($sujetoCredito);
-       
+
+
+        $checklist = Checklist::where('proyecto_id', $proyecto->id)->get();
+
 
         return view('proyectos.edit', [
             'proyecto'            => $proyecto,
@@ -513,7 +518,7 @@ class ProyectoController extends Controller
             'refinanciaciones'    => $refinanciaciones,
             'user_id'             => Auth::user()->id,
             'cantidadSujetoCredito' => $cantidadSujetoCredito,
-
+            'checklist'             => $checklist,
         ]);
     }
 
@@ -538,7 +543,7 @@ class ProyectoController extends Controller
         $cantidadDesembolsos = count($desembolsos);
         $cantidadSujetoCredito = count($sujetoCredito);
         $refinanciaciones = Refinanciacion::where('proyecto_id', $proyecto->id)->get();
-        
+
 
         $anexos = DB::table('anexos_proyectos')
             ->where('proyecto_id', '=', $proyecto->id)
@@ -576,15 +581,15 @@ class ProyectoController extends Controller
         //dd($proyectoRequest);
 
         $data = $proyectoRequest->all();
-      
+
         /*******************************************************/
         /************** COMPROBACIONES *************************/
 
-        
+
 
         $estado_cfi = Estado::where('nombre','CFI')->first();
         // Entra a este IF si el estado es CFI
-        // La condición entre otras es que tenga fecha de Aprobado por la UEP y fecha de Envio al CFI para 
+        // La condición entre otras es que tenga fecha de Aprobado por la UEP y fecha de Envio al CFI para
         // poder ponerle el estado CFI
         if ($data['estado_id'] == $estado_cfi->id)
         {
@@ -598,7 +603,7 @@ class ProyectoController extends Controller
                 Session::flash('message-warning', 'Proyecto con Estado "CFI" sin fecha de Enviado al CFI');
                 return redirect()->back();
             }
-            
+
         }
 
         if ($data['fechaAprobadoCfi'])
@@ -614,7 +619,7 @@ class ProyectoController extends Controller
                // dd('entre Aprobado CFI - UEP Null');
                   Session::flash('message-warning', 'Proyecto Aprobado por el CFI sin fecha de Aprobado UEP');
                   return redirect()->back();
-                 
+
               }
               if(is_null($data['fechaAprobadoUep']))
               {
@@ -706,7 +711,7 @@ class ProyectoController extends Controller
             Session::flash('message-warning', 'Monto Incorrecto');
             return redirect()->back();
         }
-    
+
 
 
         /*******************************************************/
@@ -717,7 +722,7 @@ class ProyectoController extends Controller
           //  dd($proyecto);
             if ($proyectoRequest->hasfile('filename'))
             {
-               
+
                 foreach ($proyectoRequest->file('filename') as $key => $value)
                 {
                     $extension = \File::extension($value->getClientOriginalName());
@@ -763,5 +768,5 @@ class ProyectoController extends Controller
 
 
 
-    
+
 }

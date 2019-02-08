@@ -15,7 +15,7 @@ class AnexoProyectoController extends Controller
 {
 
 
-    
+
     public function index()
     {
         $proyectos = Proyecto::all();
@@ -33,7 +33,7 @@ class AnexoProyectoController extends Controller
          ]);
      }
 
-    
+
     public function store(AnexoProyectoRequest $anexoProyectoRequest)
     {
         $now = new \DateTime();
@@ -46,9 +46,9 @@ class AnexoProyectoController extends Controller
         {
             foreach ($anexoProyectoRequest->file('file') as $key => $value)
             {
-                $fullName = $value->getClientOriginalName(); 
-                $extension = $value->getClientOriginalExtension(); 
-                $onlyName = explode('.'.$extension,$fullName); 
+                $fullName = $value->getClientOriginalName();
+                $extension = $value->getClientOriginalExtension();
+                $onlyName = explode('.'.$extension,$fullName);
 
                 $filename = rand(1,10000) . "-"  . str_slug($now->format('d-m-Y H:i:s')) . "-" . $onlyName  . "." . $extension;
                 $check=in_array($extension,$allowedfileExtension);
@@ -58,7 +58,7 @@ class AnexoProyectoController extends Controller
                     $data['file'] = $filename;
                     $creado =  AnexoProyecto::create($data);
                     if ($creado)
-                    { 
+                    {
                         //$this->enviar($creado, Auth::user()->email);
                         Session::flash('message-success', 'Anexo guardado satisfactoriamente.');
                     }else{
@@ -71,7 +71,7 @@ class AnexoProyectoController extends Controller
             }
 
         }
-       
+
         return redirect()->route('anexoProyecto.index');
     }
 
@@ -81,13 +81,13 @@ class AnexoProyectoController extends Controller
          //return view('bancos.show', compact('banco'));
      }
 
- 
+
      public function edit(AnexoProyecto $anexoProyecto)
      {
           return view('anexoProyecto.edit', ['anexoProyecto' => $anexoProyecto]);
      }
 
-   
+
      public function update(AnexoProyectoRequest $anexoProyectoRequest, AnexoProyecto $anexoProyecto)
      {
         if($proyecto->fill($anexoProyectoRequest->all())->update())
@@ -96,7 +96,6 @@ class AnexoProyectoController extends Controller
             {
                 foreach ($anexoProyectoRequest->file('filename') as $key => $value)
                 {
-
                     $imageName = $value->getClientOriginalName();
                     $value->move(public_path('upload/proyectos/' . $data->proyecto->nombre . '/'), $imageName);
                     $data['file'] = "upload/proyectos/" . $data->proyecto->nombre . "/" . $imageName;
