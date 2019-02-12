@@ -197,10 +197,13 @@ class ProyectoController extends Controller
     }
     public function excel()
     {
-        $columnas = Columnasexcel::where('seleccionada', 'ON')->get();
-
-
-        $campos = Columnasexcel::select('nombre')->where('seleccionada', 'ON')->get()->toArray();
+        $columnas = Columnasexcel::where('seleccionada', 'ON')
+                                    ->where('user_id', Auth::user()->id)
+                                    ->get();
+        $campos = Columnasexcel::select('nombre')->where('seleccionada', 'ON')
+                                                 ->where('user_id', Auth::user()->id)
+                                                 ->get()
+                                                 ->toArray();
         dd($campos);
         $proyectos = Proyecto::all();
         /** Error reporting */
@@ -263,8 +266,10 @@ class ProyectoController extends Controller
     }
     public function index()
     {
-      $proyectos = Proyecto::all();
-      $columnas = Columnasview::where('seleccionada', 'ON')->get();
+      $proyectos = Proyecto::where('provincia_id', Auth::user()->provincia_id)->get();
+      $columnas = Columnasview::where('seleccionada', 'ON')
+                                ->where('user_id', Auth::user()->id)
+                                ->get();
 
       return view('proyectos.index', [
           'proyectos' => $proyectos,
@@ -587,8 +592,8 @@ class ProyectoController extends Controller
 
         /*******************************************************/
         /************** COMPROBACIONES *************************/
-        
-        $estado_cfi = Estado::where('nombre','CFI')->first();
+
+        $estado_cfi = Estado::where('codigo','CFI')->first();
         // Entra a este IF si el estado es CFI
         // La condición entre otras es que tenga fecha de Aprobado por la UEP y fecha de Envio al CFI para
         // poder ponerle el estado CFI

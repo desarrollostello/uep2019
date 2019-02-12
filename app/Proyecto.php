@@ -540,14 +540,6 @@ class Proyecto extends Model
                     $control->valor_actual = $value;
                     $control->save();
                 }
-                
-                if ($key == 'nota_oficial'){
-                    $check = Checklist::where('proyecto_id', $proyecto_id)->update(array('nota_oficial'=> $value));
-                    //$check = DB::table('checklists')->where('proyecto_id', $proyecto->id)->get();
-                    //$check->nota_oficial = $value;
-                    //$check->save();
-                }
-
 
               }
         //    return $proyecto->fechaPrimerAmort = \Carbon\Carbon::parse($proyecto->fechaIngreso)->format('Y-m-d');
