@@ -308,7 +308,7 @@ class ProyectoController extends Controller
         $periodicidades   = Periodicidad::all()->pluck('nombre', 'id');
         $destinosCreditos = DestinoCredito::all()->pluck('nombre', 'id');
         $garantias        = Garantia::all()->pluck('nombre', 'id');
-        $sucursales       = Sucursal::all()->pluck('nombre', 'id');
+        $sucursales       = Sucursal::where('provincia_id', $provincia)->get()->pluck('nombre', 'id');
         //$sujetoCreditos   = SujetoCredito::all();
         //$anexos           = AnexoProyecto::where('proyecto_id', $proyecto->id)->get();
         //    $proyectos = [];

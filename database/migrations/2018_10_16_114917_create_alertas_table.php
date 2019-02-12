@@ -19,11 +19,14 @@ class CreateAlertasTable extends Migration
             $table->string('estado');
             $table->string('campo');
             $table->string('color');
+            $table->integer('provincia_id')->unsigned();
             $table->string('sql')->nullable();
             $table->text('mensaje');
             $table->integer('dias');
             $table->string('slug')->unique();
             $table->timestamps();
+
+            $table->foreign('provincia_id')->references('id')->on('provincias');
         });
     }
 

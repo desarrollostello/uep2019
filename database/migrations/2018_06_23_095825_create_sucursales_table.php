@@ -18,6 +18,7 @@ class CreateSucursalesTable extends Migration
             $table->integer('banco_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('localidad_id')->unsigned();
+            $table->integer('provincia_id')->unsigned();
             $table->string('nombre')->unique();
             $table->string('direccion');
             $table->string('telefono');
@@ -30,6 +31,7 @@ class CreateSucursalesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('banco_id')->references('id')->on('bancos');
             $table->foreign('localidad_id')->references('id')->on('localidades');
+            $table->foreign('provincia_id')->references('id')->on('provincias');
         });
     }
 

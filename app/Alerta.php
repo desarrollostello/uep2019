@@ -19,6 +19,7 @@ class Alerta extends Model
         'mensaje',
         'estado',
         'color',
+        'provincia_id',
         'codigo',
         'sql_alerta',
         'dias',
@@ -41,4 +42,8 @@ class Alerta extends Model
         return strtoupper($this->attributes['mensaje']);
     }
 
+    public function provincia()
+    {
+        return $this->belongsTo('App\Provincia', 'provincia_id');
+    }
 }

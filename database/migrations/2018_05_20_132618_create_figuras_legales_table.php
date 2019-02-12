@@ -16,8 +16,11 @@ class CreateFigurasLegalesTable extends Migration
         Schema::create('figuras_legales', function (Blueprint $table) {
               $table->increments('id');
               $table->string('nombre')->unique();
+              $table->integer('provincia_id')->unsigned();
               $table->string('slug')->unique();
               $table->timestamps();
+
+              $table->foreign('provincia_id')->references('id')->on('provincias');
         });
     }
 
