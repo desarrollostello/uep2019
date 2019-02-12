@@ -22,7 +22,9 @@ class SucursalController extends Controller
 
     public function index()
     {
-      $sucursales = Sucursal::all();
+        $sucursales = Sucursal::where('provincia_id', Auth::user()->provincia_id)->get();
+
+        //$sucursales = Sucursal::where('localidad.provincia_id', Auth::user()->provincia_id)->get();
       return view('sucursales.index', [
           'sucursales' => $sucursales
       ]);
@@ -76,7 +78,7 @@ class SucursalController extends Controller
 
      public function update(SucursalRequest $sucursalRequest, Sucursal $sucursal)
      {
-        
+
          $sucursal->fill($sucursalRequest->all())->update();
          Session::flash('message-success', 'Sucursal actualizada satisfactoriamente.');
          return redirect()->route('sucursal.index');

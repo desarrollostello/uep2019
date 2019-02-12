@@ -280,8 +280,10 @@ class ProyectoController extends Controller
 
     public function filtrar($estado)
     {
-        $estado =   Estado::where('nombre',$estado)->first();
-        $proyectos =   Proyecto::where('estado_id', $estado['id'])->get();
+        $estado =   Estado::where('codigo',$estado)->first();
+        $proyectos =   Proyecto::where('estado_id', $estado['id'])
+                                ->where('provincia_id', Auth::user()->provincia_id)
+                                ->get();
       return view('proyectos.index', [
           'proyectos' => $proyectos
       ]);
@@ -296,17 +298,18 @@ class ProyectoController extends Controller
 
     public function create()
     {
-        $localidades      = Localidad::all()->pluck('nombre', 'id');
-        $lineasCreditos   = LineaCredito::all()->pluck('nombre', 'id');
+        $provincia = Auth::user()->provincia_id;
+        $localidades      = Localidad::where('provincia_id', $provincia)->get()->pluck('nombre', 'id');
+        $lineasCreditos   = LineaCredito::where('provincia_id', $provincia)->get()->pluck('nombre', 'id');
         $estados          = Estado::all()->pluck('nombre', 'id');
-        $estadosInternos  = EstadoInterno::all()->pluck('nombre', 'id');
+        $estadosInternos  = EstadoInterno::where('provincia_id', $provincia)->get()->pluck('nombre', 'id');
         $sectores         = Sector::all()->pluck('nombre', 'id');
         $figurasLegales   = FiguraLegal::all()->pluck('nombre', 'id');
         $periodicidades   = Periodicidad::all()->pluck('nombre', 'id');
         $destinosCreditos = DestinoCredito::all()->pluck('nombre', 'id');
         $garantias        = Garantia::all()->pluck('nombre', 'id');
         $sucursales       = Sucursal::all()->pluck('nombre', 'id');
-        $sujetoCreditos   = SujetoCredito::all();
+        //$sujetoCreditos   = SujetoCredito::all();
         //$anexos           = AnexoProyecto::where('proyecto_id', $proyecto->id)->get();
         //    $proyectos = [];
 
@@ -320,7 +323,7 @@ class ProyectoController extends Controller
             'periodicidades'      => $periodicidades,
             'destinosCreditos'    => $destinosCreditos,
             'garantias'           => $garantias,
-            'sujetoCreditos'      => $sujetoCreditos,
+            //'sujetoCreditos'      => $sujetoCreditos,
             'action'              =>'create',
             'sucursales'          => $sucursales,
           //  'anexos'              => $anexos

@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Sucursal extends Model
@@ -64,7 +64,7 @@ class Sucursal extends Model
      */
     public function banco()
     {
-        return $this->belongsTo('App\Banco', 'banco_id');
+        return $this->belongsTo('App\Banco', 'banco_id')->where('provincia_id', Auth::user()->provincia_id);
     }
 
     /**

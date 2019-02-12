@@ -7,7 +7,7 @@
         <th style="width: 15%">Opciones</th>
     </tr>
     </thead>
-   
+
     <tbody>
     @foreach($sucursales as $x)
         <tr>
