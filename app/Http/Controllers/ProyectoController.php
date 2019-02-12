@@ -580,24 +580,14 @@ class ProyectoController extends Controller
 
     public function update(ProyectoRequest $proyectoRequest, Proyecto $proyecto)
     {
-        //dd($proyectoRequest->input());
-
+        $checklist = Checklist::where('proyecto_id', $proyecto->id)->update($proyectoRequest->checklist);
 
         $data = $proyectoRequest->all();
 
-        dd($data);
 
         /*******************************************************/
         /************** COMPROBACIONES *************************/
-        if($data['solicitud_financiamiento']) { //si ha cambiado el correo
-            dd('Ha cambiado');
-        }else{
-            dd('NO ha cambiado');
-        }
-
-
-
-
+        
         $estado_cfi = Estado::where('nombre','CFI')->first();
         // Entra a este IF si el estado es CFI
         // La condición entre otras es que tenga fecha de Aprobado por la UEP y fecha de Envio al CFI para
