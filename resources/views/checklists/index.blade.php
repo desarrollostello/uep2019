@@ -1,7 +1,7 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-    Localidades
+    Checklists
 @endsection
 @section('main-content')
 @if(Session::has('message'))
@@ -14,15 +14,10 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="box-header panel-heading">
-                    <h3 class="box-title">Localidades</h3>
-                    @can('localidad.create')
-                    <a style="margin-right: 40px;" href="{{ route('localidad.create') }}"
-                    class="btn btn-sm btn-primary pull-right">
-                        Nueva
-                    </a>
-                    @endcan
+                    <h3 class="box-title">Checklists</h3>
+
                 </div>
-                @include('localidades._table')
+                @include('checklists._table')
             </div>
         </div>
     </div>

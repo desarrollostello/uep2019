@@ -19,7 +19,7 @@
 
                 <div class="panel-body">
                     {{ Form::open(['route' => 'checklist.store']) }}
-                        @include('checklists.form')
+                        @include('checklists.form0')
                     {{ Form::close() }}
                 </div>
             </div>

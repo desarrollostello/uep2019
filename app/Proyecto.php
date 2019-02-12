@@ -4,7 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Auditoria;
+use App\Checklist;
 use Log;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Events\ProyectoCreated;
 
 class Proyecto extends Model
@@ -232,7 +236,8 @@ class Proyecto extends Model
 
       public function setFechaIngresoAttribute($value): void
       {
-        $this->attributes['fechaIngreso'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaIngreso'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaIngresoAttribute($value)
@@ -245,7 +250,8 @@ class Proyecto extends Model
 
       public function setFechaPrimerAmortAttribute($value): void
       {
-        $this->attributes['fechaPrimerAmort'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaPrimerAmort'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaPrimerAmortAttribute($value)
@@ -258,7 +264,8 @@ class Proyecto extends Model
 
       public function setFechaEnvioBancoAttribute($value): void
       {
-        $this->attributes['fechaEnvioBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaEnvioBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaEnvioBancoAttribute($value)
@@ -271,7 +278,8 @@ class Proyecto extends Model
 
       public function setFechaCaducoBancoAttribute($value): void
       {
-        $this->attributes['fechaCaducoBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaCaducoBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaCaducoBancoAttribute($value)
@@ -284,7 +292,8 @@ class Proyecto extends Model
 
       public function setFechaAprobadoUepAttribute($value): void
       {
-        $this->attributes['fechaAprobadoUep'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaAprobadoUep'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaAprobadoUepAttribute($value)
@@ -297,7 +306,8 @@ class Proyecto extends Model
 
       public function setFechaEnviadoCfiAttribute($value): void
       {
-        $this->attributes['fechaEnviadoCfi'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaEnviadoCfi'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaEnviadoCfiAttribute($value)
@@ -310,7 +320,8 @@ class Proyecto extends Model
 
       public function setFechaAprobadoCfiAttribute($value): void
       {
-        $this->attributes['fechaAprobadoCfi'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaAprobadoCfi'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaAprobadoCfiAttribute($value)
@@ -323,7 +334,8 @@ class Proyecto extends Model
 
       public function setFechaTramdispoAttribute($value): void
       {
-        $this->attributes['fechaTramdispo'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaTramdispo'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaTramdispoAttribute($value)
@@ -336,7 +348,8 @@ class Proyecto extends Model
 
       public function setFechaComunicaTranAttribute($value): void
       {
-        $this->attributes['fechaComunicaTran'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaComunicaTran'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaComunicaTranAttribute($value)
@@ -349,7 +362,8 @@ class Proyecto extends Model
 
       public function setFechaDesembolsoAttribute($value): void
       {
-        $this->attributes['fechaDesembolso'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaDesembolso'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaDesembolsoAttribute($value)
@@ -362,7 +376,8 @@ class Proyecto extends Model
 
       public function setFechaEfectivizacionAttribute($value): void
       {
-        $this->attributes['fechaEfectivizacion'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaEfectivizacion'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaEfectivizacionAttribute($value)
@@ -375,7 +390,8 @@ class Proyecto extends Model
 
       public function setFechaDesistidoAttribute($value): void
       {
-        $this->attributes['fechaDesistido'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaDesistido'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaDesistidoAttribute($value)
@@ -388,7 +404,8 @@ class Proyecto extends Model
 
       public function setFechaJudicialAttribute($value): void
       {
-        $this->attributes['fechaJudicial'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaJudicial'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaJudicialAttribute($value)
@@ -401,7 +418,8 @@ class Proyecto extends Model
 
       public function setFechaCanceladoAttribute($value): void
       {
-        $this->attributes['fechaCancelado'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaCancelado'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaCanceladoAttribute($value)
@@ -414,7 +432,8 @@ class Proyecto extends Model
 
       public function setFechaArchivadoAttribute($value): void
       {
-        $this->attributes['fechaArchivado'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaArchivado'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaArchivadoAttribute($value)
@@ -427,7 +446,8 @@ class Proyecto extends Model
 
       public function setFechaRespuestaBancoAttribute($value): void
       {
-        $this->attributes['fechaRespuestaBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+        if($value)
+            $this->attributes['fechaRespuestaBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaRespuestaBancoAttribute($value)
@@ -440,7 +460,8 @@ class Proyecto extends Model
 
       public function setFechaPresupuestosAttribute($value): void
       {
-        $this->attributes['fechaPresupuestos'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaPresupuestos'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaPresupuestosAttribute($value)
@@ -453,7 +474,8 @@ class Proyecto extends Model
 
       public function setFechaUltimoMovimientoAttribute($value): void
       {
-        $this->attributes['fechaUltimoMovimiento'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaUltimoMovimiento'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaUltimoMovimientoAttribute($value)
@@ -466,7 +488,8 @@ class Proyecto extends Model
 
       public function setFechaTitularAttribute($value): void
       {
-        $this->attributes['fechaTitular'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaTitular'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaTitularAttribute($value)
@@ -479,7 +502,8 @@ class Proyecto extends Model
 
       public function setFechaBajaAttribute($value): void
       {
-        $this->attributes['fechaBaja'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          if($value)
+            $this->attributes['fechaBaja'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
       }
 
       public function getFechaBajaAttribute($value)
@@ -493,20 +517,40 @@ class Proyecto extends Model
 
       /**** TERMINE trabajando sobre las fechas ************/
 
-
-
-
-
       public static function boot() {
           parent::boot();
 
           static::creating(function ($proyecto) {
               return $proyecto->provincia_id = Auth::user()->provincia_id;
+
           });
 
           static::updating(function($proyecto) {
 
-            return $proyecto->fechaPrimerAmort = \Carbon\Carbon::parse($proyecto->fechaIngreso)->format('Y-m-d');
+              foreach ($proyecto->getDirty() as $key => $value) {
+                if (!($key == 'slug'))
+                {
+                    $control = new Auditoria;
+                    $control->user_id = Auth::user()->id;
+                    $control->fecha = Carbon::now()->toDateTimeString();
+                    $control->fila_id = $proyecto->id;
+                    $control->modelo = 'Proyecto';
+                    $control->campo = $key;
+                    $control->valor_anterior = $proyecto->getOriginal($key);
+                    $control->valor_actual = $value;
+                    $control->save();
+                }
+                
+                if ($key == 'nota_oficial'){
+                    $check = Checklist::where('proyecto_id', $proyecto_id)->update(array('nota_oficial'=> $value));
+                    //$check = DB::table('checklists')->where('proyecto_id', $proyecto->id)->get();
+                    //$check->nota_oficial = $value;
+                    //$check->save();
+                }
+
+
+              }
+        //    return $proyecto->fechaPrimerAmort = \Carbon\Carbon::parse($proyecto->fechaIngreso)->format('Y-m-d');
           });
 
           static::updated(function($proyecto) {

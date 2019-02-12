@@ -23,6 +23,7 @@ use App\Seguimiento;
 use App\DestinoCredito;
 use Carbon\Carbon;
 use App\Garantia;
+use Illuminate\Support\Facades\Input;
 use PHPExcel;
 use PHPExcel_IOFactory;
 use Illuminate\Support\Facades\DB;
@@ -325,11 +326,7 @@ class ProyectoController extends Controller
 
     public function store(ProyectoRequest $request)
     {
-        //dd($request);
         $data = $request->all();
-        //dd($data);
-       // $data['user_id'] = Auth::user()->id;
-
         if ($data['fechaAprobadoCfi'])
         {
             if(is_null($data['numeroCfi']))
@@ -339,8 +336,6 @@ class ProyectoController extends Controller
             }
 
         }
-
-
 
         $data['fechaIngreso'] = Carbon::parse($data['fechaIngreso'])->format('Y-m-d');
 
@@ -431,7 +426,12 @@ class ProyectoController extends Controller
         //dd($data);
         if (Proyecto::create($data))
         {
-
+            // CREAR un CHECKLIST
+            Checklist::create([
+                'proyecto_id'   => $data['id'],
+                'user_id'       => Auth::user()->id,
+                'slug'          => str_slug($data['nombre']) . '-checklist'
+            ]);
             Session::flash('message-success', 'Proyecto creado satisfactoriamente.');
         }else{
             Session::flash('message-danger', 'El Proyecto no se ha podido guardar.');
@@ -493,6 +493,7 @@ class ProyectoController extends Controller
 
         $checklist = Checklist::where('proyecto_id', $proyecto->id)->get();
 
+        //dd($checklist);
 
         return view('proyectos.edit', [
             'proyecto'            => $proyecto,
@@ -543,7 +544,7 @@ class ProyectoController extends Controller
         $cantidadDesembolsos = count($desembolsos);
         $cantidadSujetoCredito = count($sujetoCredito);
         $refinanciaciones = Refinanciacion::where('proyecto_id', $proyecto->id)->get();
-
+        $checklist = Checklist::where('proyecto_id', $proyecto->id)->get();
 
         $anexos = DB::table('anexos_proyectos')
             ->where('proyecto_id', '=', $proyecto->id)
@@ -556,6 +557,7 @@ class ProyectoController extends Controller
             'estados'             => $estados,
             'estadosInternos'     => $estadosInternos,
             'sectores'            => $sectores,
+            'checklist'            => $checklist,
             'figurasLegales'      => $figurasLegales,
             'periodicidades'      => $periodicidades,
             'destinosCreditos'    => $destinosCreditos,
@@ -578,12 +580,21 @@ class ProyectoController extends Controller
 
     public function update(ProyectoRequest $proyectoRequest, Proyecto $proyecto)
     {
-        //dd($proyectoRequest);
+        //dd($proyectoRequest->input());
+
 
         $data = $proyectoRequest->all();
 
+        dd($data);
+
         /*******************************************************/
         /************** COMPROBACIONES *************************/
+        if($data['solicitud_financiamiento']) { //si ha cambiado el correo
+            dd('Ha cambiado');
+        }else{
+            dd('NO ha cambiado');
+        }
+
 
 
 

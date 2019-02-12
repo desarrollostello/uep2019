@@ -5,25 +5,25 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ProyectoRequest extends FormRequest
 {
-    
+
     public function authorize()
     {
         return true;
     }
 
-   
+
     public function rules()
     {
         $proyecto = $this->route('proyecto');
 
-        switch ($this->method()) 
+        switch ($this->method())
         {
             case 'GET':
             case 'DELETE': {
                  return [];
              }
             case 'POST': {
-                return 
+                return
                 [
                      'fechaIngreso'             => 'required',
                      'nombre'                   => 'required',
@@ -89,7 +89,7 @@ class ProyectoRequest extends FormRequest
             }
             case 'PUT':
             case 'PATCH': {
-                return 
+                return
                 [
                      'fechaIngreso'             => 'required',
                      'nombre'                   => 'required',
@@ -134,9 +134,9 @@ class ProyectoRequest extends FormRequest
                      'fechaTramdispo'           => 'date|nullable|after:fechaAprobadoCfi',
                      'fechaComunicaTran'        => 'date|nullable|after:fechaTramdispo',
                      'fechaDesembolso'          => 'date|nullable|after:fechaAprobadoCfi',
-                     'fechaEfectivizacion'      => 'date|nullable|after:fechaComunicaTran',
+                     'fechaEfectivizacion'      => 'date|nullable|after:fechaDesembolso',
                      'fechaDesistido'           => 'date|nullable|after:fechaIngreso',
-                     'fechaEnvioBanco'          => 'nullable',
+                     'fechaEnvioBanco'          => 'date|nullable|after:fechaIngreso',
                      'fechaRespuestaBanco'      => 'nullable|after:fechaEnvioBanco',
                      'fechaPresupuestos'        => 'date|nullable|after:fechaIngreso',
                      'fechaJudicial'            => 'date|nullable|after:fechaEfectivizacion',
@@ -154,15 +154,15 @@ class ProyectoRequest extends FormRequest
                 break;
          }
     }
-    
+
     public function messages()
     {
-        return 
+        return
         [
             'nombre.required'               => 'Nombre obligatorio',
             'fechaIngreso.required'               => 'Fecha Ingreso obligatorio',
-            'numeroInterno.unique'          => 'El número Interno debe ser único', 
-            'numeroCfi.unique'              => 'El número CFI debe ser único',         
+            'numeroInterno.unique'          => 'El número Interno debe ser único',
+            'numeroCfi.unique'              => 'El número CFI debe ser único',
             'fechaIngreso.required'         => 'Fecha de Ingreso obligatorio',
             'localidad_id.required'         => 'Localidad obligatoria',
             'lineaCredito_id.required'      => 'La Línea de Crédito obligatoria',
@@ -172,7 +172,7 @@ class ProyectoRequest extends FormRequest
             'monto.required'                => 'El Monto es obligatorio',
             'monto.numeric'                 => 'El Monto debe ser un número válido',
 
-            
+
             'refinanciado.required_with'    => 'Refinanciado sin ser Efectivizado',
             'inversionTotal.required_with'  => 'Inversión Total sin discriminar',
             'domicilioProyecto.required_with' => 'Aprobado por la UEP sin Domicilio del Proyecto',
@@ -185,9 +185,11 @@ class ProyectoRequest extends FormRequest
             'fechaPresupuestos.after'       => 'Fecha Presupuestos anterior a la  Fecha Ingreso',
             //'fechaEnvioBanco.after'         => 'Fecha Envío Banco sin Fecha Ingreso',
             'fechaDesistido.after'          => 'Fecha Desistido sin Fecha Ingreso',
-            'fechaEfectivizacion.after'     => 'Fecha Efectivización sin Fecha Comunica Tran',
+            'fechaEnvioBanco.after'         => 'Fecha Envio al Banco anterior a la Fecha de Ingreso',
+            'fechaEfectivizacion.after'     => 'Fecha Efectivización sin Fecha Desembolso',
             'fechaDesembolso.after'         => 'Fecha Desembolso sin Fecha Aprobado CFI',
-            'fechaTramdispo.after'          => 'Fecha Comunica. Tran. sin Fecha Tram. Dispo.',
+            'fechaComunicaTran.after'       => 'Fecha Comunica. Tran. posterior a Fecha Tram. Dispo.',
+            'fechaTramdispo.after'          => 'Fecha Tramite de Disposición es antes que la Fecha Aprobado CFI',
             'fechaAprobadoCfi.after'        => 'Fecha Aprobado CFI sin Fecha Enviado CFI',
             'fechaEnviadoCfi.after'         => 'Fecha Enviado al CFI sin Fecha Aprobado UEP',
             'fechaAprobadoUep.after'        => 'Fecha Aprobado UEP sin Fecha Respuesta del Banco',
@@ -205,10 +207,10 @@ class ProyectoRequest extends FormRequest
             'cantidadDesembolsos.required_with' => 'Al tener Fecha Aprobado por la UEP es necesario completar la Cantidad de Desembolsos',
             'cantidadDesembolsos.between'   => 'La Cantidad de Desembolsos de un Proyecto no puede ser mayor a 3',
             'cantidadDesembolsos.numeric'   => 'La Cantidad de Desembolsos debe ser un número',
-            
-        
+
+
         ];
 
     }
-    
+
 }

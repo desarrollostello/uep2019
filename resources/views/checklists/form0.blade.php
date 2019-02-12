@@ -1,28 +1,24 @@
 <div class="row">
-    <div class="form-group col-sm-11">
+    <div class="form-group col-sm-5">
         {!! Form::label('proyecto_id', 'Proyecto') !!}
-        <input type="text" id="proyecto_nombre" class="form-control" name="proyecto_nombre" value="{{ $proyecto->nombre  }}" />
-        <input style="visibility:hidden" type="text" id="proyecto_id" class="form-control" name="proyecto_id" value="{{ $proyecto->id }}" />
+        {!! Form::select('proyecto_id', $proyectos, null, ['placeholder'=>'Seleccione', 'class' => 'form-control',  'id' => 'select_proyectos', 'data-live-search' => 'true', 'data-max-options' => '1']  )  !!}
     </div>
 </div>
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('nota_oficial', 'Nota oficial') !!}
-        <input type="checkbox" name="nota_oficial" id="nota_oficial" {{ $checklist[0]['nota_oficial'] == 'on'?"checked":''}} >
-
-
+        {!! Form::checkbox('nota_oficial', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('nota_oficial_c', 'Comentario') !!}
-        {!! Form::text($checklist[0]['nota_oficial_c'], null, ['class' =>'form-control'] ) !!}
+        {!! Form::text('nota_oficial_c', null, ['class' =>'form-control'] ) !!}
     </div>
 </div>
 
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('solicitud_financiamiento', 'Sol. Financiamiento') !!}
-        <input type="checkbox" name="solicitud_financiamiento" id="solicitud_financiamiento" {{ $checklist[0]['solicitud_financiamiento'] == 'on'?"checked":''}} >
-
+        {!! Form::checkbox('solicitud_financiamiento', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('solicitud_financiamiento_c', 'Comentario') !!}
@@ -33,7 +29,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('fotocopia_dni', 'Fotocopia DNI') !!}
-        <input type="checkbox" name="fotocopia_dni" id="fotocopia_dni" {{ $checklist[0]['fotocopia_dni'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('fotocopia_dni', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('fotocopia_dni_c', 'Comentario') !!}
@@ -44,7 +40,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('certificado_domicilio', 'Certificado Domicilio') !!}
-        <input type="checkbox" name="certificado_domicilio" id="certificado_domicilio" {{ $checklist[0]['certificado_domicilio'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('certificado_domicilio', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('certificado_domicilio_c', 'Comentario') !!}
@@ -55,7 +51,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('inscripcion_afip_rentas', 'AFIP-RENTAS') !!}
-        <input type="checkbox" name="inscripcion_afip_rentas" id="inscripcion_afip_rentas" {{ $checklist[0]['inscripcion_afip_rentas'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('inscripcion_afip_rentas', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('inscripcion_afip_rentas_c', 'Comentario') !!}
@@ -67,7 +63,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('estado_civil', 'Estado Civil') !!}
-        <input type="checkbox" name="estado_civil" id="estado_civil" {{ $checklist[0]['estado_civil'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('estado_civil', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('estado_civil_c', 'Comentario') !!}
@@ -78,7 +74,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('ddjj', 'DD JJ') !!}
-        <input type="checkbox" name="ddjj" id="ddjj" {{ $checklist[0]['ddjj'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('ddjj', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('ddjj_c', 'Comentario') !!}
@@ -90,7 +86,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('nota_banco', 'Nota al Banco') !!}
-        <input type="checkbox" name="nota_banco" id="nota_banco" {{ $checklist[0]['nota_banco'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('nota_banco', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('nota_banco_c', 'Comentario') !!}
@@ -101,7 +97,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('respuesta_banco', 'Respuesta del Banco') !!}
-        <input type="checkbox" name="respuesta_banco" id="respuesta_banco" {{ $checklist[0]['respuesta_banco'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('respuesta_banco', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('respuesta_banco_c', 'Comentario') !!}
@@ -112,7 +108,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('titulo_propiedad_inmuebles', 'Propiedades Inmuebles') !!}
-        <input type="checkbox" name="titulo_propiedad_inmuebles" id="titulo_propiedad_inmuebles" {{ $checklist[0]['titulo_propiedad_inmuebles'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('titulo_propiedad_inmuebles', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('titulo_propiedad_inmuebles_c', 'Comentario') !!}
@@ -123,7 +119,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('habilitaciones', 'Habilitaciones') !!}
-        <input type="checkbox" name="habilitaciones" id="habilitaciones" {{ $checklist[0]['habilitaciones'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('habilitaciones', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('habilitaciones_c', 'Comentario') !!}
@@ -135,7 +131,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('titulo_propiedad_muebles', 'Propiedades Muebles') !!}
-        <input type="checkbox" name="titulo_propiedad_muebles" id="titulo_propiedad_muebles" {{ $checklist[0]['titulo_propiedad_muebles'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('titulo_propiedad_muebles', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('titulo_propiedad_muebles_c', 'Comentario') !!}
@@ -147,7 +143,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('proformas', 'Proformas') !!}
-        <input type="checkbox" name="proformas" id="proformas" {{ $checklist[0]['proformas'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('proformas', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('proformas_c', 'Comentario') !!}
@@ -159,7 +155,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('guia_proyecto', 'Guía Proyecto') !!}
-        <input type="checkbox" name="guia_proyecto" id="guia_proyecto" {{ $checklist[0]['guia_proyecto'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('guia_proyecto', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('guia_proyecto_c', 'Comentario') !!}
@@ -171,7 +167,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('estadisticas', 'Estadísticas') !!}
-        <input type="checkbox" name="estadisticas" id="estadisticas" {{ $checklist[0]['estadisticas'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('estadisticas', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('estadisticas_c', 'Comentario') !!}
@@ -182,7 +178,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('promeva', 'Promeva') !!}
-        <input type="checkbox" name="promeva" id="promeva" {{ $checklist[0]['promeva'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('promeva', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('promeva_c', 'Comentario') !!}
@@ -193,7 +189,7 @@
 <div class="row">
     <div class="form-group col-sm-2">
         {!! Form::label('informe_uep', 'Informe UEP') !!}
-        <input type="checkbox" name="informe_uep" id="informe_uep" {{ $checklist[0]['informe_uep'] == 'on'?"checked":''}} >
+        {!! Form::checkbox('informe_uep', null, ['class' =>'form-control'] ) !!}
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('informe_uep_c', 'Comentario') !!}

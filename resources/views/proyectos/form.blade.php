@@ -6,7 +6,7 @@
                 <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#datos_proyectos" data-toggle="tab" style=" color: #ffffff">Datos del Proyecto</a></li>
                 <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#condiciones" data-toggle="tab" style=" color: #ffffff">Inv. / Condiciones</a></li>
                 <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#fechas" data-toggle="tab" style=" color: #ffffff">Fechas</a></li>
-                <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#checklist" data-toggle="tab" style=" color: #ffffff">Checklist</a></li>
+                @if ($action == 'edit')<li style="background-color: #3C8DBC; border-radius: 4px"><a href="#checklist" data-toggle="tab" style=" color: #ffffff">Checklist</a></li> @endif
                 <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#anexos" data-toggle="tab" style=" color: #ffffff">Anexos</a></li>
                 <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#observaciones" data-toggle="tab" style=" color: #ffffff">Observaciones</a></li>
             </ul>
@@ -28,9 +28,12 @@
                   <div class="tab-pane fade" id="fechas">
                       @include('proyectos._fechas')
                   </div>
+                  @if ($action == 'edit')
                   <div class="tab-pane fade" id="checklist">
-                    @include('proyectos._checklists')
+                    <!--@include('proyectos._checklists')-->
+                    @include('checklists.form')
                   </div>
+                  @endif
                   <div class="tab-pane fade" id="anexos">
                     @include('proyectos._anexos')
                   </div>

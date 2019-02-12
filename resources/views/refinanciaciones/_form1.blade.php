@@ -4,7 +4,6 @@
         {!! Form::label('proyecto_id', 'Proyecto') !!}
         <input type="text" id="proyecto_nombre" class="form-control" name="proyecto_nombre" value="{{ $proyectos->nombre  }}" />
         <input style="visibility:hidden" type="text" id="proyecto_id" class="form-control" name="proyecto_id" value="{{ $proyectos->id }}" />
-        
     </div>
 </div>
 <div class="row">
