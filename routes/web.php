@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function ()
         Route::post('anexoProyecto/export', 'MovimientoController@index')->name('movimiento.export')->middleware('permission:movimiento.export');
         Route::get('deleteAjax','MovimientoController@deleteAjax')->name('movimiento.deleteAjax')->middleware('permission:movimiento.deleteAjax');
         Route::get('removedata', 'MovimientoController@removedata')->name('movimiento.removedata')->middleware('permission:movimiento.removedata');
+
     });
 
 
@@ -112,6 +113,7 @@ Route::group(['middleware' => 'auth'], function ()
             Route::get('datatable', 'ProyectoController@datatable')->name('proyecto.datatable');
             // Get Data
             Route::get('getdata', 'ProyectoController@getPosts')->name('proyecto.getdata');
+            Route::post('enviadocfi', 'ProyectoController@enviadocfi')->name('proyecto.enviadocfi');
     });
 
     Route::group(['prefix' => 'refinanciacion'], function () {

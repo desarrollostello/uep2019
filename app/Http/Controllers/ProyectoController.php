@@ -37,8 +37,6 @@ use Illuminate\Database\Query\Builder;
 class ProyectoController extends Controller
 {
 
-
-
     public function datatable()
     {
         return view('proyectos.datatable');
@@ -54,13 +52,43 @@ class ProyectoController extends Controller
         ->toJson();
     }
 
+    public function enviadocfi()
+    {
+
+        $off = DB::select('
+        SELECT proyecto_id, "off" FROM checklists
+        WHERE
+        INSTR(
+            CONCAT(
+                nota_oficial,
+                solicitud_financiamiento,
+                fotocopia_dni,
+                certificado_domicilio,
+                inscripcion_afip_rentas,
+                estado_civil,
+                ddjj,
+                nota_banco,
+                respuesta_banco,
+                titulo_propiedad_inmuebles,
+                habilitaciones,
+                titulo_propiedad_muebles,
+                proformas,
+                guia_proyecto,
+                estadisticas,
+                promeva,
+                informe_uep
+            ),\'off\') > 0
+            AND
+            proyecto_id = ' . $_POST['proyecto_id']
+        );
+
+        return $off;
+    }
+
 
     public function search()
     {
-
-
         $proyectos = Proyecto::where('user_id', '<>', null);
-
         if(isset($_POST['fechaIngreso_desde']))
         {
             $fecha_desde = Carbon::parse($_POST['fechaIngreso_desde'])->format('Y-m-d');

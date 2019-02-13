@@ -1,4 +1,5 @@
 <div class="row">
+    {!! Form::text('id', null, ['id'=>'proyecto_id', 'class' =>'form-control'] ) !!}
       <div class="form-group col-sm-2">
             {!! Form::label('fechaIngreso', 'Fecha Ingreso') !!}
             {!! Form::text('fechaIngreso', null, ['class' =>'form-control fechas', 'required', 'minlength' =>'10'] ) !!}
