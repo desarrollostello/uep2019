@@ -53,6 +53,20 @@ class Auditoria extends Model
 
     }
 
+    /*
+
+    public function setFechaAttribute($value): void
+    {
+        if($value)
+          $this->attributes['fecha'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+    }
+
+    public function getFechaAttribute($value)
+    {
+      if($value)
+        return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+    }
+    */
     public static function boot(){
 
         parent::boot();

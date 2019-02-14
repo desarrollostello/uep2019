@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\Auditoria;
 use App\Checklist;
+use App\Estado;
 use Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -130,14 +131,15 @@ class Proyecto extends Model
 
       /*
       COMO USAR LOS SCOPES QUE NOS AYUDAN A HACER CONSULTAS
+      ESTO ME DEVUELVE LOS PROYECTOS INGREASDOS ESTE MES
        */
-      /*
-      public function scopeInThisMonthByGender($query, $gender)
+
+      public function scopeInThisMonthByGender($query, $proyecto)
       {
-          return $query->where('gender', $gender)
-              ->whereMonth('created_at', now()->month);
+          return $query->where('provincia_id', $proyecto->provincia_id)
+              ->whereMonth('fechaIngreso', now()->month);
       }
-      */
+
 
       //// Esto va en el Controller es como llamarlo
       //Proyecto::inThisMonthByGender('female')->get()
@@ -534,10 +536,81 @@ class Proyecto extends Model
                     $control->user_id = Auth::user()->id;
                     $control->fecha = Carbon::now()->toDateTimeString();
                     $control->fila_id = $proyecto->id;
-                    $control->modelo = 'Proyecto';
+                    $control->modelo = 'proyecto';
                     $control->campo = $key;
-                    $control->valor_anterior = $proyecto->getOriginal($key);
-                    $control->valor_actual = $value;
+                    if ($key == 'estado_id')
+                    {
+                        $estado = \App\Estado::find($proyecto->getOriginal($key));
+                        $control->valor_anterior = $estado->nombre;
+
+                        $estado = \App\Estado::find($value);
+                        $control->valor_actual = $estado->nombre;
+                    }elseif($key == 'localidad_id'){
+                        $loc = \App\Localidad::find($proyecto->getOriginal($key));
+                        $control->valor_anterior = $loc->nombre;
+
+                        $loc = \App\Localidad::find($value);
+                        $control->valor_actual = $loc->nombre;
+                    }elseif($key == 'lineaCredito_id'){
+                        $lc = \App\LineaCredito::find($proyecto->getOriginal($key));
+                        $control->valor_anterior = $lc->nombre;
+
+                        $lc = \App\LineaCredito::find($value);
+                        $control->valor_actual = $lc->nombre;
+
+                    }elseif($key == 'estadoInterno_id'){
+                        $ei = \App\EstadoInterno::find($proyecto->getOriginal($key));
+                        $control->valor_anterior = $ei->nombre;
+
+                        $ei = \App\EstadoInterno::find($value);
+                        $control->valor_actual = $ei->nombre;
+
+                    }elseif($key == 'sector_id'){
+                        $sec = \App\Sector::find($proyecto->getOriginal($key));
+                        $control->valor_anterior = $sec->nombre;
+
+                        $sec = \App\Sector::find($value);
+                        $control->valor_actual = $sec->nombre;
+
+                    }elseif($key == 'figuraLegal_id'){
+                        $fl = \App\FiguraLegal::find($proyecto->getOriginal($key));
+                        $control->valor_anterior = $fl->nombre;
+
+                        $fl = \App\FiguraLegal::find($value);
+                        $control->valor_actual = $fl->nombre;
+
+                    }elseif($key == 'periodicidad_id'){
+                        $perio = \App\Periodicidad::find($proyecto->getOriginal($key));
+                        $control->valor_anterior = $perio->nombre;
+
+                        $perio = \App\Periodicidad::find($value);
+                        $control->valor_actual = $perio->nombre;
+
+                    }elseif($key == 'destinoCredito_id'){
+                        $dc = \App\DestinoCredito::find($proyecto->getOriginal($key));
+                        $control->valor_anterior = $dc->nombre;
+
+                        $dc = \App\DestinoCredito::find($value);
+                        $control->valor_actual = $dc->nombre;
+
+                    }elseif($key == 'garantia_id'){
+                        $g = \App\Garantia::find($proyecto->getOriginal($key));
+                        $control->valor_anterior = $g->nombre;
+
+                        $g = \App\Garantia::find($value);
+                        $control->valor_actual = $g->nombre;
+
+                    }elseif($key == 'sucursal_id'){
+                        $sucursal = \App\Sucursal::find($proyecto->getOriginal($key));
+                        $control->valor_anterior = $sucursal->nombre;
+
+                        $sucursal = \App\Sucursal::find($value);
+                        $control->valor_actual = $sucursal->nombre;
+                    }else{
+                        $control->valor_anterior = $proyecto->getOriginal($key);
+                        $control->valor_actual = $value;
+                    }
+
                     $control->save();
                 }
 

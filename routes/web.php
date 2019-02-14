@@ -41,9 +41,14 @@ Route::group(['middleware' => 'auth'], function ()
 
 
 
+    Route::group(['prefix' => 'auditoria'], function () {
+        Route::get('listado', 'AuditoriaController@index')->name('auditoria.index')->middleware('permission:auditoria.index');
+        Route::get('nuevo', 'AuditoriaController@create')->name('auditoria.create')->middleware('permission:auditoria.create');
+        Route::post('nuevo', 'AuditoriaController@store')->name('auditoria.store')->middleware('permission:auditoria.store');
+        Route::get('ver/{auditoria}', 'AuditoriaController@show')->name('auditoria.show')->middleware('permission:auditoria.show');
+        Route::get('eliminar/{auditoria}', 'AuditoriaController@destroy')->name('auditoria.delete')->middleware('permission:auditoria.delete');
 
-    Route::resource('auditoria','AuditoriaController');
-
+    });
 
     Route::group(['prefix' => 'movimiento'], function () {
         Route::get('listado', 'MovimientoController@index')->name('movimiento.index')->middleware('permission:movimiento.index');

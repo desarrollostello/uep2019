@@ -25,8 +25,8 @@
                 <div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#addMovimiento" data-whatever="{{ $proyecto->id }}">Agregar Movimiento</button>
-                            
+                            <!-- <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#addMovimiento" data-whatever="{{ $proyecto->id }}">Agregar Movimiento</button> -->
+
                             <h4>Listado de Movimientos</h4>
                         </div>
                     </div>
@@ -40,17 +40,17 @@
 
                         </tr>
                         </thead>
-                        
+
                         <tbody>
                         @foreach($movimientos as $x)
                             <tr>
-                                <td>
-                                    <button class="delete_movimiento1" id="delete_movimiento1" type="button" class="btn btn-info btn-xs pull-rigth" onclick="borrar_movimiento({{ $x->id  }});"><i class="fa fa-trash" title="Borrar Movimiento"></i></button>
-                                </td>
+                                <!--<td>-->
+                                    <!--<button class="delete_movimiento1" id="delete_movimiento1" type="button" class="btn btn-info btn-xs pull-rigth" onclick="borrar_movimiento({{ $x->id  }});"><i class="fa fa-trash" title="Borrar Movimiento"></i></button>-->
+                                <!--</td>-->
                                 <td>{{ \Carbon\Carbon::parse($x->fecha)->format('d-m-Y') }}</td>
                                 <td>{{ $x->descripcion }}</td>
                                 <td>{{ $x->user->name }}</td>
-                                
+
                             </tr>
                         @endforeach
                         </tbody>
@@ -61,8 +61,8 @@
                 <div style="margin-top: 85px;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <a href="{{ route('refinanciacion.create1', $proyecto->id) }}" type="button" class="btn btn-primary pull-right">Refinanciar Proyecto</a>
-                            
+                            <!--<a href="{{ route('refinanciacion.create1', $proyecto->id) }}" type="button" class="btn btn-primary pull-right">Refinanciar Proyecto</a>-->
+
                             <h4>Refinanciación</h4>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
 
                         </tr>
                         </thead>
-                        
+
                         <tbody>
                         @if ($refinanciaciones)
                         @foreach($refinanciaciones as $td)
@@ -98,8 +98,8 @@
                 <div style="margin-top: 85px;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <a href="{{ route('titular.create1', $proyecto->id) }}" type="button" class="btn btn-primary pull-right">Nuevo Titular</a>
-                            
+                            <!-- <a href="{{ route('titular.create1', $proyecto->id) }}" type="button" class="btn btn-primary pull-right">Nuevo Titular</a>-->
+
                             <h4>Titulares</h4>
                         </div>
                     </div>
@@ -111,16 +111,16 @@
                             <th>DNI</th>
                             <th>Localidad</th>
                             <th>Estado Civil</th>
-                           
+
 
                         </tr>
                         </thead>
-                        
+
                         <tbody>
                         @if ($titulares)
                         @foreach($titulares as $td)
                             <tr>
-                                <td><button class="delete_titular1" id="delete_titular1" type="button" class="btn btn-info btn-xs pull-rigth" onclick="borrar_titular({{ $td->id  }});"><i class="fa fa-trash" title="Borrar Titular"></i></button></td>
+                            <!--    <td><button class="delete_titular1" id="delete_titular1" type="button" class="btn btn-info btn-xs pull-rigth" onclick="borrar_titular({{ $td->id  }});"><i class="fa fa-trash" title="Borrar Titular"></i></button></td>-->
                                 <td>{{ $td->apeynom }}</td>
                                 <td>{{ $td->dni }}</td>
                                 @if($td->localidad)
@@ -133,7 +133,7 @@
                                 @else
                                     <td></td>
                                 @endif
-                                
+
                             </tr>
                         @endforeach
                         @endif
@@ -148,9 +148,9 @@
         </div>
     </div>
 </div>
+<!--
 @include('proyectos.create_movimiento')
 @include('proyectos.create_desembolso')
 @include('proyectos.create_sujeto')
-
+-->
 @endsection
-

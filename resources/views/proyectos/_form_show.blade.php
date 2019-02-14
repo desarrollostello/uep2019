@@ -6,6 +6,7 @@
                 <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#datos_proyectos" data-toggle="tab" style=" color: #ffffff">Datos del Proyecto</a></li>
                 <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#condiciones" data-toggle="tab" style=" color: #ffffff">Inv. / Condiciones</a></li>
                 <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#fechas" data-toggle="tab" style=" color: #ffffff">Fechas</a></li>
+                <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#checklist" data-toggle="tab" style=" color: #ffffff">Checklist</a></li>
                 <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#anexos" data-toggle="tab" style=" color: #ffffff">Anexos</a></li>
                 <li style="background-color: #3C8DBC; border-radius: 4px"><a href="#observaciones" data-toggle="tab" style=" color: #ffffff">Observaciones</a></li>
             </ul>
@@ -70,6 +71,10 @@
 
                   <div class="tab-pane fade" id="fechas" style="border: 1px solid #ccc">
                       @include('proyectos._fechas_show')
+                  </div>
+                  <div class="tab-pane fade" id="checklist">
+                    <!--@include('proyectos._checklists')-->
+                    @include('checklists.form')
                   </div>
                   <div class="tab-pane fade" id="anexos" style="border: 1px solid #ccc">
                     @include('proyectos._anexos_show')
