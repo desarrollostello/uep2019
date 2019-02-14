@@ -74,7 +74,7 @@
                   </div>
                   <div class="tab-pane fade" id="checklist">
                     <!--@include('proyectos._checklists')-->
-                    @include('checklists.form')
+                    @include('checklists.show')
                   </div>
                   <div class="tab-pane fade" id="anexos" style="border: 1px solid #ccc">
                     @include('proyectos._anexos_show')

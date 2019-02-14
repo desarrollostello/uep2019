@@ -56,7 +56,7 @@ class ProyectoController extends Controller
     {
 
         $off = DB::select('
-        SELECT proyecto_id, "off" FROM checklists
+        SELECT proyecto_id, "NO" FROM checklists
         WHERE
         INSTR(
             CONCAT(
@@ -77,7 +77,7 @@ class ProyectoController extends Controller
                 estadisticas,
                 promeva,
                 informe_uep
-            ),\'off\') > 0
+            ),\'NO\') > 0
             AND
             proyecto_id = ' . $_POST['proyecto_id']
         );
@@ -486,7 +486,8 @@ class ProyectoController extends Controller
         $sujetoCredito    = SujetoCredito::where('proyecto_id', $proyecto->id)->get();
         $sucursales       = Sucursal::all()->pluck('nombre', 'id');
         $seguimientos     = Seguimiento::where('proyecto_id', $proyecto->id)->get();
-
+        $checklist        = Checklist::where('proyecto_id', $proyecto->id)->get();
+        //dd($checklist[0]);
         return view('proyectos.show',
             [
                 'proyecto'      =>$proyecto,
@@ -497,6 +498,7 @@ class ProyectoController extends Controller
                 'sujetoCredito' => $sujetoCredito,
                 'sucursales'    => $sucursales,
                 'seguimientos'  => $seguimientos,
+                'checklist'     => $checklist[0],
                 'refinanciaciones'  => $refinanciaciones
 
             ]);
