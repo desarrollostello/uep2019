@@ -5,6 +5,7 @@ use App\EstadoInterno;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\EstadoInternoRequest;
+use DataTables;
 
 class EstadoInternoController extends Controller
 {
@@ -13,11 +14,13 @@ class EstadoInternoController extends Controller
 
     public function __construct()
     {
+        /*
         $this->middleware('permission:estadoInterno.index')->only('index');
         $this->middleware('permission:estadoInterno.create')->only(['create', 'store']);
         $this->middleware('permission:estadoInterno.edit')->only(['edit', 'update']);
         $this->middleware('permission:estadoInterno.show')->only('show');
         $this->middleware('permission:estadoInterno.destroy')->only('destroy');
+        */
         $this->estadoInterno = $this->getEstadoInterno();
     }
     /**
@@ -25,12 +28,24 @@ class EstadoInternoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
      public function index()
      {
-       $estadosInternos = EstadoInterno::all();
-       return view('estadointerno.index',compact('estadosInternos'));
+        return view('estadointerno.index0');
+        //return Datatables::of(::query())->make(true);
+        //$estadosInternos = EstadoInterno::all();
+        //return view('estadointerno.index',compact('estadosInternos'));
          //return view('bancos.index', ['banco' => $this->banco]);
      }
+
+     public function getData()
+     {
+        //$users = EstadoInterno::select(['id', 'nombre', 'created_at', 'updated_at']);
+        //return DataTables::of($users)->make(true);
+        return Datatables::of(EstadoInterno::query())->make(true);
+     }
+
+
 
     /**
      * Show the form for creating a new resource.

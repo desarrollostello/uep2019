@@ -34,11 +34,16 @@ Route::group(['middleware' => 'auth'], function ()
     Route::resource('estadoCivil','EstadoCivilController');
     Route::resource('destinoCredito','DestinoCreditoController');
     Route::resource('estadoInterno','EstadoInternoController');
+
+    Route::get('indexestadosInternos', 'EstadoInternoController@getData');
+
     Route::resource('figuraLegal','FiguraLegalController');
     //Route::resource('lineaCredito','LineaCreditoController');
     Route::resource('periodicidad','PeriodicidadController');
     //Route::resource('sujetoCredito','SujetoCreditoController');
 
+    Route::get('create', 'DisplayDataController@create');
+    Route::get('index', 'DisplayDataController@index');
 
 
     Route::group(['prefix' => 'auditoria'], function () {
