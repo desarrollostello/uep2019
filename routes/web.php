@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth'], function ()
     //Route::resource('sujetoCredito','SujetoCreditoController');
 
     Route::get('create', 'DisplayDataController@create');
-    Route::get('index', 'DisplayDataController@index');
+    Route::get('indexDisplay', 'DisplayDataController@index');
 
 
     Route::group(['prefix' => 'auditoria'], function () {

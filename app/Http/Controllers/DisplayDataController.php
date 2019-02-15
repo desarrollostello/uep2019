@@ -11,7 +11,9 @@ class DisplayDataController extends Controller
 
     public function index()
     {
-        return DataTables::of(User::query())->make(true);
+        $users = User::select(['id','name','email','created_at','updated_at']);
+        return Datatables::of($users)->make();
+        //return DataTables::of(User::query())->make(true);
     }
 
 
