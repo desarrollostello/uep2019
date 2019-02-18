@@ -3,16 +3,10 @@
 <!-- Laravel App -->
 
 <script src="{{ asset('/js/app.js') }}" type="text/javascript"></script>
-
 <script src="{{ asset('js/jquery-3.3.1.js') }}""  type="text/javascript"></script>
-
 <script src="{{ asset('js/jquery-ui.js') }}"></script>
-
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-
-
 <script src="{{ asset('/js/dataTables.buttons.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/jszip.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/buttons.html5.min.js') }}" type="text/javascript"></script>
@@ -22,15 +16,9 @@
 <script src="{{ asset('/js/pdfmake.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/dataTables.material.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/moment.min.js') }}" type="text/javascript"></script>
-
 <script src="{{ asset('/js/popper.min.js') }}" type="text/javascript"></script>
-
-
-
 <script src="{{ asset('js/moment.min.js') }}"></script>
-
 <script src="{{ asset('/bower-components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}" type="text/javascript"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js" type="text/javascript"></script>
 
 
@@ -441,10 +429,6 @@ $('#delete_movimiento').on('click', function (event)
 })
 
 
-
-
-
-
 /*************
 Es el botón que está en la linea 146 del archivo _fechas.blade.php cuando presiono el botónote
 de editar un sujeto de crèdito viene a ejecutarse esto
@@ -559,9 +543,6 @@ function readURL(input) {
               {data: 'estado.nombre', name: 'estado.nombre'},
           ]
         });
-
-
-
 
           jQuery("#profile-img").change(function()
           {
@@ -747,7 +728,8 @@ function readURL(input) {
             })
 
 
-          $('#addMovimiento').on('show.bs.modal', function (event) {
+          $('#addMovimiento').on('show.bs.modal', function (event) 
+          {
             var button = $(event.relatedTarget)
             var recipient = button.data('whatever')
             var modal = $(this)

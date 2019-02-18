@@ -1,12 +1,20 @@
-<table id="table-proyectos1" class="table table-responsive mdl-data-table" style="padding-left: 5px;">
+<table id="table-proyectos1" class="table table-responsive mdl-data-table" style="padding-left: 5px; font-size: 12px; vertical-align: middle; text-align: center;">
     <thead>
     <tr>
         @foreach($columnas as $c)
-            <td>{{ $c->descripcion  }}</td>
+            @if ($c->descripcion == 'Último Mov')
+                <td style="min-width: 68px;">{{ $c->descripcion  }}</td>
+            @elseif($c->descripcion == 'Monto')
+                <td style="min-width: 71px;">{{ $c->descripcion  }}</td>
+            @else
+                <td style="min-width: 70px;">{{ $c->descripcion  }}</td>
+
+            @endif
+
         @endforeach
 
 <!--
-        <th>Fecha Ingreso</th> 
+        <th>Fecha Ingreso</th>
         <th>Nombre</th>
         <th>Nro CFI</th>
         <th>Localidad</th>
@@ -16,21 +24,21 @@
         <th>Sector</th>
         <th>Monto</th>
     -->
-        <th style="width: 12%">Opciones</th>
+        <th style="width: 15%">Opciones</th>
     </tr>
     </thead>
-   
+
     <tbody>
     @foreach($proyectos as $x)
         <tr style="background-color: {{ $x->color }}">
 
 
              @foreach($columnas as $c)
-               
+
                @php
                $nombre = $c->nombre
                @endphp
-               
+
                 @if ($c->nombre == 'localidad_id')
                     <td style="text-align:center">{{  $x->localidad->nombre }}</td>
                 @elseif($c->nombre == 'estado_id')
@@ -53,7 +61,7 @@
                 @elseif($c->nombre == 'fechaIngreso')
                     <td style="text-align:center">{{ $x->fechaIngreso }}</td>
                 @elseif($c->nombre == 'fechaUltimoMovimiento')
-                    <td style="text-align:center">{{ $x->fechaUltimoMovimiento }}</td>
+                    <td style="text-align:center; min-width: 68px;">{{ $x->fechaUltimoMovimiento }}</td>
                 @elseif($c->nombre == 'fechaArchivado')
                     <td style="text-align:center">{{ $x->fechaArchivado }}</td>
                 @elseif($c->nombre == 'fechaCancelado')
@@ -91,14 +99,16 @@
 
             <td>
                 @can('proyecto.edit')
-                    <a href="{{ route('proyecto.edit', $x) }}" class="btn btn-info btn-xs pull-rigth" style="margin-right: 5px"><i class="fa fa-edit" title="Editar Proyecto"></i></a>
+                    <a href="{{ route('proyecto.edit', $x) }}" class="btn btn-info btn-xs pull-rigth" style="margin-right: 3px"><i class="fa fa-edit" title="Editar Proyecto"></i></a>
                 @endcan
                 @can('proyecto.show')
-                    <a href="{{ route('proyecto.show', $x) }}" class="btn btn-info btn-xs pull-rigth"  style="margin-right: 5px"><i class="fa fa-eye" title="Ver Proyecto"></i></a>
+                    <a href="{{ route('proyecto.show', $x) }}" class="btn btn-info btn-xs pull-rigth"  style="margin-right: 3px"><i class="fa fa-eye" title="Ver Proyecto"></i></a>
                 @endcan
                 @can('proyecto.delete')
                     <a href="{{ route('proyecto.delete', $x) }}" class="btn btn-danger btn-xs pull-rigth" onclick="return confirm('Está seguro que desea eliminar este ítem?')" class="btn btn-danger"><i class="fa fa-trash" title="Borrar Proyecto"></i></a>
                 @endcan
+
+                <button type="button" class="btn btn-info btn-xs pull-rigth" style="margin-left: 3px" data-toggle="modal" data-target="#addMovimiento" data-whatever="{{ $x->id }}"><i class="fa fa-edit" title="Editar Proyecto"></i></button>
             </td>
         </tr>
     @endforeach

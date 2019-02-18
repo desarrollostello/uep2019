@@ -14,13 +14,6 @@ class EstadoInternoController extends Controller
 
     public function __construct()
     {
-        /*
-        $this->middleware('permission:estadoInterno.index')->only('index');
-        $this->middleware('permission:estadoInterno.create')->only(['create', 'store']);
-        $this->middleware('permission:estadoInterno.edit')->only(['edit', 'update']);
-        $this->middleware('permission:estadoInterno.show')->only('show');
-        $this->middleware('permission:estadoInterno.destroy')->only('destroy');
-        */
         $this->estadoInterno = $this->getEstadoInterno();
     }
     /**
@@ -42,7 +35,7 @@ class EstadoInternoController extends Controller
      {
         //$users = EstadoInterno::select(['id', 'nombre', 'created_at', 'updated_at']);
         //return DataTables::of($users)->make(true);
-        return Datatables::of(EstadoInterno::query())->make(true);
+        return DataTables::of(EstadoInterno::query())->make();
      }
 
 

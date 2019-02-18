@@ -477,7 +477,20 @@ class Proyecto extends Model
       public function setFechaUltimoMovimientoAttribute($value): void
       {
           if($value)
-            $this->attributes['fechaUltimoMovimiento'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+          {
+              if ($value != config('app.date_format'))
+              {
+                 $this->attributes['fechaUltimoMovimiento'] = \Carbon\Carbon::parse($value)->format('Y-m-d');
+                 //dd("Value: " . $value . " | app.format: " . config('app.date_format'));
+                 //$this->attributes['fechaUltimoMovimiento'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+              }else{
+                    $this->attributes['fechaUltimoMovimiento'] = \Carbon\Carbon::parse($value)->format('Y-m-d');
+              }
+
+
+          }
+        //    dd($value);
+            //
       }
 
       public function getFechaUltimoMovimientoAttribute($value)

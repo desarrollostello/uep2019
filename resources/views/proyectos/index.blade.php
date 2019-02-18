@@ -21,14 +21,14 @@
                               <span class="info-box-text">Events</span>
                               <span class="info-box-number">41,410</span>
 
-                              
+
                                   <span class="progress-description">
                                     70% Increase in 30 Days
                                   </span>
                             </div>
-                         
+
                           </div>
-                 
+
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-yellow">
@@ -45,9 +45,9 @@
                                     70% Increase in 30 Days
                                   </span>
                             </div>
-                
+
                         </div>
-           
+
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-yellow">
@@ -64,17 +64,17 @@
                                     70% Increase in 30 Days
                                   </span>
                             </div>
-                      
+
                           </div>
-             
+
                     </div>
-             
+
 </div>
 -->
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                
+
                 <div class="panel-heading" style="padding-bottom: 20px;">
                     <div class="row">
                         <div class="col-md-5 pull-left"><h4>Proyectos</h4></div>
@@ -97,3 +97,4 @@
 @push('scripts')
 <script src="{{ asset('js/admin.js') }}"></script>
 @endpush
+@include('proyectos.create_movimiento_index')

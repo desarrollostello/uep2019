@@ -10,32 +10,25 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<!--
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/jszip-2.5.0/dt-1.10.18/b-1.5.2/b-colvis-1.5.1/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.css"/>
--->
-<!--
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
--->
-          <link href="{{ asset('/css/all.css') }}" rel="stylesheet" type="text/css" />
-          <link href="{{ asset('/css/dataTables.min.css') }}" rel="stylesheet" type="text/css" />
-          <link href="{{ asset('/css/dataTables.material.min.css') }}" rel="stylesheet" type="text/css" />
-          <link href="{{ asset('/css/dropzone.css') }}" rel="stylesheet" type="text/css" />
-          <link href="{{ asset('/css/adminlte.css') }}" rel="stylesheet" type="text/css" />
-          <link href="{{ asset('/bower-components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet" type="text/css" />
-          <link href="{{ asset('/css/style.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('/css/all.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('/css/dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('/css/dataTables.material.min.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('/css/dropzone.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('/css/adminlte.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('/bower-components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('/css/style.css') }}" rel="stylesheet" type="text/css" />
 
 
-          <!--<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>-->
-          <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+	<!--<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>-->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
           <style>
-            
+              table.dataTable thead .sorting{background-image: none !Important;}
               .material-switch > input[type="checkbox"] {
                   display: none;   
               }
+
+              .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {vertical-align: middle}
 
               .material-switch > label {
                   cursor: pointer;

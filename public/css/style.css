@@ -12,6 +12,11 @@ body{
     font-family: 'Helvetica', 'Arial';
 }
 
+
+table.dataTable thead .sorting{background: none !Important;}
+
+
+
 div.dt-buttons{
     padding-left: 10px !Important;
     padding-top: 15px; !Important;

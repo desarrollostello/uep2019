@@ -33,9 +33,12 @@ Route::group(['middleware' => 'auth'], function ()
     Route::resource('garantia','GarantiaController');
     Route::resource('estadoCivil','EstadoCivilController');
     Route::resource('destinoCredito','DestinoCreditoController');
-    Route::resource('estadoInterno','EstadoInternoController');
+    //Route::resource('estadoInterno','EstadoInternoController');
 
-    Route::get('indexestadosInternos', 'EstadoInternoController@getData');
+    Route::get('indexEstadosInternos', 'EstadoInternoController@index')->name('estadosinternos.indexEstadosInternos');
+    Route::get('getData', 'EstadoInternoController@getData')->name('estadosinternos.getData');
+    Route::patch('editar/{estadointerno}', 'EstadoInternoController@update')->name('estadointerno.update');
+
 
     Route::resource('figuraLegal','FiguraLegalController');
     //Route::resource('lineaCredito','LineaCreditoController');
@@ -59,6 +62,7 @@ Route::group(['middleware' => 'auth'], function ()
         Route::get('listado', 'MovimientoController@index')->name('movimiento.index')->middleware('permission:movimiento.index');
         Route::get('nuevo', 'MovimientoController@create')->name('movimiento.create')->middleware('permission:movimiento.create');
         Route::post('nuevo', 'MovimientoController@store')->name('movimiento.store')->middleware('permission:movimiento.store');
+        Route::post('nuevo1', 'MovimientoController@store_index')->name('movimiento.store_index')->middleware('permission:movimiento.store');
         Route::get('editar/{movimiento}', 'MovimientoController@edit')->name('movimiento.edit')->middleware('permission:movimiento.edit');
         Route::get('ver/{movimiento}', 'MovimientoController@show')->name('movimiento.show')->middleware('permission:movimiento.show');
         Route::patch('editar/{movimiento}', 'MovimientoController@update')->name('movimiento.update')->middleware('permission:movimiento.update');
