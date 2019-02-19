@@ -1,8 +1,8 @@
 <div class="row">
     <div class="form-group col-sm-11">
         {!! Form::label('proyecto_id', 'Proyecto') !!}
-        <input type="text" id="proyecto_nombre" class="form-cSItrol" name="proyecto_nombre" value="{{ $proyecto->nombre  }}" />
-        <input style="visibility:hidden" type="text" id="proyecto_id" class="form-cSItrol" name="proyecto_id" value="{{ $proyecto->id }}" />
+        <input type="text" id="proyecto_nombre" class="form-control" name="proyecto_nombre" value="{{ $proyecto->nombre  }}" />
+        <input style="visibility:hidden" type="text" id="proyecto_id" class="form-control" name="proyecto_id" value="{{ $proyecto->id }}" />
     </div>
 </div>
 <div class="row">
@@ -15,7 +15,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('nota_oficial_c', 'Comentario') !!}
-        <input type="text" name="checklist[nota_oficial_c]" id="nota_oficial_c" class="form-cSItrol" value="{{ $checklist[0]['nota_oficial_c'] }}" >
+        <input type="text" name="checklist[nota_oficial_c]" id="nota_oficial_c" class="form-control" value="{{ $checklist[0]['nota_oficial_c'] }}" >
 
     </div>
 </div>
@@ -29,7 +29,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('solicitud_financiamiento_c', 'Comentario') !!}
-        <input type="text" name="checklist[solicitud_financiamiento_c]" id="solicitud_financiamiento_c" class="form-cSItrol" value="{{ $checklist[0]['solicitud_financiamiento_c'] }}" >
+        <input type="text" name="checklist[solicitud_financiamiento_c]" id="solicitud_financiamiento_c" class="form-control" value="{{ $checklist[0]['solicitud_financiamiento_c'] }}" >
 
     </div>
 </div>
@@ -43,7 +43,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('fotocopia_dni_c', 'Comentario') !!}
-        <input type="text" name="checklist[fotocopia_dni_c]" id="fotocopia_dni_c" class="form-cSItrol" value="{{ $checklist[0]['fotocopia_dni_c'] }}" >
+        <input type="text" name="checklist[fotocopia_dni_c]" id="fotocopia_dni_c" class="form-control" value="{{ $checklist[0]['fotocopia_dni_c'] }}" >
 
     </div>
 </div>
@@ -57,21 +57,21 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('certificado_domicilio_c', 'Comentario') !!}
-        <input type="text" name="checklist[certificado_domicilio_c]" id="certificado_domicilio_c" class="form-cSItrol" value="{{ $checklist[0]['certificado_domicilio_c'] }}" >
+        <input type="text" name="checklist[certificado_domicilio_c]" id="certificado_domicilio_c" class="form-control" value="{{ $checklist[0]['certificado_domicilio_c'] }}" >
 
     </div>
 </div>
 
 <div class="row">
     <div class="form-group col-sm-2">
-        {!! Form::label('inscripciSI_afip_rentas', 'AFIP-RENTAS') !!}
-        {!! Form::hidden('checklist[inscripciSI_afip_rentas]','NO') !!}
-        <input type="checkbox" name="checklist[inscripciSI_afip_rentas]" id="inscripciSI_afip_rentas" value="SI" {{ $checklist[0]['inscripciSI_afip_rentas'] == 'SI'?"checked":''}} >
+        {!! Form::label('inscripcion_afip_rentas', 'AFIP-RENTAS') !!}
+        {!! Form::hidden('checklist[inscripcion_afip_rentas]','NO') !!}
+        <input type="checkbox" name="checklist[inscripcion_afip_rentas]" id="inscripcion_afip_rentas" value="SI" {{ $checklist[0]['inscripcion_afip_rentas'] == 'SI'?"checked":''}} >
 
     </div>
     <div class="form-group col-sm-8">
-        {!! Form::label('inscripciSI_afip_rentas_c', 'Comentario') !!}
-        <input type="text" name="checklist[inscripciSI_afip_rentas_c]" id="inscripciSI_afip_rentas_c" class="form-cSItrol" value="{{ $checklist[0]['inscripciSI_afip_rentas_c'] }}" >
+        {!! Form::label('inscripcion_afip_rentas_c', 'Comentario') !!}
+        <input type="text" name="checklist[inscripcion_afip_rentas_c]" id="inscripcion_afip_rentas_c" class="form-control" value="{{ $checklist[0]['inscripcion_afip_rentas_c'] }}" >
 
     </div>
 </div>
@@ -86,7 +86,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('estado_civil_c', 'Comentario') !!}
-        <input type="text" name="checklist[estado_civil_c]" id="estado_civil_c" class="form-cSItrol" value="{{ $checklist[0]['estado_civil_c'] }}" >
+        <input type="text" name="checklist[estado_civil_c]" id="estado_civil_c" class="form-control" value="{{ $checklist[0]['estado_civil_c'] }}" >
 
     </div>
 </div>
@@ -100,7 +100,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('ddjj_c', 'Comentario') !!}
-        <input type="text" name="checklist[ddjj_c]" id="ddjj_c" class="form-cSItrol" value="{{ $checklist[0]['ddjj_c'] }}" >
+        <input type="text" name="checklist[ddjj_c]" id="ddjj_c" class="form-control" value="{{ $checklist[0]['ddjj_c'] }}" >
 
     </div>
 </div>
@@ -115,7 +115,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('nota_banco_c', 'Comentario') !!}
-        <input type="text" name="checklist[nota_banco_c]" id="nota_banco_c" class="form-cSItrol" value="{{ $checklist[0]['nota_banco_c'] }}" >
+        <input type="text" name="checklist[nota_banco_c]" id="nota_banco_c" class="form-control" value="{{ $checklist[0]['nota_banco_c'] }}" >
 
     </div>
 </div>
@@ -129,7 +129,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('respuesta_banco_c', 'Comentario') !!}
-        <input type="text" name="checklist[respuesta_banco_c]" id="respuesta_banco_c" class="form-cSItrol" value="{{ $checklist[0]['respuesta_banco_c'] }}" >
+        <input type="text" name="checklist[respuesta_banco_c]" id="respuesta_banco_c" class="form-control" value="{{ $checklist[0]['respuesta_banco_c'] }}" >
 
     </div>
 </div>
@@ -143,21 +143,21 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('titulo_propiedad_inmuebles_c', 'Comentario') !!}
-        <input type="text" name="checklist[titulo_propiedad_inmuebles_c]" id="titulo_propiedad_inmuebles_c" class="form-cSItrol" value="{{ $checklist[0]['titulo_propiedad_inmuebles_c'] }}" >
+        <input type="text" name="checklist[titulo_propiedad_inmuebles_c]" id="titulo_propiedad_inmuebles_c" class="form-control" value="{{ $checklist[0]['titulo_propiedad_inmuebles_c'] }}" >
 
     </div>
 </div>
 
 <div class="row">
     <div class="form-group col-sm-2">
-        {!! Form::label('habilitaciSIes', 'HabilitaciSIes') !!}
-        {!! Form::hidden('checklist[habilitaciSIes]','NO') !!}
-        <input type="checkbox" name="checklist[habilitaciSIes]" id="habilitaciSIes" value="SI" {{ $checklist[0]['habilitaciSIes'] == 'SI'?"checked":''}} >
+        {!! Form::label('habilitaciones', 'Habilitaciones') !!}
+        {!! Form::hidden('checklist[habilitaciones]','NO') !!}
+        <input type="checkbox" name="checklist[habilitaciones]" id="habilitaciones" value="SI" {{ $checklist[0]['habilitaciones'] == 'SI'?"checked":''}} >
 
     </div>
     <div class="form-group col-sm-8">
-        {!! Form::label('habilitaciSIes_c', 'Comentario') !!}
-        <input type="text" name="checklist[habilitaciSIes_c]" id="habilitaciSIes_c" class="form-cSItrol" value="{{ $checklist[0]['habilitaciSIes_c'] }}" >
+        {!! Form::label('habilitaciones_c', 'Comentario') !!}
+        <input type="text" name="checklist[habilitaciones_c]" id="habilitaciones_c" class="form-control" value="{{ $checklist[0]['habilitaciones_c'] }}" >
 
     </div>
 </div>
@@ -172,7 +172,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('titulo_propiedad_muebles_c', 'Comentario') !!}
-        <input type="text" name="checklist[titulo_propiedad_muebles_c]" id="titulo_propiedad_muebles_c" class="form-cSItrol" value="{{ $checklist[0]['titulo_propiedad_muebles_c'] }}" >
+        <input type="text" name="checklist[titulo_propiedad_muebles_c]" id="titulo_propiedad_muebles_c" class="form-control" value="{{ $checklist[0]['titulo_propiedad_muebles_c'] }}" >
 
     </div>
 </div>
@@ -187,7 +187,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('proformas_c', 'Comentario') !!}
-        <input type="text" name="checklist[proformas_c]" id="proformas_c" class="form-cSItrol" value="{{ $checklist[0]['proformas_c'] }}" >
+        <input type="text" name="checklist[proformas_c]" id="proformas_c" class="form-control" value="{{ $checklist[0]['proformas_c'] }}" >
 
     </div>
 </div>
@@ -202,7 +202,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('guia_proyecto_c', 'Comentario') !!}
-        <input type="text" name="checklist[guia_proyecto_c]" id="guia_proyecto_c" class="form-cSItrol" value="{{ $checklist[0]['guia_proyecto_c'] }}" >
+        <input type="text" name="checklist[guia_proyecto_c]" id="guia_proyecto_c" class="form-control" value="{{ $checklist[0]['guia_proyecto_c'] }}" >
 
     </div>
 </div>
@@ -217,7 +217,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('estadisticas_c', 'Comentario') !!}
-        <input type="text" name="checklist[estadisticas_c]" id="estadisticas_c" class="form-cSItrol" value="{{ $checklist[0]['estadisticas_c'] }}" >
+        <input type="text" name="checklist[estadisticas_c]" id="estadisticas_c" class="form-control" value="{{ $checklist[0]['estadisticas_c'] }}" >
 
     </div>
 </div>
@@ -231,7 +231,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('promeva_c', 'Comentario') !!}
-        <input type="text" name="checklist[promeva_c]" id="promeva_c" class="form-cSItrol" value="{{ $checklist[0]['promeva_c'] }}" >
+        <input type="text" name="checklist[promeva_c]" id="promeva_c" class="form-control" value="{{ $checklist[0]['promeva_c'] }}" >
 
     </div>
 </div>
@@ -245,7 +245,7 @@
     </div>
     <div class="form-group col-sm-8">
         {!! Form::label('informe_uep_c', 'Comentario') !!}
-        <input type="text" name="checklist[informe_uep_c]" id="informe_uep_c" class="form-cSItrol" value="{{ $checklist[0]['informe_uep_c'] }}" >
+        <input type="text" name="checklist[informe_uep_c]" id="informe_uep_c" class="form-control" value="{{ $checklist[0]['informe_uep_c'] }}" >
 
     </div>
 </div>

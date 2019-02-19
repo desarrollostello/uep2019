@@ -70,6 +70,9 @@ class HomeController extends Controller
         $proyectos_bco =          Proyecto::where('estado_id', $estado_bco['id'])->count();
         $proyectos_efec =         Proyecto::where('estado_id', $estado_efec['id'])->count();
 
+
+        //$endDate = $proyectos_efec['fecha_Efectivizado']->addYears(4);
+
         $proyectos = Proyecto::all();
 
         return view('informes.primero', [
@@ -208,6 +211,18 @@ class HomeController extends Controller
         $proyectos_efec =         Proyecto::where('estado_id', $estado_efec['id'])
                                             ->where('provincia_id', Auth::user()->provincia_id)
                                             ->count();
+        $proyectos_efec_get =         Proyecto::where('estado_id', $estado_efec['id'])
+                                            ->where('provincia_id', Auth::user()->provincia_id)
+                                            ->get();
+
+
+        foreach ($proyectos_efec_get as $key => $value) {
+            echo "KEY: " . $value->fechaEfectivizacion . "<br>";
+        }
+        dd($proyectos_efec_get['0']->fechaEfectivizacion);
+
+        dd("termine");
+
 
         $proyectos = Proyecto::where('provincia_id', Auth::user()->provincia_id)->get();
         $configuracion = Configuracion::where('provincia_id', Auth::user()->provincia_id)->get();

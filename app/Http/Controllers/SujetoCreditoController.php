@@ -46,9 +46,7 @@ class SujetoCreditoController extends Controller
 
     public function store(Request $request)
     {
-
         $data = $request->all();
-       
         if ($data['sujeto_credito'])
         {
             if ($data['sujeto_credito'] == 'SI')
@@ -58,10 +56,10 @@ class SujetoCreditoController extends Controller
                 $data['sujeto_credito'] == 'off';
             }
         }
-        $data['fecha_envio_banco'] = Carbon::parse($data['fecha_envio_banco'])->format('Y-m-d');
-        if ($data['fecha_respuesta_banco'])
+        $data['fechaEnvioBanco'] = Carbon::parse($data['fechaEnvioBanco'])->format('Y-m-d');
+        if ($data['fechaRespuestaBanco'])
         {
-            $data['fecha_respuesta_banco'] = Carbon::parse($data['fecha_respuesta_banco'])->format('Y-m-d');
+            $data['fechaRespuestaBanco'] = Carbon::parse($data['fechaRespuestaBanco'])->format('Y-m-d');
         }
         $data['user_id'] = Auth::user()->id;
         $data['slug'] = $data['proyecto_id'] . "-" . $data['sucursal_id'] . "-" . rand(1,1000);
@@ -69,7 +67,7 @@ class SujetoCreditoController extends Controller
         if(SujetoCredito::create($data))
         {
             $proyecto = Proyecto::find($data['proyecto_id']);
-            $proyecto->fechaRespuestaBanco = $data['fecha_respuesta_banco'];
+            $proyecto->fechaRespuestaBanco = $data['fechaRespuestaBanco'];
             $proyecto->fechaEnvioBanco = $data['fecha_envio_banco'];
             $proyecto->save();
             return back()->with('message-success','Sujeto de Crédito cargado correctamente');
@@ -100,20 +98,20 @@ class SujetoCreditoController extends Controller
             $id  = (int) $req->id;
 
             $sujeto = SujetoCredito::find($id);
-            $sujeto->fecha_envio_banco = \Carbon\Carbon::parse($req->fecha_envio_banco)->format('Y-m-d');
-            if ($req->fecha_respuesta_banco)
-                $sujeto->fecha_respuesta_banco = \Carbon\Carbon::parse($req->fecha_respuesta_banco)->format('Y-m-d');
+            $sujeto->fechaEnvioBanco = \Carbon\Carbon::parse($req->fechaEnvioBanco)->format('Y-m-d');
+            if ($req->fechaRespuestaBanco)
+                $sujeto->fechaRespuestaBanco = \Carbon\Carbon::parse($req->fechaRespuestaBanco)->format('Y-m-d');
             $sujeto->sujeto_credito = $req->sujeto_credito;
             $sujeto->descripcion = $req->descripcion1;
             if ($sujeto->save())
             {
-                $proyecto = Proyecto::find($sujeto->proyecto_id);
-                
-                $proyecto->fechaRespuestaBanco = \Carbon\Carbon::parse($req->fecha_respuesta_banco)->format('Y-m-d');
-                $proyecto->fechaEnvioBanco = \Carbon\Carbon::parse($req->fecha_envio_banco)->format('Y-m-d');
+                //$proyecto = Proyecto::find($sujeto->proyecto_id);
+
+                //$proyecto->fechaRespuestaBanco = \Carbon\Carbon::parse($req->fechaRespuestaBanco)->format('Y-m-d');
+                //$proyecto->fechaEnvioBanco = \Carbon\Carbon::parse($req->fechaEnvioBanco)->format('Y-m-d');
 
                 $proyecto->save();
-           
+
                 return response()->json($sujeto);
                 return back()->with('message-success','Sujeto de Crédito Actualizado correctamente');
             }else{

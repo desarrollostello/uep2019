@@ -14,12 +14,12 @@
                         <input type="hidden" class="form-control" id="proyecto_id" name="proyecto_id">
                     </div>
                     <div class="form-group col-sm-3">
-                        {!! Form::label('fecha_envio_banco', 'Fecha Envío al Banco') !!}
-                        {!! Form::text('fecha_envio_banco', null, ['class' =>'form-control fechas', 'id'=>'fecha_envio_banco_nuevo_sujeto'] ) !!}
+                        {!! Form::label('fechaEnvioBanco', 'Fecha Envío al Banco') !!}
+                        {!! Form::text('fechaEnvioBanco', null, ['class' =>'form-control fechas', 'id'=>'fecha_envio_banco_nuevo_sujeto'] ) !!}
                     </div>
                     <div class="form-group col-sm-3">
-                        {!! Form::label('fecha_respuesta_banco', 'Fecha Envío al Banco') !!}
-                        {!! Form::text('fecha_respuesta_banco', null, ['class' =>'form-control fechas' , 'id'=>'fecha_respuesta_banco_nuevo_sujeto'] ) !!}
+                        {!! Form::label('fechaRespuestaBanco', 'Fecha Respuesta al Banco') !!}
+                        {!! Form::text('fechaRespuestaBanco', null, ['class' =>'form-control fechas' , 'id'=>'fecha_respuesta_banco_nuevo_sujeto'] ) !!}
                     </div>
                     <div class="form-group col-sm-3">
                         {!! Form::label('sujeto_credito', 'Sujeto? SI/NO') !!}

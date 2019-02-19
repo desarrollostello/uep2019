@@ -17,7 +17,7 @@
 <script src="{{ asset('/js/dataTables.material.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/moment.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/popper.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/moment.min.js') }}"></script>
+
 <script src="{{ asset('/bower-components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js" type="text/javascript"></script>
 
@@ -142,16 +142,16 @@ function submitSujeto()
 {
     var token = "{{ csrf_token() }}";
     var id = $('#idSujetoAjax').val();
-    var fecha_envio_banco = $('#fechaEnvioSujetoAjax').val();
-    var fecha_respuesta_banco = $('#fechaRespuestaSujetoAjax').val();
+    var fechaEnvioBanco = $('#fechaEnvioSujetoAjax').val();
+    var fechaRespuestaBanco = $('#fechaRespuestaSujetoAjax').val();
     var sujeto_credito = $('#sujetoCreditoAjax').val();
     var descripcion1 = $('#descripcion1Ajax').val();
 
 
         var param = {
             'id': id,
-            'fecha_envio_banco': fecha_envio_banco,
-            'fecha_respuesta_banco': fecha_respuesta_banco,
+            'fechaEnvioBanco': fechaEnvioBanco,
+            'fechaRespuestaBanco': fechaRespuestaBanco,
             'sujeto_credito': sujeto_credito,
             'descripcion1': descripcion1,
             '_token'   : token
@@ -526,7 +526,9 @@ function readURL(input) {
       {
 
         $('.fechas').datepicker({
-            format: '{{ config("app.date_format_js") }}'
+           //format: '{{ config("app.date_format_js") }}',
+           format: 'dd-mm-yyyy',
+           language: "es"
         });
 
 

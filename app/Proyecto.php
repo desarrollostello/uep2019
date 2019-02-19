@@ -319,6 +319,21 @@ class Proyecto extends Model
       }
 
       /*********************************************************/
+      /*********************************************************/
+
+      public function setFechaRespuestaBancoAttribute($value): void
+      {
+        if($value)
+            $this->attributes['fechaRespuestaBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+      }
+
+      public function getFechaRespuestaBancoAttribute($value)
+      {
+        if($value)
+          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
+      }
+
+      /*********************************************************/
 
       public function setFechaAprobadoCfiAttribute($value): void
       {
@@ -444,21 +459,7 @@ class Proyecto extends Model
           return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
       }
 
-      /*********************************************************/
 
-      public function setFechaRespuestaBancoAttribute($value): void
-      {
-        if($value)
-            $this->attributes['fechaRespuestaBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
-      }
-
-      public function getFechaRespuestaBancoAttribute($value)
-      {
-        if($value)
-          return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
-      }
-
-      /*********************************************************/
 
       public function setFechaPresupuestosAttribute($value): void
       {
