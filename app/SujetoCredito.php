@@ -44,25 +44,29 @@ class SujetoCredito extends Model
    *
    * @param $val
    */
+
     public function setSujetoCreditoAttribute($val)
     {
         $this->attributes['sujeto_credito'] = trim($val);
         //$this->attributes['slug'] = str_slug($val) . "-" . $this->attributes['proyecto_id'] . "-" . $this->attributes['sucursal_id'] . "-" . rand(5,10);
     }
 
-
+/*
     public function setFechaEnvioBancoAttribute($value): void
     {
+
         if($value)
           $this->attributes['fechaEnvioBanco'] = \Carbon\Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
     }
-
+*/
+/*
     public function getFechaEnvioBancoAttribute($value)
     {
       if($value)
         return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
     }
-
+    */
+/*
     public function setFechaRespuestaBancoAttribute($value): void
     {
       if($value)
@@ -74,7 +78,7 @@ class SujetoCredito extends Model
       if($value)
         return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format(config('app.date_format'));
     }
-
+*/
 
 
 

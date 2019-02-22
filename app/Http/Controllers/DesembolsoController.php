@@ -14,6 +14,13 @@ use Illuminate\Database\Query\Builder;
 
 class DesembolsoController extends Controller
 {
+    
+    public function search(Request $req)
+    {
+        $desembolso = Desembolso::where('id', $req->id)->first();
+        return response()->json($desembolso);
+    }
+
     public function index()
     {
       $proyectos = Proyecto::all();
@@ -36,7 +43,7 @@ class DesembolsoController extends Controller
 
         $proyecto = Proyecto::where('id', $request['proyecto_id'])->first();
         if (!($proyecto->cantidadDesembolsos))
-            
+
 
 
         $data = $request->all();
@@ -90,11 +97,7 @@ class DesembolsoController extends Controller
         //return response()->json($dese->fecha);
     }
 
-    public function search(Request $req)
-    {
-        $desembolso = Desembolso::where('id', $req->id)->first();
-        return response()->json($desembolso);
-    }
+
 
 /*
      public function edit(Desembolso $desembolso)

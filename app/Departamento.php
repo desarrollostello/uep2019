@@ -49,4 +49,9 @@ class Departamento extends Model
     {
       return $this->hasOne('App\Provincia');
     }
+
+    public function scopeDepProv($query)
+    {
+        return $query->where('provincia_id', Auth::user()->provincia_id);
+    }
 }

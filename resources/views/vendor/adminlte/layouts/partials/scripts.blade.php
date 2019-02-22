@@ -166,9 +166,9 @@ function submitSujeto()
                 $("#editSujeto").modal('hide');
                 //location.reload();
             },
-            error: function(){
-                alert("Error");
-            }
+            error: function (request, status, error) {
+        		alert(request.responseText);
+    		}
         });
 }
 
@@ -455,12 +455,12 @@ $('#editSujeto').on('show.bs.modal', function (event)
           success:function(result){
               console.log(result);
               $.each(result,function(name,value){
-                  if (name == 'fecha_envio_banco')
+                  if (name == 'fechaEnvioBanco')
                   {
                       fecha_envio_banco = value;
                       console.log("Fecha Envio Banco: " + fecha_envio_banco);
                   }
-                  if (name == 'fecha_respuesta_banco')
+                  if (name == 'fechaRespuestaBanco')
                   {
                       fecha_respuesta_banco = value;
                       console.log("Fecha Respuesta Banco: " + fecha_respuesta_banco);
@@ -526,8 +526,8 @@ function readURL(input) {
       {
 
         $('.fechas').datepicker({
-           //format: '{{ config("app.date_format_js") }}',
-           format: 'dd-mm-yyyy',
+           dateFormat: '{{ config("app.date_format_js") }}',
+           //format: 'dd-mm-yyyy',
            language: "es"
         });
 

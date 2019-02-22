@@ -232,8 +232,8 @@ class ProyectoController extends Controller
                                                  ->where('user_id', Auth::user()->id)
                                                  ->get()
                                                  ->toArray();
-        dd($campos);
-        $proyectos = Proyecto::all();
+        //dd($campos);
+        $proyectos = Proyecto::prov()->all();
         /** Error reporting */
         error_reporting(E_ALL);
         ini_set('display_errors', TRUE);
@@ -248,9 +248,9 @@ class ProyectoController extends Controller
         $objPHPExcel = new PHPExcel();
 
         // Set document properties
-        $objPHPExcel->getProperties()->setCreator("UEP - Neuquén")
-                                        ->setLastModifiedBy("UEP - Neuquén")
-                                        ->setTitle("Proyectos UEP Neuquén");
+        $objPHPExcel->getProperties()->setCreator("UEP")
+                                        ->setLastModifiedBy("UEP")
+                                        ->setTitle("Proyectos UEP");
 
         $col = 1;
 
@@ -294,7 +294,7 @@ class ProyectoController extends Controller
     }
     public function index()
     {
-      $proyectos = Proyecto::where('provincia_id', Auth::user()->provincia_id)->get();
+      $proyectos = Proyecto::prov()->get();
       $columnas = Columnasview::where('seleccionada', 'ON')
                                 ->where('user_id', Auth::user()->id)
                                 ->get();
@@ -309,9 +309,7 @@ class ProyectoController extends Controller
     public function filtrar($estado)
     {
         $estado =   Estado::where('codigo',$estado)->first();
-        $proyectos =   Proyecto::where('estado_id', $estado['id'])
-                                ->where('provincia_id', Auth::user()->provincia_id)
-                                ->get();
+        $proyectos =   Proyecto::prov()->est($estado['id'])->get();
       return view('proyectos.index', [
           'proyectos' => $proyectos
       ]);
@@ -327,16 +325,17 @@ class ProyectoController extends Controller
     public function create()
     {
         $provincia = Auth::user()->provincia_id;
-        $localidades      = Localidad::where('provincia_id', $provincia)->get()->pluck('nombre', 'id');
-        $lineasCreditos   = LineaCredito::where('provincia_id', $provincia)->get()->pluck('nombre', 'id');
+        $localidades      = Localidad::locProv()->get()->pluck('nombre', 'id');
+        $lineasCreditos   = LineaCredito::lcProv()->get()->pluck('nombre', 'id');
         $estados          = Estado::all()->pluck('nombre', 'id');
-        $estadosInternos  = EstadoInterno::where('provincia_id', $provincia)->get()->pluck('nombre', 'id');
+        $estadosInternos  = EstadoInterno::eiProv()->get()->pluck('nombre', 'id');
         $sectores         = Sector::all()->pluck('nombre', 'id');
         $figurasLegales   = FiguraLegal::all()->pluck('nombre', 'id');
         $periodicidades   = Periodicidad::all()->pluck('nombre', 'id');
         $destinosCreditos = DestinoCredito::all()->pluck('nombre', 'id');
         $garantias        = Garantia::all()->pluck('nombre', 'id');
-        $sucursales       = Sucursal::where('provincia_id', $provincia)->get()->pluck('nombre', 'id');
+        $sucursales       = Sucursal::localidad()->locProv()->get()->pluck('nombre', 'id');
+
         //$sujetoCreditos   = SujetoCredito::all();
         //$anexos           = AnexoProyecto::where('proyecto_id', $proyecto->id)->get();
         //    $proyectos = [];
@@ -484,7 +483,8 @@ class ProyectoController extends Controller
         $titulares        = Titular::where('proyecto_id', $proyecto->id)->get();
         $desembolsos      = Desembolso::where('proyecto_id', $proyecto->id)->get();
         $sujetoCredito    = SujetoCredito::where('proyecto_id', $proyecto->id)->get();
-        $sucursales       = Sucursal::all()->pluck('nombre', 'id');
+        $sucursales       = Sucursal::localidad()->locProv()->get()->pluck('nombre', 'id');
+        //$sucursales       = Sucursal::all()->pluck('nombre', 'id');
         $seguimientos     = Seguimiento::where('proyecto_id', $proyecto->id)->get();
         $checklist        = Checklist::where('proyecto_id', $proyecto->id)->get();
         //dd($checklist[0]);

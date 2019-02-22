@@ -18,8 +18,8 @@ class CreateSujetoCreditoTable extends Migration
             $table->integer('proyecto_id')->unsigned();
             $table->integer('sucursal_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->date('fecha_envio_banco');
-            $table->date('fecha_respuesta_banco');
+            $table->date('fechaEnvioBanco');
+            $table->date('fechaRespuestaBanco');
             $table->string('sujeto_credito');
             $table->text('descipcion');
             $table->string('slug')->unique();

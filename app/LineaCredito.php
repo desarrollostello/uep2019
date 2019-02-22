@@ -69,4 +69,8 @@ class LineaCredito extends Model
     {
         return $this->belongsTo('App\Provincia', 'provincia_id');
     }
+    public function scopeLcProv($query)
+    {
+        return $query->where('provincia_id', Auth::user()->provincia_id);
+    }
 }

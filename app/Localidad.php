@@ -30,11 +30,11 @@ class Localidad extends Model
    * @var array
    */
     protected $fillable = [
-        'nombre', 
-        'cp', 
+        'nombre',
+        'cp',
         'zona_id',
-        'dpto_id', 
-        'provincia_id', 
+        'dpto_id',
+        'provincia_id',
         'user_id',
         'slug'
       ];
@@ -87,5 +87,10 @@ class Localidad extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function scopeLocProv($query)
+    {
+        return $query->where('provincia_id', Auth::user()->provincia_id);
     }
 }

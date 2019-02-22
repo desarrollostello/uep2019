@@ -29,7 +29,7 @@ class EstadoInterno extends Model
    *
    * @var array
    */
-    protected $fillable = ['nombre', 'slug'];
+    protected $fillable = ['nombre', 'provincia_id','slug'];
     /**
    * Normaliza y setea el nombre y el slug del Archivo
    *
@@ -44,5 +44,13 @@ class EstadoInterno extends Model
     public function getNombreAttribute()
     {
         return strtoupper($this->attributes['nombre']);
+    }
+    public function provincia()
+    {
+        return $this->belongsTo('App\Provincia', 'provincia_id');
+    }
+    public function scopeEiProv($query)
+    {
+        return $query->where('provincia_id', Auth::user()->provincia_id);
     }
 }

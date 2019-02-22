@@ -32,7 +32,7 @@ class SucursalController extends Controller
 
     public function create()
     {
-        $localidades      = Localidad::all()->pluck('nombre', 'id');
+        $localidades      = Localidad::locProv()->all()->pluck('nombre', 'id');
         $bancos           = Banco::all()->pluck('nombre','id');
     //    $proyectos = [];
 
@@ -67,7 +67,7 @@ class SucursalController extends Controller
 
      public function edit(Sucursal $sucursal)
      {
-        $localidades      = Localidad::all()->pluck('nombre', 'id');
+        $localidades      = Localidad::locProv()->all()->pluck('nombre', 'id');
         $bancos           = Banco::all()->pluck('nombre','id');
         return view('sucursales.edit', [
             'localidades'         => $localidades,
