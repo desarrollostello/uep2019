@@ -27,11 +27,8 @@ class BancoController extends Controller
      */
     public function index()
     {
-        //return DataTables::of(Banco::query())->make(true);
       $bancos = Banco::all();
-      //$bancos = Banco::select(['id', 'nombre', 'updated_at']);
       return view('bancos.index',compact('bancos'));
-        //return view('bancos.index', ['banco' => $this->banco]);
     }
     /*
     public function getSucursales()

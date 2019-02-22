@@ -18,7 +18,6 @@ class AnexoProyectoController extends Controller
 
     public function index()
     {
-        $proyectos = Proyecto::all();
         $anexos    = AnexoProyecto::all();
         return view('anexosproyectos.index', [
             'anexos' => $anexos
@@ -27,7 +26,7 @@ class AnexoProyectoController extends Controller
 
      public function create()
      {
-         $proyectos = Proyecto::all()->pluck('nombre', 'id');
+         $proyectos = Proyecto::prov()->all()->pluck('nombre', 'id');
          return view('anexosproyectos.create', [
              'proyectos'  => $proyectos
          ]);
@@ -40,7 +39,6 @@ class AnexoProyectoController extends Controller
         $data = $anexoProyectoRequest->all();
         $data['user_id'] = Auth::user()->id;
         $allowedfileExtension=['xls','xlsx','XLS','XLSX','ZIP','zip','jpeg','JPEG', 'pdf','jpg','png','docx','JPG','PDF','PNG','DOCX', 'txt', 'TXT', 'gif', 'GIF'];
-
 
         if ($anexoProyectoRequest->hasfile('file'))
         {

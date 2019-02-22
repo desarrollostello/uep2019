@@ -20,7 +20,7 @@ class AlertaController extends Controller
 */
     public function index()
     {
-        $alertas = Alerta::where('provincia_id', Auth::user()->provincia_id)->get();
+        $alertas = Alerta::alertProv()->get();
         return view('alertas.index', ['alertas' => $alertas]);
     }
 
@@ -33,7 +33,7 @@ class AlertaController extends Controller
     {
 
         $data = $alertaRequest->all();
-        $data['provincia_id'] = Aurh::user()->provincia_id;
+        //$data['provincia_id'] = Aurh::user()->provincia_id;
         if(Alerta::create($data))
         {
             Session::flash('message-success', 'Alerta creada Satisfactoriamente.');

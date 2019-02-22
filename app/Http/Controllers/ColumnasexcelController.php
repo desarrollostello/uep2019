@@ -15,10 +15,10 @@ class ColumnasexcelController extends Controller
 {
 
 
-    
+
     public function index()
     {
-        $columnasexcel    = Columnasexcel::all();
+        $columnasexcel  = Columnasexcel::colexcelProv()->all();
         return view('columnasexcels.index', [
             'columnasexcel' => $columnasexcel
         ]);
@@ -29,33 +29,33 @@ class ColumnasexcelController extends Controller
          return view('columnasexcel.create');
      }
 
-    
+
     public function store(Request $request)
     {
         $data = $request->all();
-        
+
         if (Columnasexcel::create($data))
         {
             Session::flash('message-success', 'Columna Excel creada satisfactoriamente.');
-        
+
         }else{
             Session::flash('message-danger', 'Error al intentar guardar el Anexo');
         }
         return redirect()->route('columnasexcel.index');
     }
 
- 
+
      public function edit(Columnasexcel $columnasexcel)
      {
           return view('columnasexcels.edit', ['columnasexcel' => $columnasexcel]);
      }
 
-   
+
      public function update(Request $request, Columnasexcel $columnasexcel)
      {
         if($columnasexcel->fill($request->all())->update())
         {
-            
+
             Session::flash('message-success', 'Columna Excel actualizada satisfactoriamente.');
         }else{
             Session::flash('message-danger', 'Error al intentar actualizar');

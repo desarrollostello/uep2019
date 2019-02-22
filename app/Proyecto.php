@@ -503,19 +503,6 @@ class Proyecto extends Model
 
           });
 
-          /*
-                static::addGlobalScope('scopeProvincia', function ($query) {
-                    return $query->where('provincia_id', Auth::user()->provincia_id);
-                });
-
-                static::addGlobalScope('scopeEstado', function ($query, $estado_id) {
-                    return $query->where('estado_id', $estado_id);
-                });
-
-          */
-
-
-
           static::updating(function($proyecto)
           {
 

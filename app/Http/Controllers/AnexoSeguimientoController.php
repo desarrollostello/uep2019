@@ -14,11 +14,9 @@ use Redirect;
 class AnexoSeguimientoController extends Controller
 {
 
-
-
     public function index()
     {
-        $seguimientos = Seguimiento::all();
+        //$seguimientos = Seguimiento::all();
         $anexos    = AnexoSeguimiento::all();
         return view('anexosseguimientos.index', [
             'anexos' => $anexos
