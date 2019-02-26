@@ -1,75 +1,75 @@
 <div class="row">
-      <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-             Inversión Total (Monto):<br />
-             {{ $proyecto->inversionTotal }}
+      <div class="form-group col-sm-2" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Inversión Total (Monto):</span><br>
+            <span class="respuesta_show">{{ $proyecto->inversionTotal }}</span>
       </div>
-      <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-             Inversión Realizada (Monto):<br />
-             {{ $proyecto->inversionRealizada }}
+      <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Inversión Realizada (Monto):</span><br>
+            <span class="respuesta_show">{{ $proyecto->inversionRealizada }}</span>
       </div>
-      <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-             Inv. a Realizar (A.F.):<br />
-             {{ $proyecto->inversionARealizar_af }}
+      <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Inv. a Realizar (A.F.):</span><br>
+            <span class="respuesta_show">{{ $proyecto->inversionARealizar_af }}</span>
       </div>
-      <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-             Inv. a Realizar (A.F.):<br />
-             {{ $proyecto->inversionARealizar_ct }}
+      <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Inv. a Realizar (A.F.):</span><br>
+            <span class="respuesta_show">{{ $proyecto->inversionARealizar_ct }}</span>
       </div>
 </div>
 <hr />
 <div class="row">
-      <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-            Sucursal (Banco):<br />
+      <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Sucursal (Banco):</span><br>
             @if ($proyecto->sucursal)
-                {{ $proyecto->sucursal->nombre }}
+                <span class="respuesta_show">{{ $proyecto->sucursal->nombre }}</span>
             @endif
       </div>
-      <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-             Figura Legal:<br />
+      <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Figura Legal:</span><br>
              @if ($proyecto->figuraLegal)
-                {{ $proyecto->figuraLegal->nombre }}
+                <span class="respuesta_show">{{ $proyecto->figuraLegal->nombre }}</span>
              @endif
       </div>
-      <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-             Periodicidad:<br />
+      <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Periodicidad:</span><br>
              @if ($proyecto->periodicidad)
-                {{ $proyecto->periodicidad->nombre }}
+                <span class="respuesta_show">{{ $proyecto->periodicidad->nombre }}</span>
              @endif
       </div>
-      <div class="form-group col-sm-2" style="border: 1px solid #ccc">
-            Tasa:<br />
-            {{ $proyecto->tasa }}
+      <div class="form-group col-sm-2" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Tasa:</span><br>
+            <span class="respuesta_show">{{ $proyecto->tasa }}</span>
       </div>
 </div>
 <div class="row">
-    <div class="form-group col-sm-2" style="border: 1px solid #ccc">
-          Plazo de Gracia:<br />
-          {{ $proyecto->plazoGracia }}
+    <div class="form-group col-sm-2" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Plazo de Gracia:</span><br>
+            <span class="respuesta_show">{{ $proyecto->plazoGracia }}</span>
     </div>
-    <div class="form-group col-sm-2" style="border: 1px solid #ccc">
-          Plazo de Amortización:<br />
-          {{ $proyecto->plazoAmortizacion }}
+    <div class="form-group col-sm-2" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">Plazo de Amortización:</span><br>
+           <span class="respuesta_show">{{ $proyecto->plazoAmortizacion }}</span>
     </div>
-    <div class="form-group col-sm-2" style="border: 1px solid #ccc">
-            Cant. Desembolsos:<br />
-            {{ $proyecto->cantidadDesembolsos }}
+    <div class="form-group col-sm-2" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Cant. Desembolsos:</span><br>
+            <span class="respuesta_show">{{ $proyecto->cantidadDesembolsos }}</span>
     </div>
-    <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-          Destino del Crédito:<br />
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Destino del Crédito:</span><br>
           @if ($proyecto->destinoCredito)
-              {{ $proyecto->destinoCredito->nombre }}
+              <span class="respuesta_show">{{ $proyecto->destinoCredito->nombre }}</span>
           @endif
     </div>
-    <div class="form-group col-sm-2" style="border: 1px solid #ccc">
-          Tipo de Garantia:<br />
+    <div class="form-group col-sm-2" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Tipo de Garantia:</span><br>
           @if ($proyecto->tipoGarantia)
-              {{ $proyecto->tipoGarantia->nombre }}
+              <span class="respuesta_show">{{ $proyecto->tipoGarantia->nombre }}</span>
           @endif
     </div>
 </div>
 <div class="row">
-      <div class="form-group col-sm-11" style="border: 1px solid #ccc">
-            Descripción Garantías:<br />
-            {{ $proyecto->descripcionGarantia }}
+      <div class="form-group col-sm-11" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Descripción Garantías:</span><br>
+            <span class="respuesta_show">{{ $proyecto->descripcionGarantia }}</span>
       </div>
 </div>

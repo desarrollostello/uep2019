@@ -33,10 +33,10 @@
                     <table id="table" class="table table-striped table-bordered" style="margin-left: 15px; width: 95%;">
                         <thead>
                         <tr>
-                            <th></th>
-                            <th>Fecha</th>
+
+                            <th style="text-align: center">Fecha</th>
                             <th>Descripcion</th>
-                            <th>Usuario</th>
+                            <th style="text-align: center">Usuario</th>
 
                         </tr>
                         </thead>
@@ -47,9 +47,9 @@
                                 <!--<td>-->
                                     <!--<button class="delete_movimiento1" id="delete_movimiento1" type="button" class="btn btn-info btn-xs pull-rigth" onclick="borrar_movimiento({{ $x->id  }});"><i class="fa fa-trash" title="Borrar Movimiento"></i></button>-->
                                 <!--</td>-->
-                                <td>{{ \Carbon\Carbon::parse($x->fecha)->format('d-m-Y') }}</td>
+                                <td style="text-align: center">{{ \Carbon\Carbon::parse($x->fecha)->format('d-m-Y') }}</td>
                                 <td>{{ $x->descripcion }}</td>
-                                <td>{{ $x->user->name }}</td>
+                                <td style="text-align: center">{{ $x->user->name }}</td>
 
                             </tr>
                         @endforeach
@@ -69,11 +69,11 @@
                     <table id="table" class="table table-striped table-bordered" style="margin-left: 15px; width: 95%;">
                         <thead>
                         <tr>
-                            <th>Fecha</th>
-                            <th>Resolución</th>
-                            <th>Monto</th>
-                            <th>Plazo Gracia</th>
-                            <th>Plazo Amort.</th>
+                            <th style="text-align: center">Fecha</th>
+                            <th style="text-align: center">Resolución</th>
+                            <th style="text-align: center">Monto</th>
+                            <th style="text-align: center">Plazo Gracia</th>
+                            <th style="text-align: center">Plazo Amort.</th>
 
                         </tr>
                         </thead>
@@ -82,11 +82,11 @@
                         @if ($refinanciaciones)
                         @foreach($refinanciaciones as $td)
                             <tr>
-                                <td>{{ \Carbon\Carbon::parse($td->fecha)->format('d-m-Y') }}</td>
-                                <td>{{ $td->nroResolucion }}</td>
-                                <td>{{ $td->montoRefinanciar }}</td>
-                                <td>{{ $td->plazoGracia }}</td>
-                                <td>{{ $td->plazoAmortizacion }}</td>
+                                <td style="text-align: center">{{ \Carbon\Carbon::parse($td->fecha)->format('d-m-Y') }}</td>
+                                <td style="text-align: center">{{ $td->nroResolucion }}</td>
+                                <td style="text-align: center">{{ $td->montoRefinanciar }}</td>
+                                <td style="text-align: center">{{ $td->plazoGracia }}</td>
+                                <td style="text-align: center">{{ $td->plazoAmortizacion }}</td>
                             </tr>
                         @endforeach
                         @endif
@@ -107,10 +107,10 @@
                         <thead>
                         <tr>
                             <td></td>
-                            <th>Apellido y Nombre</th>
-                            <th>DNI</th>
-                            <th>Localidad</th>
-                            <th>Estado Civil</th>
+                            <th style="text-align: center">Apellido y Nombre</th>
+                            <th style="text-align: center">DNI</th>
+                            <th style="text-align: center">Localidad</th>
+                            <th style="text-align: center">Estado Civil</th>
 
 
                         </tr>
@@ -121,17 +121,17 @@
                         @foreach($titulares as $td)
                             <tr>
                             <!--    <td><button class="delete_titular1" id="delete_titular1" type="button" class="btn btn-info btn-xs pull-rigth" onclick="borrar_titular({{ $td->id  }});"><i class="fa fa-trash" title="Borrar Titular"></i></button></td>-->
-                                <td>{{ $td->apeynom }}</td>
-                                <td>{{ $td->dni }}</td>
+                                <td style="text-align: center">{{ $td->apeynom }}</td>
+                                <td style="text-align: center">{{ $td->dni }}</td>
                                 @if($td->localidad)
-                                    <td>{{ $td->localidad->nombre }}</td>
+                                    <td style="text-align: center">{{ $td->localidad->nombre }}</td>
                                 @else
-                                    <td></td>
+                                    <td style="text-align: center"></td>
                                 @endif
                                 @if($td->estadoCivil)
-                                    <td>{{ $td->estadoCivil->nombre }}</td>
+                                    <td style="text-align: center">{{ $td->estadoCivil->nombre }}</td>
                                 @else
-                                    <td></td>
+                                    <td style="text-align: center"></td>
                                 @endif
 
                             </tr>
@@ -148,9 +148,11 @@
         </div>
     </div>
 </div>
+
+
 <!--
 @include('proyectos.create_movimiento')
 @include('proyectos.create_desembolso')
-@include('proyectos.create_sujeto')
+
 -->
 @endsection

@@ -225,13 +225,13 @@ class ProyectoController extends Controller
     }
     public function excel()
     {
-        $columnas = Columnasexcel::where('seleccionada', 'ON')
-                                    ->where('user_id', Auth::user()->id)
+        $columnas = Columnasexcel::colexcelProv()
+                                    ->where('seleccionada', 'SI')
                                     ->get();
-        $campos = Columnasexcel::select('nombre')->where('seleccionada', 'ON')
-                                                 ->where('user_id', Auth::user()->id)
-                                                 ->get()
-                                                 ->toArray();
+        $campos = Columnasexcel::colexcelProv()
+                                ->select('nombre')->where('seleccionada', 'SI')
+                                ->get()
+                                ->toArray();
         //dd($campos);
         $proyectos = Proyecto::prov()->all();
         /** Error reporting */
@@ -295,8 +295,8 @@ class ProyectoController extends Controller
     public function index()
     {
       $proyectos = Proyecto::prov()->get();
-      $columnas = Columnasview::where('seleccionada', 'ON')
-                                ->where('user_id', Auth::user()->id)
+      $columnas = Columnasview::colviewProv()
+                                ->where('seleccionada', 'SI')
                                 ->get();
 
       return view('proyectos.index', [
@@ -308,10 +308,14 @@ class ProyectoController extends Controller
 
     public function filtrar($estado)
     {
+        $columnas = Columnasview::colviewProv()
+                                  ->where('seleccionada', 'SI')
+                                  ->get();
         $estado =   Estado::where('codigo',$estado)->first();
         $proyectos =   Proyecto::prov()->est($estado['id'])->get();
       return view('proyectos.index', [
-          'proyectos' => $proyectos
+          'proyectos' => $proyectos,
+          'columnas'  => $columnas
       ]);
     }
 
@@ -483,7 +487,7 @@ class ProyectoController extends Controller
         $titulares        = Titular::where('proyecto_id', $proyecto->id)->get();
         $desembolsos      = Desembolso::where('proyecto_id', $proyecto->id)->get();
         $sujetoCredito    = SujetoCredito::where('proyecto_id', $proyecto->id)->get();
-        $sucursales       = Sucursal::localidad()->locProv()->get()->pluck('nombre', 'id');
+        //$sucursales       = Sucursal::localidad()->locProv()->get()->pluck('nombre', 'id');
         //$sucursales       = Sucursal::all()->pluck('nombre', 'id');
         $seguimientos     = Seguimiento::where('proyecto_id', $proyecto->id)->get();
         $checklist        = Checklist::where('proyecto_id', $proyecto->id)->get();
@@ -496,7 +500,7 @@ class ProyectoController extends Controller
                 'titulares'     => $titulares,
                 'desembolsos'   => $desembolsos,
                 'sujetoCredito' => $sujetoCredito,
-                'sucursales'    => $sucursales,
+                //'sucursales'    => $sucursales,
                 'seguimientos'  => $seguimientos,
                 'checklist'     => $checklist[0],
                 'refinanciaciones'  => $refinanciaciones
@@ -797,8 +801,6 @@ class ProyectoController extends Controller
         Session::flash('message-danger', 'Proyecto eliminado satisfactoriamente.');
         return redirect()->route('proyecto.index');
     }
-
-
 
     private function comprobaciones($data)
     {

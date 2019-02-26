@@ -1,96 +1,101 @@
-<div class="col-md-11" style="border-bottom: 2px solid #cccccc">
-      <div class="row">
-         <div class="form-group col-sm-5" style="border: 1px solid #ccc">
-                 Envío Banco:<br />
-                 {{ $proyecto->fechaEnvioBanco }}
-         </div>
-         <div class="form-group col-sm-5" style="border: 1px solid #ccc">
-                Respuesta Banco:<br />
-                {{ $proyecto->fechaRespuestaBanco }}
-         </div>
-         <div class="form-group col-sm-5" style="border: 1px solid #ccc">
-                En Titular:<br />
-                {{ $proyecto->fechaTitular }}
-         </div>
-      </div>
-      <hr />
+<div class="col-md-11">
+<div class="row">
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+        <span style="position: relative; float: left; width: 100%; text-align: center;">Envío Banco:</span><br>
+        <span class="respuesta_show">{{ $proyecto->fechaEnvioBanco }}</span>
+    </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+        <span style="position: relative; float: left; width: 100%; text-align: center;">Respuesta Banco:</span><br>
+        <span class="respuesta_show">{{ $proyecto->fechaRespuestaBanco }}</span>
+    </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+        <span style="position: relative; float: left; width: 100%; text-align: center;">En Titular:</span><br>
+        <span class="respuesta_show">{{ $proyecto->fechaTitular }}</span>
+    </div>
+</div>
 
-      <div class="row">
-           <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                   Caduco Banco:<br />
-                   {{ $proyecto->fechaCaducoBanco }}
-           </div>
-           <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                   Aprobado UEP:<br />
-                   {{ $proyecto->fechaAprobadoUep }}
-           </div>
-           <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                   Envío al CFI:<br />
-                   {{ $proyecto->fechaEnviadoCfi }}
-           </div>
-           <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                   Aprobado CFI:<br />
-                   {{ $proyecto->fechaAprobadoCfi }}
-           </div>
+<div class="row">
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+        <span style="position: relative; float: left; width: 100%; text-align: center;">Caduco Banco:</span><br>
+        <span class="respuesta_show">{{ $proyecto->fechaCaducoBanco }}</span>
+    </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+        <span style="position: relative; float: left; width: 100%; text-align: center;">Aprobado UEP:</span><br>
+        <span class="respuesta_show">{{ $proyecto->fechaAprobadoUep }}</span>
+    </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+        <span style="position: relative; float: left; width: 100%; text-align: center;">Envío al CFI:</span><br>
+        <span class="respuesta_show">{{ $proyecto->fechaEnviadoCfi }}</span>
+    </div>
 
-      </div>
-      <div class="row">
-            <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                    TRAMDISPO:<br />
-                    {{ $proyecto->fechaTramdispo }}
-            </div>
-           <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                   COMUNICATRAN:<br />
-                   {{ $proyecto->fechaComunicaTran }}
-           </div>
-           <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                  Desembolso:<br />
-                  {{ $proyecto->fechaDesembolso }}
-           </div>
-           <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                  Efectivización:<br />
-                  {{ $proyecto->fechaEfectivizacion }}
-           </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+        <span style="position: relative; float: left; width: 100%; text-align: center;">Aprobado CFI:</span><br>
+        <span class="respuesta_show">{{ $proyecto->fechaAprobadoCfi }}</span>
+    </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">TRAMDISPO:</span><br>
+            <span class="respuesta_show">{{ $proyecto->fechaTramdispo }}</span>
+    </div>
+   <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">COMUNICATRAN:</span><br>
+           <span class="respuesta_show">{{ $proyecto->fechaComunicaTran }}</span>
+   </div>
+</div>
 
-      </div>
+<div class="row">
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">Desembolso:</span><br>
+           <span class="respuesta_show">{{ $proyecto->fechaDesembolso }}</span>
+    </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">Efectivización:</span><br>
+           <span class="respuesta_show">{{ $proyecto->fechaEfectivizacion }}</span>
+    </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">Desistido:</span><br>
+            <span class="respuesta_show">{{ $proyecto->fechaDesistido }}
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+            <span style="position: relative; float: left; width: 100%; text-align: center;">JUDICIAL:</span><br><br>
+            <span class="respuesta_show">{{ $proyecto->fechaJudicial }}</span>
+    </div>
 
-      <div class="row">
-            <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                    Desistido:v<br />
-                    {{ $proyecto->fechaDesistido }}
-            </div>
-            <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                    JUDICIAL:<br /><br />
-                    {{ $proyecto->fechaJudicial }}
-            </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+          <span style="position: relative; float: left; width: 100%; text-align: center;">Cancelado:</span><br>
+          <span class="respuesta_show">{{ $proyecto->fechaCancelado }}</span>
+    </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">Archivado:</span><br>
+           <span class="respuesta_show">{{ $proyecto->fechaArchivado }}</span>
+    </div>
 
-            <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                  Cancelado:<br />
-                  {{ $proyecto->fechaCancelado }}
-            </div>
-            <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                   Archivado:<br />
-                   {{ $proyecto->fechaArchivado }}
-            </div>
-      </div>
-      <div class="row">
-            <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                   Último Movimiento:<br />
-                   {{ $proyecto->fechaUltimoMovimiento }}
-            </div>
-            <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                   Baja:<br />
-                   {{ $proyecto->fechaBaja }}
-            </div>
-            <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                   Refinanciado?:<br />
-                   {{ $proyecto->refinanciado }}
-            </div>
-            <div class="form-group col-sm-3" style="border: 1px solid #ccc">
-                   Cant. Desembolsos:<br />
-                   {{ $proyecto->cantidadDesembolsos }}
-            </div>
-      </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">Último Movimiento:</span><br>
+           <span class="respuesta_show">{{ $proyecto->fechaUltimoMovimiento }}</span>
+    </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">Baja:</span><br>
+           <span class="respuesta_show">{{ $proyecto->fechaBaja }}</span>
+    </div>
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">Refinanciado?:</span><br>
+           <span class="respuesta_show">{{ $proyecto->refinanciado }}</span>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="form-group col-sm-3" style="min-height: 50px; max-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">Cant. Desembolsos:</span><br>
+           <span class="respuesta_show">{{ $proyecto->cantidadDesembolsos }}</span>
+    </div>
+</div>
 </div>
 <div class="col-md-11" style="margin-top: 25px; border-bottom: 2px solid #cccccc; margin-bottom: 20px">
 
@@ -102,10 +107,10 @@
       <table id="table" class="table table-responsive mdl-data-table">
           <thead>
           <tr>
-              <th style="width: 10%">Fecha</th>
-              <th style="width: 5%">Nro</th>
-              <th style="width: 10%">Monto</th>
-              <th style="width: 65%">Descripción</th>
+              <th style="width: 10%;  text-align: center">Fecha</th>
+              <th style="width: 5%;  text-align: center">Nro</th>
+              <th style="width: 10%;  text-align: center">Monto</th>
+              <th style="width: 65%;  text-align: center">Descripción</th>
           </tr>
           </thead>
           <tbody>
@@ -114,10 +119,10 @@
               @endphp
           @foreach($desembolsos as $x)
               <tr>
-                  <th style="width: 20%">{{ \Carbon\Carbon::parse($x->fecha)->format('d-m-Y') }}</td>
-                  <th style="width: 5%">{{ $x->nro }}</td>
-                  <th style="width: 10%">{{ $x->monto }}</td>
-                  <th style="width: 65%">{{ $x->descripcion }}</th>
+                  <th style="width: 10%;  text-align: center">{{ \Carbon\Carbon::parse($x->fecha)->format('d-m-Y') }}</td>
+                  <th style="width: 5%;  text-align: center">{{ $x->nro }}</td>
+                  <th style="width: 10%;  text-align: center">{{ $x->monto }}</td>
+                  <th style="width: 65%;  text-align: center">{{ $x->descripcion }}</th>
               </tr>
           @endforeach
           </tbody>
@@ -130,11 +135,11 @@
         <table class="table table-responsive mdl-data-table">
           <thead>
           <tr>
-              <th></th>
-              <th style="width: 55%">Sucursal</th>
-              <th style="width: 15%">Envío</th>
-              <th style="width: 15%">Respuesta</th>
-              <th style="width: 10%">Aprobado?</th>
+
+              <th style="width: 55%;  text-align: center">Sucursal</th>
+              <th style="width: 15%;  text-align: center">Envío</th>
+              <th style="width: 15%;  text-align: center">Respuesta</th>
+              <th style="width: 10%; text-align: center">Aprobado?</th>
              <!--  <th style="width: 10%">Op.</th> -->
           </tr>
           </thead>
@@ -142,18 +147,18 @@
 
             @foreach($sujetoCredito as $x)
                   <tr>
-                    <th style="width: 55%">{{ $x->sucursal->nombre }}</td>
-                  @if ($x->fecha_envio_banco)
-                        <th style="width: 15%">{{ \Carbon\Carbon::parse($x->fecha_envio_banco)->format('d-m-Y') }}</td>
+                    <th style="width: 55%;  text-align: center">{{ $x->sucursal->nombre }}</td>
+                  @if ($x->fechaEnvioBanco)
+                        <th style="width: 15%;  text-align: center">{{ \Carbon\Carbon::parse($x->fechaEnvioBanco)->format('d-m-Y') }}</td>
                   @else
-                        <th style="width: 15%"></th>
+                        <th style="width: 15%;  text-align: center"></th>
                   @endif
-                  @if ($x->fecha_respuesta_banco)
-                        <th style="width: 15%">{{ \Carbon\Carbon::parse($x->fecha_respuesta_banco)->format('d-m-Y') }}</td>
+                  @if ($x->fechaRespuestaBanco)
+                        <th style="width: 15%;  text-align: center">{{ \Carbon\Carbon::parse($x->fechaRespuestaBanco)->format('d-m-Y') }}</td>
                   @else
-                        <th style="width: 15%"></th>
+                        <th style="width: 15%;  text-align: center"></th>
                   @endif
-                  <th style="width: 10%">{{ $x->sujeto_credito }}</td>
+                  <th style="width: 10%;  text-align: center">{{ $x->sujeto_credito }}</td>
 
             </tr>
             @endforeach
