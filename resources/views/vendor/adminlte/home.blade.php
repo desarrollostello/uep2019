@@ -43,7 +43,7 @@
 						<div class='icon'>
 						  	<i class='ion ion-stats-bars'></i>
 						</div>
-						<a href="{{ route('proyecto.filtrar', 'APROBADO CFI')  }}" class='small-box-footer'>
+						<a href="{{ route('proyecto.filtrar', 'APROBADOCFI')  }}" class='small-box-footer'>
 						  VER <i class='fa fa-arrow-circle-right'></i>
 						</a>
 					</div>
@@ -54,7 +54,7 @@
 				<div class='col-lg-3 col-xs-6'>
 					<div class='small-box bg-green'>
 						<div class='inner'>
-						  	<h2>{{ $p_cfi }}<sup style='font-size: 20px'></sup></h2>
+						  	<h2>{{ $p_efec }}<sup style='font-size: 20px'></sup></h2>
 						  	<p>EFECTIVIZADOS</p>
 						</div>
 						<div class='icon'>
@@ -71,7 +71,7 @@
 				<div class='col-lg-3 col-xs-6'>
 					<div class='small-box bg-green'>
 						<div class='inner'>
-						  	<h2>{{ $p_efec }}<sup style='font-size: 20px'></sup></h2>
+						  	<h2>{{ $p_cfi }}<sup style='font-size: 20px'></sup></h2>
 						  	<p>EN EVALUACION CFI</p>
 						</div>
 						<div class='icon'>
@@ -109,12 +109,12 @@
 					<div class='small-box bg-aqua'>
 						<div class='inner'>
 						  	<h2>{{ $p_titular }}<sup style='font-size: 20px'></sup></h2>
-						  	<p>EN TITULAR</p>
+						  	<p>EN SOLICITANTE</p>
 						</div>
 						<div class='icon'>
 						  	<i class='ion ion-stats-bars'></i>
 						</div>
-						<a href="{{ route('proyecto.filtrar', 'EN TITULAR')  }}" class='small-box-footer'>
+						<a href="{{ route('proyecto.filtrar', 'SOLICITANTE')  }}" class='small-box-footer'>
 						  VER <i class='fa fa-arrow-circle-right'></i>
 						</a>
 					</div>
@@ -165,7 +165,7 @@
 						<div class='icon'>
 						  	<i class='ion ion-stats-bars'></i>
 						</div>
-						<a href="{{ route('proyecto.filtrar', 'GESTION JUDICIAL')  }}" class='small-box-footer'>
+						<a href="{{ route('proyecto.filtrar', 'JUDICIAL')  }}" class='small-box-footer'>
 						  VER <i class='fa fa-arrow-circle-right'></i>
 						</a>
 					</div>

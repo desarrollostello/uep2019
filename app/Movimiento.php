@@ -18,6 +18,8 @@ class Movimiento extends Model
     protected $dates = ['deleted_at'];
 
 
+    public $timestamps = true;
+
     /**
    * Get the route key for the model.
    *
@@ -53,7 +55,7 @@ class Movimiento extends Model
         $this->attributes['slug'] = str_slug($val) . rand(1,1000);
     }
 
-    
+
     public function getFechaAttribute()
     {
         return  \Carbon\Carbon::parse($this->attributes['fecha'])->format('d-m-Y');

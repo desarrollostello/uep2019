@@ -12,6 +12,7 @@ class AnexoSeguimiento extends Model
    * @var string
    */
     protected $table = 'anexos_seguimientos';
+    public $timestamps = true;
     protected $dates = ['deleted_at', 'fecha'];
 
     /**
@@ -43,10 +44,10 @@ class AnexoSeguimiento extends Model
    *
    * @param $val
    */
-  
+
   public function setFechaAttribute($val)
     {
-        $this->attributes['fecha'] = \Carbon\Carbon::parse($val)->format('Y-m-d');  
+        $this->attributes['fecha'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
     }
 
     public function getFechaAttribute()
@@ -85,7 +86,7 @@ class AnexoSeguimiento extends Model
         static::creating(function ($model) {
             $carbon = new \Carbon\Carbon();
             $date = $carbon->now();
-            
+
             $model->fecha = \Carbon\Carbon::parse($date)->format('Y-m-d');
         });
 

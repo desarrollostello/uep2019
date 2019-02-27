@@ -13,6 +13,7 @@ use App\Refinanciacion;
 use App\Checklist;
 use App\Sector;
 use App\Titular;
+use App\Log;
 use App\Sucursal;
 use App\Columnasview;
 use App\AnexoProyecto;
@@ -294,6 +295,17 @@ class ProyectoController extends Controller
     }
     public function index()
     {
+        $logs = New Log();
+        $logs->descripcion = "Ingresando a Proyectos";
+        $logs->modelo = "proyecto";
+        $logs->accion = "index";
+        $logs->user_id = Auth::user()->id;
+        //$log->slug = "proyecto-index-" . rand(10,10000);
+
+        if (!($logs->save()))
+        {
+            return redirect()->back();
+        }
       $proyectos = Proyecto::prov()->get();
       $columnas = Columnasview::colviewProv()
                                 ->where('seleccionada', 'SI')
@@ -311,20 +323,13 @@ class ProyectoController extends Controller
         $columnas = Columnasview::colviewProv()
                                   ->where('seleccionada', 'SI')
                                   ->get();
-        $estado =   Estado::where('codigo',$estado)->first();
-        $proyectos =   Proyecto::prov()->est($estado['id'])->get();
+        $estado =   DB::Table('estados')->select('id')->where('codigo',$estado)->first();
+        $proyectos =   Proyecto::prov()->est($estado->id)->get();
       return view('proyectos.index', [
           'proyectos' => $proyectos,
           'columnas'  => $columnas
       ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
 
     public function create()
     {
@@ -340,9 +345,6 @@ class ProyectoController extends Controller
         $garantias        = Garantia::all()->pluck('nombre', 'id');
         $sucursales       = Sucursal::localidad()->locProv()->get()->pluck('nombre', 'id');
 
-        //$sujetoCreditos   = SujetoCredito::all();
-        //$anexos           = AnexoProyecto::where('proyecto_id', $proyecto->id)->get();
-        //    $proyectos = [];
 
         return view('proyectos.create', [
             'localidades'         => $localidades,
@@ -354,11 +356,8 @@ class ProyectoController extends Controller
             'periodicidades'      => $periodicidades,
             'destinosCreditos'    => $destinosCreditos,
             'garantias'           => $garantias,
-            //'sujetoCreditos'      => $sujetoCreditos,
             'action'              =>'create',
             'sucursales'          => $sucursales,
-          //  'anexos'              => $anexos
-            //        'proyectos'           => $proyectos
         ]);
     }
 
@@ -465,7 +464,6 @@ class ProyectoController extends Controller
         //dd($data);
         if (Proyecto::create($data))
         {
-            // CREAR un CHECKLIST
             Checklist::create([
                 'proyecto_id'   => $data['id'],
                 'user_id'       => Auth::user()->id,
@@ -625,8 +623,6 @@ class ProyectoController extends Controller
         $checklist = Checklist::where('proyecto_id', $proyecto->id)->update($proyectoRequest->checklist);
 
         $data = $proyectoRequest->all();
-
-
         /*******************************************************/
         /************** COMPROBACIONES *************************/
 
@@ -698,7 +694,6 @@ class ProyectoController extends Controller
         {
             Session::flash('message-warning', 'Falta Fecha Desembolso');
             return redirect()->back();
-
         }
 
         if ($data['fechaDesembolso'] && is_null($data['fechaAprobadoCfi']))
@@ -755,17 +750,13 @@ class ProyectoController extends Controller
             return redirect()->back();
         }
 
-
-
         /*******************************************************/
         /************** FIN DE COMPROBACIONES *****************/
 
         if($proyecto->fill($data)->update())
         {
-          //  dd($proyecto);
             if ($proyectoRequest->hasfile('filename'))
             {
-
                 foreach ($proyectoRequest->file('filename') as $key => $value)
                 {
                     $extension = \File::extension($value->getClientOriginalName());
@@ -773,7 +764,7 @@ class ProyectoController extends Controller
                     $value->move(public_path('upload/proyectos/' . str_slug($data['nombre'])), $data['nombre_archivo'] . '.' . $extension);
                     $url = 'upload/proyectos/' . str_slug($data['nombre']) . '/' . $data['nombre_archivo'] . '.' . $extension;
 
-                    AnexoProyecto::create([
+                    $saveAnexo = AnexoProyecto::create([
                         'proyecto_id' => $proyecto->id,
                         'user_id' => Auth::user()->id,
                         'file' => $url,
@@ -782,6 +773,20 @@ class ProyectoController extends Controller
                         'slug' =>str_slug($data['nombre_archivo']),
                         'descripcion' => $data['descripcion_archivo']
                     ]);
+                    if (!($saveAnexo))
+                    {
+                        $logs = New Log();
+                        $logs->descripcion = "Error al intentar guardar un Anexo $url";
+                        $logs->modelo = "proyecto";
+                        $logs->accion = "update";
+                        $logs->user_id = Auth::user()->id;
+                        //$logs->slug = "proyecto-update-" . rand(10,10000);
+
+                        if (!($logs->save()))
+                        {
+                            return redirect()->back();
+                        }
+                    }
                 }
 
             }

@@ -12,6 +12,7 @@ class DestinoCredito extends Model
    * @var string
    */
     protected $table = 'destino_credito';
+    public $timestamps = true;
     protected $dates = ['deleted_at'];
 
     /**

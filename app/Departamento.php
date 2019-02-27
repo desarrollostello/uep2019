@@ -12,6 +12,7 @@ class Departamento extends Model
    * @var string
    */
     protected $table = 'departamentos';
+    public $timestamps = true;
     protected $dates = ['deleted_at'];
 
     /**

@@ -8,6 +8,7 @@ use Yajra\DataTables\Services\DataTable;
 class Banco extends Model
 {
     protected $table = 'bancos';
+    public $timestamps = true;
 
     public function getRouteKeyName()
     {

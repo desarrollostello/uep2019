@@ -13,6 +13,7 @@ class Columnasview extends Model
    * @var string
    */
     protected $table = 'columnasview';
+    public $timestamps = true;
     protected $dates = ['deleted_at'];
 
     /**

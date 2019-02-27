@@ -14,6 +14,8 @@ class LineaCredito extends Model
     protected $table = 'lineas_creditos';
     protected $dates = ['deleted_at'];
 
+    public $timestamps = true;
+
     /**
    * Get the route key for the model.
    *

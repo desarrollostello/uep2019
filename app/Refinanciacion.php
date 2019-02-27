@@ -14,6 +14,8 @@ class Refinanciacion extends Model
        * @var string
        */
       protected $table = 'refinanciaciones';
+
+      public $timestamps = true;
       //protected $dates = ['deleted_at'];
 
       /**
@@ -50,7 +52,7 @@ class Refinanciacion extends Model
      */
       public function setFechaAttribute($val)
       {
-          $this->attributes['fecha'] = \Carbon\Carbon::parse($val)->format('Y-m-d'); 
+          $this->attributes['fecha'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
           $this->attributes['slug'] = str_slug($val) . '_' . $this->attributes['proyecto_id'] . '_' . rand(5,10);
       }
 

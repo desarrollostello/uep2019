@@ -14,6 +14,8 @@ class Provincia extends Model
     protected $table = 'provincias';
     protected $dates = ['deleted_at'];
 
+    public $timestamps = true;
+
     /**
    * Get the route key for the model.
    *

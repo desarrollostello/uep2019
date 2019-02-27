@@ -14,6 +14,8 @@ class Sector extends Model
     protected $table = 'sectores';
     protected $dates = ['deleted_at'];
 
+    public $timestamps = true;
+
     /**
    * Get the route key for the model.
    *

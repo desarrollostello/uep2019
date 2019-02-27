@@ -13,6 +13,8 @@ class SujetoCredito extends Model
    */
     protected $table = 'sujeto_credito';
 
+    public $timestamps = true;
+
 
     /**
    * Get the route key for the model.

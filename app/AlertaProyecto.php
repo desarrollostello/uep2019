@@ -10,6 +10,7 @@ use Yajra\DataTables\Services\DataTable;
 class AlertaProyecto extends Model
 {
     protected $table = 'alerta_proyecto';
+    public $timestamps = true;
 
     public function getRouteKeyName()
     {

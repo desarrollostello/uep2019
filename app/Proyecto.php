@@ -24,6 +24,8 @@ class Proyecto extends Model
 
       protected $table = 'proyectos';
 
+      public $timestamps = true;
+
       protected $events = [
           'updated' => App\Events\ProyectoCreated::class,
       ];

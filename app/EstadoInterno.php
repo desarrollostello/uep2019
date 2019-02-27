@@ -13,7 +13,7 @@ class EstadoInterno extends Model
    */
     protected $table = 'estados_internos';
     protected $dates = ['deleted_at'];
-
+    public $timestamps = true;
     /**
    * Get the route key for the model.
    *

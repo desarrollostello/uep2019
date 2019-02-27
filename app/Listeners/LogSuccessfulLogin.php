@@ -100,7 +100,6 @@ class LogSuccessfulLogin
 
                 if(!($ap))
                 {
-
                     $alertaProyecto = new AlertaProyecto();
                     $alertaProyecto->proyecto_id = $p->id;
                     $alertaProyecto->alerta_id = $alerta->id;
@@ -111,8 +110,6 @@ class LogSuccessfulLogin
                     }else{
                        // dd('Se guardo la Alerta');
                     }
-                }else{
-                  //  dd('Alerta de Proyecto ya Creada');
                 }
 
             }
@@ -213,7 +210,7 @@ class LogSuccessfulLogin
         if($alerta)
         {
             $sql = Proyecto::whereHas('estado', function ($query) {
-                        $query->where('codigo', 'like', "%TITULAR%");
+                        $query->where('codigo', 'like', "%SOLICITANTE%");
                     })
                     ->where('fechaTitular', '<', \Carbon\Carbon::now()->subDays($alerta->dias))
                     ->get();

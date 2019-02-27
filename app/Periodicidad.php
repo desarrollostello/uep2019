@@ -14,6 +14,8 @@ class Periodicidad extends Model
     protected $table = 'periodicidades';
     protected $dates = ['deleted_at'];
 
+    public $timestamps = true;
+
     /**
    * Get the route key for the model.
    *

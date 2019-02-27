@@ -14,6 +14,8 @@ class Localidad extends Model
     protected $table = 'localidades';
     protected $dates = ['deleted_at'];
 
+    public $timestamps = true;
+
     /**
    * Get the route key for the model.
    *

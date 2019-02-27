@@ -13,6 +13,7 @@ class Desembolso extends Model
        * @var string
        */
       protected $table = 'desembolsos';
+      public $timestamps = true;
       //protected $dates = ['deleted_at'];
 
       /**

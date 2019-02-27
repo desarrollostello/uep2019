@@ -13,6 +13,7 @@ class Auditoria extends Model
  * @var string
  */
     protected $table = 'auditoria';
+    public $timestamps = true;
     protected $dates = ['deleted_at'];
 
     protected $fillable = [

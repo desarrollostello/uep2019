@@ -12,6 +12,7 @@ class EstadoCivil extends Model
    * @var string
    */
     protected $table = 'estados_civiles';
+    public $timestamps = true;
     protected $dates = ['deleted_at'];
 
     /**

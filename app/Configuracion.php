@@ -12,6 +12,7 @@ class Configuracion extends Model
    * @var string
    */
     protected $table = 'configuraciones';
+    public $timestamps = true;
     protected $dates = ['deleted_at'];
 
     /**

@@ -13,6 +13,8 @@ class Sucursal extends Model
    */
     protected $table = 'sucursales';
 
+    public $timestamps = true;
+
 
     /**
    * Get the route key for the model.

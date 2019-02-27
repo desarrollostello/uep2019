@@ -12,7 +12,9 @@ class Seguimiento extends Model
       protected $dates = ['created_at', 'updated_at', 'deleted_at', 'fecha'];
 
       protected $table = 'seguimientos';
-    
+
+      public $timestamps = true;
+
       public function getRouteKeyName()
       {
             return 'slug';
@@ -210,7 +212,7 @@ class Seguimiento extends Model
         'slug'
       ];
 
-    
+
       public function setFechaSeguimientoAttribute($val)
       {
           $this->attributes['fechaSeguimiento'] = \Carbon\Carbon::parse($val)->format('Y-m-d');
@@ -218,7 +220,7 @@ class Seguimiento extends Model
           $this->attributes['slug'] = str_slug($string);
       }
 
-      
+
       public function getFechaSeguimientoAttribute()
       {
           return  \Carbon\Carbon::parse($this->attributes['fechaSeguimiento'])->format('d-m-Y');
@@ -230,13 +232,13 @@ class Seguimiento extends Model
           return $this->belongsTo('App\Proyecto', 'proyecto_id');
       }
 
-      
+
       public function user()
       {
           return $this->belongsTo('App\User', 'user_id');
       }
 
-      
+
 
       public static function evaluarSeguimiento($proyecto)
       {
@@ -256,13 +258,13 @@ class Seguimiento extends Model
 
         return true;
       }
-        
-       
+
+
        protected static function boot() {
-        
+
             parent::boot();
             // esto es para controlar cuando se puede crear un seguimiento
-            // 
+            //
             /*
             Seguimiento::creating(function($proyecto){
                 if (is_null($proyecto->fechaEfectivizacion))
@@ -280,7 +282,7 @@ class Seguimiento extends Model
 
               return true;
 
-                
+
             });
             */
             Seguimiento::created(function($proyecto){

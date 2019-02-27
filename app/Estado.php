@@ -12,6 +12,7 @@ class Estado extends Model
    * @var string
    */
     protected $table = 'estados';
+    public $timestamps = true;
     protected $dates = ['deleted_at'];
 
     /**

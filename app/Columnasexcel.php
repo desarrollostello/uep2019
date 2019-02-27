@@ -13,6 +13,7 @@ class Columnasexcel extends Model
    * @var string
    */
     protected $table = 'columnasexcel';
+    public $timestamps = true;
     protected $dates = ['deleted_at'];
 
     /**

@@ -12,6 +12,7 @@ class FiguraLegal extends Model
    * @var string
    */
     protected $table = 'figuras_legales';
+    public $timestamps = true;
     protected $dates = ['deleted_at'];
 
     /**

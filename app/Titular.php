@@ -13,6 +13,8 @@ class Titular extends Model
    */
     protected $table = 'titular';
 
+    public $timestamps = true;
+
 
     /**
    * Get the route key for the model.
@@ -29,7 +31,7 @@ class Titular extends Model
    *
    * @var array
    */
-  
+
 
 
     protected $fillable = [
