@@ -108,7 +108,7 @@
                     <a href="{{ route('proyecto.delete', $x) }}" class="btn btn-danger btn-xs pull-rigth" onclick="return confirm('Está seguro que desea eliminar este ítem?')" class="btn btn-danger"><i class="fa fa-trash" title="Borrar Proyecto"></i></a>
                 @endcan
 
-                <button type="button" class="btn btn-info btn-xs pull-rigth" style="margin-left: 3px" data-toggle="modal" data-target="#addMovimiento" data-whatever="{{ $x->id }}"><i class="fa fa-edit" title="Editar Proyecto"></i></button>
+                <button type="button" class="btn btn-info btn-xs pull-rigth" style="margin-left: 3px" data-toggle="modal" data-target="#addMovimiento" data-whatever="{{ $x->id }}"><i class="fa fa-edit" title="Agregar Movimiento"></i></button>
             </td>
         </tr>
     @endforeach

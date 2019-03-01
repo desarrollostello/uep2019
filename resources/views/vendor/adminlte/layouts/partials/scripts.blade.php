@@ -30,12 +30,10 @@
       if (value < 150000)
           alert('Está seguro que el monto del Proyecto es: ' + value);
 
-      if (value > 2000000 && value < 2500000)
+      if (value > 2000000)
           alert('Recuerde que si el monto es superior a $2.000.000 el Proyecto no puede ser nuevo');
-      if (value > 2500000)
+      if (value > 4000000)
           alert('El monto NO puede ser superior a $2.500.000');
-
-
       str.focus();
 }
 
@@ -243,14 +241,9 @@ $("#select_estado").change(function(e){
           },
           error:function(errors){
              console.log(errors);
-             
           }
       });
-      	
-
 	}
-	
-	
 });
 
 $("#proyecto_id").change(function(){
@@ -810,12 +803,10 @@ function readURL(input) {
                     if (enviobco == 0)
                     {
                         alert("entre");
-
-
                         var element = document.getElementById("fechaCaducoBanco");
-                        element.setCustomValidity('');
-                        element.setCustomValidity("Dude is not a valid email. Enter something nice!!");
-                        //alert("No puede caducar en el Banco si no tiene fecha de envio al banco");
+                        //element.setCustomValidity('');
+                        //element.setCustomValidity("Dude is not a valid email. Enter something nice!!");
+                        alert("No puede caducar en el Banco si no tiene fecha de envio al banco");
                     }else{
                         fechaEnvioBanco = $('#fechaEnvioBanco').val();
                         alert(fechaEnvioBanco);

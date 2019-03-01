@@ -107,6 +107,8 @@ class Proyecto extends Model
         'titular',
         'observaciones',
         'color',
+        'latitud',
+        'longitud',
         'slug'
       ];
       /**

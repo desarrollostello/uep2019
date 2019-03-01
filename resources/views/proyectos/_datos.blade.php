@@ -59,6 +59,14 @@
            {!! Form::label('tamanio', 'Tamaño') !!}
            {!! Form::select('tamanio', [''=>'Seleccione', 'MICROEMPRENDIMIENTO'=>'MICROEMPRENDIMIENTO', 'PyMES'=>'PyMES'], null, ['class' => 'form-control', 'id' => 'tamanio', 'data-live-search' => 'true', 'data-max-options' => '1']  )  !!}
      </div>
+     <div class="form-group col-sm-3">
+           {!! Form::label('latitud', 'Latitud') !!}
+           {!! Form::text('latitud', null, ['class' => 'form-control']) !!}
+     </div>
+     <div class="form-group col-sm-3">
+           {!! Form::label('longitud', 'Longitud') !!}
+           {!! Form::text('longitud', null, ['class' => 'form-control']) !!}
+     </div>
 </div>
 
 <div class="row">

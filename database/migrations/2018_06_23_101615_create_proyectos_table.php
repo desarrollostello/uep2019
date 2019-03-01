@@ -88,6 +88,8 @@ class CreateProyectosTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('sucursal_id')->unsigned();
             $table->integer('provincia_id')->unsigned();
+            $table->string('latitud')->nullable();
+            $table->string('longitud')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
 

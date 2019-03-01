@@ -12,7 +12,7 @@
 <div class="row">
 
 
-  <!--
+  
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-yellow">
                             <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
@@ -70,7 +70,7 @@
                     </div>
 
 </div>
--->
+
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">

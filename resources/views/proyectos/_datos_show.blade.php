@@ -59,6 +59,14 @@
            <span style="position: relative; float: left; width: 100%; text-align: center;">Tamaño:</span><br>
            <span class="respuesta_show">{{ $proyecto->tamanio }}</span>
      </div>
+     <div class="form-group col-sm-3" style="min-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">Latitud:</span><br>
+           <span class="respuesta_show">{{ $proyecto->latitud }}</span>
+     </div>
+     <div class="form-group col-sm-3" style="min-height: 50px; border: 1px solid #ccc; padding: 5px; text-align: center">
+           <span style="position: relative; float: left; width: 100%; text-align: center;">Longitud:</span><br>
+           <span class="respuesta_show">{{ $proyecto->longitud }}</span>
+     </div>
 </div>
 
 
