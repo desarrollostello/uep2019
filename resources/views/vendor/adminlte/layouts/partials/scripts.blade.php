@@ -25,6 +25,9 @@
  @yield('scripts')
 
 <script>
+  $("#search").click(function() {
+      $(".busqueda_avanzada").toggle();
+  });
   function updateMonto(value) {
       var str = document.getElementById("monto");
       if (value < 150000)

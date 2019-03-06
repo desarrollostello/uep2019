@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Departamento extends Model
@@ -54,5 +54,26 @@ class Departamento extends Model
     public function scopeDepProv($query)
     {
         return $query->where('provincia_id', Auth::user()->provincia_id);
+    }
+
+
+    public static function boot() {
+        parent::boot();
+
+        static::creating(function ($data) {
+            return $data['provincia_id'] = Auth::user()->provincia_id;
+
+        });
+
+        static::updating(function($proyecto)
+        {
+        });
+
+        static::updated(function($proyecto) {
+        });
+
+
+        static::created(function ($model) {
+        });
     }
 }

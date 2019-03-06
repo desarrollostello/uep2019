@@ -10,11 +10,11 @@
 		</style>
 	</head>
 	<body>
-		
+
 		<script src="{{ asset('code/highcharts.js') }}"></script>
 		<script src="{{ asset('code/modules/exporting.js') }}"></script>
 		<script src="{{ asset('code/modules/export-data.js') }}"></script>
-	
+
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 		<script type="text/javascript">
@@ -47,7 +47,7 @@
 				    yAxis: {
 				        min: 0,
 				        title: {
-				            text: 'Cantidad de Proyectos'
+				            text: ''
 				        }
 				    },
 				    tooltip: {
@@ -65,7 +65,7 @@
 				        }
 				    },
 				    series: [{
-				        name: 'Estados',
+				        name: 'CANTIDAD de PROYECTOS',
 				        data: [
 				        	@php
 				        	foreach ($localidades as $key => $value) {
@@ -74,7 +74,7 @@
     								}else{
             								echo \App\Proyecto::where(['localidad_id' => $value->id])->count() . ',';
     								}
-				        		
+
 
     						}
 				         	@endphp

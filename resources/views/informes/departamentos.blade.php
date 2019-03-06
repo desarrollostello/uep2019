@@ -1,3 +1,4 @@
+<?php use Illuminate\Support\Facades\DB; ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -10,11 +11,11 @@
 		</style>
 	</head>
 	<body>
-		
+
 		<script src="{{ asset('code/highcharts.js') }}"></script>
 		<script src="{{ asset('code/modules/exporting.js') }}"></script>
 		<script src="{{ asset('code/modules/export-data.js') }}"></script>
-	
+
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 		<script type="text/javascript">
@@ -65,17 +66,17 @@
 				        }
 				    },
 				    series: [{
-				        name: 'Sectores',
+				        name: 'DEPARTAMENTOS',
 				        data: [
 				        	@php
 				        	foreach ($dptos as $key => $value) {
 				        		if ($key == $cant - 1){
-            								echo \App\Proyecto::where(['departamento_id' => $value->id])->count();
+									$proyectos = DB::table('proyectos')->join('localidades', 'proyectos.localidad_id', '=', 'localidades.id')->join('departamentos', 'localidades.dpto_id', '=', 'departamentos.id')->where('dpto_id', $value->id)->count();
+									echo $proyectos;
     								}else{
-            								echo \App\Proyecto::where(['departamento_id' => $value->id])->count() . ',';
+										$proyectos = DB::table('proyectos')->join('localidades', 'proyectos.localidad_id', '=', 'localidades.id')->join('departamentos', 'localidades.dpto_id', '=', 'departamentos.id')->where('dpto_id', $value->id)->count();
+										echo $proyectos . ',';
     								}
-				        		
-
     						}
 				         	@endphp
 			        	]

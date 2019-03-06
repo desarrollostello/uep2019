@@ -33,7 +33,7 @@ class HomeController extends Controller
 
     public function informeEstados()
     {
-        $proyectos = Proyecto::prov()->all();
+        $proyectos = Proyecto::prov()->get();
 
         $estado_aprobado_cfi = DB::Table('estados')->select('id')->where('codigo','APROBADOCFI')->first();
         $estado_uep =          DB::Table('estados')->select('id')->where('codigo','UEP')->first();
@@ -60,7 +60,7 @@ class HomeController extends Controller
         $proyectos_amortizando =  Proyecto::prov()->est($estado_amortizando->id)->count();
 
         //$endDate = $proyectos_efec['fecha_Efectivizado']->addYears(4);
-        $proyectos = Proyecto::prov()->all();
+        //$proyectos = Proyecto::prov()->all();
 
         return view('informes.primero', [
             'p_aprobado_cfi' => $proyectos_aprobado_cfi,
@@ -82,13 +82,8 @@ class HomeController extends Controller
 
     public function informeLocalidades()
     {
-        $localidades = Localidad::locProv()->all();
+        $localidades = Localidad::locProv()->get();
         $cant = Localidad::locProv()->count();
-
-        foreach ($localidades as $key => $value) {
-            //echo '$proyectos_' . str_slug($value->nombre);
-
-        }
 
         return view('informes.localidades', [
            'localidades' => $localidades,
@@ -101,10 +96,6 @@ class HomeController extends Controller
     {
         $sectores = Sector::all();
         $cant = Sector::count();
-        foreach ($sectores as $key => $value) {
-            //echo '$proyectos_' . str_slug($value->nombre);
-        }
-
         return view('informes.sectores', [
            'sectores' => $sectores,
            'cant'        => $cant
@@ -115,14 +106,31 @@ class HomeController extends Controller
 
     public function informeDptos()
     {
-        $dptos = Departamento::depProv()->all();
-        $cant =  Departamento::devProv()->count();
+        /*
+        $users = DB::table('users')->select('name', 'email as user_email')->get();
+        $users = DB::table('users')
+                     ->select(DB::raw('count(*) as user_count, status'))
+                     ->where('status', '<>', 1)
+                     ->groupBy('status')
+                     ->get();
 
-        foreach ($departamentos as $key => $value) {
-            //echo '$proyectos_' . str_slug($value->nombre);
+        */
+        $proyectos = DB::table('proyectos')->join('localidades', 'proyectos.localidad_id', '=', 'localidades.id')->join('departamentos', 'localidades.dpto_id', '=', 'departamentos.id')->where('dpto_id', 1)->count();
 
-        }
+         /*
+        $proyectos=DB::select('
+        SELECT COUNT(*) FROM proyectos, localidades, departamentos
+WHERE proyectos.`localidad_id` = localidades.`id`
+AND localidades.`dpto_id` = departamentos.`id`
+AND dpto_id = 1');
 
+*/
+        //echo $proyectos;
+        //dd("parar");
+        $dptos = Departamento::depProv()->get();
+        //$proyectos = Proyecto::with('localidad')->where('dpto_id', 1)->get();
+
+        $cant =  Departamento::depProv()->count();
         return view('informes.departamentos', [
            'dptos' => $dptos,
            'cant'  => $cant
@@ -132,7 +140,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        
+
 
         $perfil = Profile::where('user_id', Auth::user()->id)->count();
         //dd($perfil);

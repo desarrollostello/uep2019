@@ -14,9 +14,9 @@
 		<script src="{{ asset('code/highcharts.js') }}"></script>
 		<script src="{{ asset('code/modules/exporting.js') }}"></script>
 		<script src="{{ asset('code/modules/export-data.js') }}"></script>
-	
+
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-			
+
 		<script type="text/javascript">
 
 				Highcharts.chart('container', {
@@ -65,17 +65,17 @@
 				        }
 				    },
 				    series: [{
-				        name: 'Estados',
+				        name: 'ESTADOS',
 				        data: [
-				        	{{ $p_aprobado_cfi }}, 
-				        	{{ $p_en_uep }}, 
-				        	{{ $p_judicial }}, 
+				        	{{ $p_aprobado_cfi }},
+				        	{{ $p_en_uep }},
+				        	{{ $p_judicial }},
 				        	{{ $p_cfi }}, 
-				        	{{ $p_cancelado }}, 
-				        	{{ $p_archivado }}, 
-				        	{{ $p_des }}, 
-				        	{{ $p_titular }}, 
-				        	{{ $p_bco }}, 
+				        	{{ $p_cancelado }},
+				        	{{ $p_archivado }},
+				        	{{ $p_des }},
+				        	{{ $p_titular }},
+				        	{{ $p_bco }},
 				        	{{ $p_efec }}
 			        	]
 

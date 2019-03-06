@@ -82,6 +82,7 @@
                   <li><a target="_blank" href="{{ route('informeLocalidades') }}">Proyectos por Localidad</a></li>
                   <li><a target="_blank" href="{{ route('informeEstados') }}">Proyectos por Estado</a></li>
                   <li><a target="_blank" href="{{ route('informeSectores') }}">Proyectos por Sector</a></li>
+                  <li><a target="_blank" href="{{ route('informeDptos') }}">Proyectos por Dptos</a></li>
                  
                 </ul>
             </li>

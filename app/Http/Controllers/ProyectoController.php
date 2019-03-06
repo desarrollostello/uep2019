@@ -43,6 +43,19 @@ class ProyectoController extends Controller
         return view('proyectos.datatable');
     }
 
+    public function filtroAnual(){
+        $proyectos = Proyecto::prov()
+                                ->whereYear('fechaIngreso', '=', date('Y'))
+                                ->get();
+        $columnas = Columnasview::colviewProv()
+                                  ->where('seleccionada', 'SI')
+                                  ->get();
+        return view('proyectos.index', [
+            'proyectos' => $proyectos,
+            'columnas'  => $columnas
+        ]);
+    }
+
     public function getPosts()
     {
 
@@ -89,17 +102,19 @@ class ProyectoController extends Controller
 
     public function search()
     {
-        $proyectos = Proyecto::where('user_id', '<>', null);
-        if(isset($_POST['fechaIngreso_desde']))
+
+        $proyectos = Proyecto::prov();
+        if($_POST['fechaIngreso_desde'] != null)
         {
+            dd($_POST);
             $fecha_desde = Carbon::parse($_POST['fechaIngreso_desde'])->format('Y-m-d');
             $fecha_hasta = Carbon::parse($_POST['fechaIngreso_hasta'])->format('Y-m-d');
             $proyectos->whereBetween('fechaIngreso', [$fecha_desde, $fecha_hasta]);
-
         }
 
         if($_POST['fechaEnvioBanco_desde'])
         {
+        
             $fecha_desde = Carbon::parse($_POST['fechaEnvioBanco_desde'])->format('Y-m-d');
             $fecha_hasta = Carbon::parse($_POST['fechaEnvioBanco_hasta'])->format('Y-m-d');
 
@@ -212,12 +227,20 @@ class ProyectoController extends Controller
         }
         if($_POST['fechaUltimoMovimiento_desde'])
         {
+
             $fecha_desde = Carbon::parse($_POST['fechaUltimoMovimiento_desde'])->format('Y-m-d');
             $fecha_hasta = Carbon::parse($_POST['fechaUltimoMovimiento_hasta'])->format('Y-m-d');
 
             $proyectos->whereBetween('fechaUltimoMovimiento', [$fecha_desde, $fecha_hasta]);
+            //$proyectos1 = Proyecto::prov()->whereBetween('fechaUltimoMovimiento', [$fecha_desde, $fecha_hasta]);
+            //dd($proyectos);
         }
-        $columnas = Columnasview::where('seleccionada', 'ON')->get();
+        $columnas = Columnasview::colviewProv()
+                                  ->where('seleccionada', 'SI')
+                                  ->get();
+
+
+
         return view('proyectos.index', [
             'columnas'  => $columnas,
             'proyectos' => $proyectos->get()
@@ -295,26 +318,29 @@ class ProyectoController extends Controller
     }
     public function index()
     {
+        /*
         $logs = New Log();
         $logs->descripcion = "Ingresando a Proyectos";
         $logs->modelo = "proyecto";
         $logs->accion = "index";
         $logs->user_id = Auth::user()->id;
+
         //$log->slug = "proyecto-index-" . rand(10,10000);
 
         if (!($logs->save()))
         {
             return redirect()->back();
         }
-      $proyectos = Proyecto::prov()->get();
-      $columnas = Columnasview::colviewProv()
-                                ->where('seleccionada', 'SI')
-                                ->get();
+        */
+          $proyectos = Proyecto::prov()->get();
+          $columnas = Columnasview::colviewProv()
+                                    ->where('seleccionada', 'SI')
+                                    ->get();
 
-      return view('proyectos.index', [
-          'proyectos' => $proyectos,
-          'columnas'  => $columnas
-      ]);
+          return view('proyectos.index', [
+              'proyectos' => $proyectos,
+              'columnas'  => $columnas
+          ]);
     }
 
 

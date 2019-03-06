@@ -114,6 +114,7 @@ Route::group(['middleware' => 'auth'], function ()
 
     Route::group(['prefix' => 'proyecto'], function () {
             Route::get('listado', 'ProyectoController@index')->name('proyecto.index')->middleware('permission:proyecto.index');
+            Route::get('filtroAnual', 'ProyectoController@filtroAnual')->name('proyecto.filtroAnual');
             Route::get('excel', 'ProyectoController@excel')->name('proyecto.excel');
             Route::get('nuevo', 'ProyectoController@create')->name('proyecto.create')->middleware('permission:proyecto.create');
             Route::post('nuevo', 'ProyectoController@store')->name('proyecto.store')->middleware('permission:proyecto.store');
@@ -128,6 +129,7 @@ Route::group(['middleware' => 'auth'], function ()
             // Get Data
             Route::get('getdata', 'ProyectoController@getPosts')->name('proyecto.getdata');
             Route::post('enviadocfi', 'ProyectoController@enviadocfi')->name('proyecto.enviadocfi');
+            Route::post('search', 'ProyectoController@search')->name('proyecto.search')->middleware('permission:proyecto.search');
     });
 
     Route::group(['prefix' => 'refinanciacion'], function () {
