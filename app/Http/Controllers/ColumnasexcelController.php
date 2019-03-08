@@ -13,12 +13,9 @@ use Redirect;
 
 class ColumnasexcelController extends Controller
 {
-
-
-
     public function index()
     {
-        $columnasexcel  = Columnasexcel::colexcelProv()->all();
+        $columnasexcel  = Columnasexcel::colexcelProv()->get();
         return view('columnasexcels.index', [
             'columnasexcel' => $columnasexcel
         ]);

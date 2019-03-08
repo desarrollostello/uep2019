@@ -13,25 +13,16 @@
 
         @endforeach
 
-<!--
-        <th>Fecha Ingreso</th>
-        <th>Nombre</th>
-        <th>Nro CFI</th>
-        <th>Localidad</th>
-        <th>Estado</th>
-        <th>Titular</th>
-        <th>Banco</th>
-        <th>Sector</th>
-        <th>Monto</th>
-    -->
+
         <th style="width: 15%">Opciones</th>
     </tr>
     </thead>
 
     <tbody>
-    @foreach($proyectos as $x)
-        <tr style="background-color: {{ $x->color }}">
 
+    @foreach($proyectos as $x)
+
+        <tr style="background-color: {{ $x->color }}">
 
              @foreach($columnas as $c)
 
@@ -98,6 +89,7 @@
              @endforeach
 
             <td>
+
                 @can('proyecto.edit')
                     <a href="{{ route('proyecto.edit', $x) }}" class="btn btn-info btn-xs pull-rigth" style="margin-right: 3px"><i class="fa fa-edit" title="Editar Proyecto"></i></a>
                 @endcan

@@ -115,7 +115,7 @@ Route::group(['middleware' => 'auth'], function ()
     Route::group(['prefix' => 'proyecto'], function () {
             Route::get('listado', 'ProyectoController@index')->name('proyecto.index')->middleware('permission:proyecto.index');
             Route::get('filtroAnual', 'ProyectoController@filtroAnual')->name('proyecto.filtroAnual');
-            Route::get('excel', 'ProyectoController@excel')->name('proyecto.excel');
+            Route::patch('excel1', 'ProyectoController@excel1')->name('proyecto.excel1');
             Route::get('nuevo', 'ProyectoController@create')->name('proyecto.create')->middleware('permission:proyecto.create');
             Route::post('nuevo', 'ProyectoController@store')->name('proyecto.store')->middleware('permission:proyecto.store');
             Route::get('editar/{proyecto}', 'ProyectoController@edit')->name('proyecto.edit')->middleware('permission:proyecto.edit');

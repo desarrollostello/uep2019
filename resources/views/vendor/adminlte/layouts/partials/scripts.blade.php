@@ -56,6 +56,9 @@
     });
   </script> 
 <script>
+
+
+    
     
     $('#table-titulares').DataTable(
             {
@@ -75,6 +78,7 @@
                     },
                 ],
                 buttons: [
+                      
                       {
                             extend: 'excel',
                             className: 'btn btn-info',
@@ -639,6 +643,7 @@ function readURL(input) {
                     },
                 ],
                 buttons: [
+                      
                       {
                             extend: 'excel',
                             className: 'btn btn-info',
@@ -679,6 +684,24 @@ function readURL(input) {
                             init: function(api, node, config) {
                                   $(node).removeClass('dt-button')
                             }
+                      },
+                      {
+                          className: 'btn btn-info',
+                          text: 'My button 1',
+                          init: function(e, dt, node, config) {
+                                 $(output).html('HOLAS');
+                          }
+                      },
+                      {
+                          text: 'JSON',
+                          action: function ( e, dt, button, config ) {
+                              var data = dt.buttons.exportData();
+           
+                              $.fn.dataTable.fileSave(
+                                  new Blob( [ JSON.stringify( data ) ] ),
+                                  'Export.json'
+                              );
+                          }
                       }
                 ],
                 //"sDom": '<"top"l>rt<"bottom"ip><"clear">',

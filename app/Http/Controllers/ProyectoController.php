@@ -16,6 +16,7 @@ use App\Titular;
 use App\Log;
 use App\Sucursal;
 use App\Columnasview;
+use App\Columnasexcel;
 use App\AnexoProyecto;
 use App\FiguraLegal;
 use App\EstadoCivil;
@@ -48,8 +49,8 @@ class ProyectoController extends Controller
                                 ->whereYear('fechaIngreso', '=', date('Y'))
                                 ->get();
         $columnas = Columnasview::colviewProv()
-                                  ->where('seleccionada', 'SI')
-                                  ->get();
+                                ->where('seleccionada', 'SI')
+                                ->get();
         return view('proyectos.index', [
             'proyectos' => $proyectos,
             'columnas'  => $columnas
@@ -106,7 +107,6 @@ class ProyectoController extends Controller
         $proyectos = Proyecto::prov();
         if($_POST['fechaIngreso_desde'] != null)
         {
-            dd($_POST);
             $fecha_desde = Carbon::parse($_POST['fechaIngreso_desde'])->format('Y-m-d');
             $fecha_hasta = Carbon::parse($_POST['fechaIngreso_hasta'])->format('Y-m-d');
             $proyectos->whereBetween('fechaIngreso', [$fecha_desde, $fecha_hasta]);
@@ -114,7 +114,7 @@ class ProyectoController extends Controller
 
         if($_POST['fechaEnvioBanco_desde'])
         {
-        
+
             $fecha_desde = Carbon::parse($_POST['fechaEnvioBanco_desde'])->format('Y-m-d');
             $fecha_hasta = Carbon::parse($_POST['fechaEnvioBanco_hasta'])->format('Y-m-d');
 
@@ -240,6 +240,7 @@ class ProyectoController extends Controller
                                   ->get();
 
 
+        //$this->excel($proyectos->get());
 
         return view('proyectos.index', [
             'columnas'  => $columnas,
@@ -247,17 +248,17 @@ class ProyectoController extends Controller
         ]);
 
     }
-    public function excel()
+    public function excel1($proyectos)
     {
+        dd($proyectos);
         $columnas = Columnasexcel::colexcelProv()
-                                    ->where('seleccionada', 'SI')
-                                    ->get();
+                                ->where('seleccionada', 'SI')
+                                ->get();
         $campos = Columnasexcel::colexcelProv()
                                 ->select('nombre')->where('seleccionada', 'SI')
-                                ->get()
-                                ->toArray();
+                                ->get();
         //dd($campos);
-        $proyectos = Proyecto::prov()->all();
+        //    $proyectos = Proyecto::prov()->get();
         /** Error reporting */
         error_reporting(E_ALL);
         ini_set('display_errors', TRUE);
@@ -267,54 +268,96 @@ class ProyectoController extends Controller
         if (PHP_SAPI == 'cli')
             die('This example should only be run from a Web Browser');
 
-
         // Create new PHPExcel object
         $objPHPExcel = new PHPExcel();
-
         // Set document properties
         $objPHPExcel->getProperties()->setCreator("UEP")
-                                        ->setLastModifiedBy("UEP")
-                                        ->setTitle("Proyectos UEP");
+                        ->setLastModifiedBy("UEP")
+                        ->setTitle("Proyectos UEP");
 
         $col = 1;
-
         foreach($columnas as $c)
         {
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, 1, $c->descripcion);
-
             $col++;
         }
 
-        foreach($proyectos as $p)
+        $columna = 1;
+        foreach ($campos as $campo)
         {
-            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, 2, $c->descripcion);
+            $fila = 2;
+            foreach($proyectos as $p)
+            {
+
+                switch ($campo->nombre)
+                {
+                    case 'lineaCredito_id':
+                        $valor = $p->lineaCredito->nombre;
+                        break;
+                    case 'estado_id':
+                        $valor = $p->estado->nombre;
+                        break;
+                    case 'estadoInterno_id':
+                        $valor = $p->estadoInterno->nombre;
+                        break;
+                    case 'sector_id':
+                        $valor = $p->sector->nombre;
+                        break;
+                    case 'figuraLegal_id':
+                        $valor = $p->figuraLegal->nombre;
+                        break;
+                    case 'periodicidad_id':
+                        if($p->periodicidad_id)
+                            $valor = $p->periodicidad->nombre;
+                        break;
+                    case 'destinoCredito_id':
+                        $valor = $p->destinoCredito->nombre;
+                        break;
+                    case 'sucursal_id':
+                        $valor = $p->sucursal->nombre;
+                        break;
+                    default:
+                        $campo1 = $campo->nombre;
+                        $valor = $p->$campo1;
+                        break;
+                }
+
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($columna, $fila, $valor);
+                $sheet = $objPHPExcel->getActiveSheet();
+                $cellIterator = $sheet->getRowIterator()->current()->getCellIterator();
+                $cellIterator->setIterateOnlyExistingCells(true);
+                foreach($cellIterator as $cell) {
+                    $sheet->getColumnDimension($cell->getColumn())->setAutoSize(true);
+                }
+                $fila++;
+            }
+            $columna++;
         }
 
-
-
-        // Rename worksheet
+        $style = array(
+            'alignment' => array(
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+            )
+        );
+        $objPHPExcel->getActiveSheet()->getDefaultStyle()->applyFromArray($style);
         $objPHPExcel->getActiveSheet()->setTitle('Proyectos');
-
-
-        // Set active sheet index to the first sheet, so Excel opens this as the first sheet
         $objPHPExcel->setActiveSheetIndex(0);
 
+        // Redirect output to a client’s web browser (Excel5)
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="Proyectos-UEP-Neuquen.xls"');
+        header('Cache-Control: max-age=0');
+        // If you're serving to IE 9, then the following may be needed
+        header('Cache-Control: max-age=1');
 
-            // Redirect output to a client’s web browser (Excel5)
-            header('Content-Type: application/vnd.ms-excel');
-            header('Content-Disposition: attachment;filename="Proyectos-UEP-Neuquen.xls"');
-            header('Cache-Control: max-age=0');
-            // If you're serving to IE 9, then the following may be needed
-            header('Cache-Control: max-age=1');
+        // If you're serving to IE over SSL, then the following may be needed
+        header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+        header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+        header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+        header ('Pragma: public'); // HTTP/1.0
 
-            // If you're serving to IE over SSL, then the following may be needed
-            header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-            header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
-            header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-            header ('Pragma: public'); // HTTP/1.0
-
-            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-            $objWriter->save('php://output');
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
     }
     public function index()
     {
@@ -332,12 +375,14 @@ class ProyectoController extends Controller
             return redirect()->back();
         }
         */
+          $proy = "PEPE";
           $proyectos = Proyecto::prov()->get();
           $columnas = Columnasview::colviewProv()
                                     ->where('seleccionada', 'SI')
                                     ->get();
 
           return view('proyectos.index', [
+              'proy'      => $proy,
               'proyectos' => $proyectos,
               'columnas'  => $columnas
           ]);

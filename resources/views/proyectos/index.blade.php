@@ -12,6 +12,7 @@
     <div class="col-md-3" style="margin-left: 50px">
         <button id="search" type="button" class="btn btn-primary" style="float: left; position: relative; overflow: hidden; width: 100%;">Búsqueda Avanzada</button><br />
     </div>
+    <div id="output"></div>
 </div>
 <div class="row busqueda_avanzada" style="display: none">
     <div class="row">
@@ -156,7 +157,7 @@
                             <div class="col-md-3">
                                 <span class="etiqueta">Último Movimiento hasta<input class="form-control hasta" type="text" id="fechaUltimoMovimiento_hasta" name="fechaUltimoMovimiento_hasta"></span>
                             </div>
-                        </div>        
+                        </div>
 
                         <div class="form-group col-sm-11" style="margin-top: 20px">
                             {!! Form::submit('Filtrar', ['class' => 'btn btn-success filtrar', 'id'=>'filtrarDatos']) !!}
@@ -218,6 +219,10 @@
 <div class="row">
     <div class="col-md-12">
         <a href="{{  route('proyecto.filtroAnual') }}">Ingresados este año</a>
+    </div>
+
+    <div class="col-md-12">
+
     </div>
 </div>
 
