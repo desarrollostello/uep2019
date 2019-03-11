@@ -525,11 +525,51 @@ function readURL(input) {
       $(document).ready(function()
       {
 
+      	$('.editrow').on('click', function(e) 
+      	{
+      		e.preventDefault();
+      		var id = $(this).attr('value');
+      		var param = {
+		      'id': id
+		    };
+		    $.ajax({
+		      url:"{{route('proyecto.editarAjax')}}",
+		      mehtod:"get",
+		      data:{id:id},
+		      success:function(result){
+		        console.log(result);
+		      //  location.reload();
+		        //location.reload(true);
+		      },
+		      error:function(errors){
+		        console.log("numero"+errors);
+		        //location.reload(true);
+		      }
+		    });
+    		
+  		});
+
         $('.fechas').datepicker({
            dateFormat: '{{ config("app.date_format_js") }}',
            //format: 'dd-mm-yyyy',
            language: "es"
         });
+
+        $('#table-proyectos1 tbody').on('click', 'td.details-control', function () {
+	        var tr = $(this).closest('tr');
+	        var row = table.row(tr);
+	 		alert(row);
+	        if ( row.child.isShown() ) {
+	            // This row is already open - close it
+	            row.child.hide();
+	            tr.removeClass('shown');
+	        }
+	        else {
+	            // Open this row
+	            row.child( format(row.data()) ).show();
+	            tr.addClass('shown');
+	        }
+	    });
 
 
 
@@ -623,11 +663,31 @@ function readURL(input) {
                 }
             });
 
+            function format ( d ) {
+			    // `d` is the original data object for the row
+			    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+			        '<tr>'+
+			            '<td>Full name:</td>'+
+			            '<td>'+d.nombre+'</td>'+
+			        '</tr>'+
+			        '<tr>'+
+			            '<td>Extension number:</td>'+
+			            '<td>'+d.nroCFI+'</td>'+
+			        '</tr>'+
+			        '<tr>'+
+			            '<td>Extra info:</td>'+
+			            '<td>And any further details here (images etc)...</td>'+
+			        '</tr>'+
+			    '</table>';
+			}
+            
+
 
             $('#table-proyectos1').DataTable
             (
             {
                 dom: 'Bfrtip',
+                "scrollX": true,
                 columnDefs: [
                     {
                         targets:-1,
@@ -684,25 +744,8 @@ function readURL(input) {
                             init: function(api, node, config) {
                                   $(node).removeClass('dt-button')
                             }
-                      },
-                      {
-                          className: 'btn btn-info',
-                          text: 'My button 1',
-                          init: function(e, dt, node, config) {
-                                 $(output).html('HOLAS');
-                          }
-                      },
-                      {
-                          text: 'JSON',
-                          action: function ( e, dt, button, config ) {
-                              var data = dt.buttons.exportData();
-           
-                              $.fn.dataTable.fileSave(
-                                  new Blob( [ JSON.stringify( data ) ] ),
-                                  'Export.json'
-                              );
-                          }
                       }
+
                 ],
                 //"sDom": '<"top"l>rt<"bottom"ip><"clear">',
                 processing: true,
@@ -722,8 +765,7 @@ function readURL(input) {
                 }
             });
 
-          
-
+            
             window.Laravel = {!! json_encode([
               'csrfToken' => csrf_token(),
             ]) !!};

@@ -38,13 +38,13 @@ use Illuminate\Database\Query\Builder;
 
 class ProyectoController extends Controller
 {
-
     public function datatable()
     {
         return view('proyectos.datatable');
     }
 
-    public function filtroAnual(){
+    public function filtroAnual()
+    {
         $proyectos = Proyecto::prov()
                                 ->whereYear('fechaIngreso', '=', date('Y'))
                                 ->get();
@@ -99,7 +99,6 @@ class ProyectoController extends Controller
 
         return $off;
     }
-
 
     public function search()
     {
@@ -248,18 +247,19 @@ class ProyectoController extends Controller
         ]);
 
     }
-    public function excel1($proyectos)
+    public function excel1()
     {
+        $todos = $_POST['datos'];
+        $proyectos = json_decode($todos);
         dd($proyectos);
+
         $columnas = Columnasexcel::colexcelProv()
                                 ->where('seleccionada', 'SI')
                                 ->get();
         $campos = Columnasexcel::colexcelProv()
                                 ->select('nombre')->where('seleccionada', 'SI')
                                 ->get();
-        //dd($campos);
-        //    $proyectos = Proyecto::prov()->get();
-        /** Error reporting */
+
         error_reporting(E_ALL);
         ini_set('display_errors', TRUE);
         ini_set('display_startup_errors', TRUE);
@@ -281,14 +281,12 @@ class ProyectoController extends Controller
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, 1, $c->descripcion);
             $col++;
         }
-
         $columna = 1;
         foreach ($campos as $campo)
         {
             $fila = 2;
             foreach($proyectos as $p)
             {
-
                 switch ($campo->nombre)
                 {
                     case 'lineaCredito_id':
@@ -388,7 +386,6 @@ class ProyectoController extends Controller
           ]);
     }
 
-
     public function filtrar($estado)
     {
         $columnas = Columnasview::colviewProv()
@@ -431,7 +428,6 @@ class ProyectoController extends Controller
             'sucursales'          => $sucursales,
         ]);
     }
-
 
     public function store(ProyectoRequest $request)
     {
@@ -577,7 +573,6 @@ class ProyectoController extends Controller
             ]);
      }
 
-
     public function edit(Proyecto $proyecto)
     {
         $localidades      = Localidad::all()->pluck('nombre', 'id');
@@ -634,10 +629,13 @@ class ProyectoController extends Controller
         ]);
     }
 
-
-    public function editar($id)
+    public function editar(Request $req)
     {
-        $proyecto         = Proyecto::find($id);
+
+        $proyecto         = Proyecto::find($req->id);
+
+        return $proyecto;
+        /*
         $localidades      = Localidad::all()->pluck('nombre', 'id');;
         $lineasCreditos   = LineaCredito::all()->pluck('nombre', 'id');
         $estados          = Estado::all()->pluck('nombre', 'id');
@@ -684,10 +682,10 @@ class ProyectoController extends Controller
             'user_id'             => Auth::user()->id,
             'cantidadSujetoCredito' => $cantidadSujetoCredito,
             'refinanciaciones'    => $refinanciaciones
-
         ]);
-    }
+        */
 
+    }
 
     public function update(ProyectoRequest $proyectoRequest, Proyecto $proyecto)
     {
@@ -870,7 +868,6 @@ class ProyectoController extends Controller
         }
     }
 
-
     public function destroy(Proyecto $proyecto)
     {
         Proyecto::whereId($proyecto->id)->delete();
@@ -884,6 +881,20 @@ class ProyectoController extends Controller
     }
 
 
+    public function pdfview(Proyecto $proyecto)
+    {
+
+        $pdf = PDF::loadView('backend.derivaciones.pdfview',
+        //['derivacion', $derivacion])
+        compact(['proyectos']))
+        ->setPaper('a4')
+        ->setOption('margin-top', '2cm')
+        ->setWarnings(true);
+
+        /* procedimiento original que no firma */
+        return $pdf->stream();
+       // return $pdf->download('derivacion.pdf');
+    }
 
 
 }

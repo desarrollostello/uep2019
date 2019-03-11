@@ -165,9 +165,18 @@
                     {{ Form::close() }}
         </div>
     </div>
+
 </div>
 
 <div class="container-fluid">
+    <div class="row">
+        {!! Form::model($proyectos, ['id'=>'excel1', 'method' => 'POST', 'route' => ['proyecto.excel1'], 'enctype' => 'multipart/form-data']) !!}
+            <input type="hidden" name="datos" id="datos" value="{{ json_encode($proyectos) }}" />
+            <div class="form-group col-sm-11" style="margin-top: 20px">
+                {!! Form::submit('EXCEL1', ['class' => 'btn btn-success', 'id'=>'excel1']) !!}
+            </div>
+        {{ Form::close() }}
+    </div>
 <div class="row">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-yellow">

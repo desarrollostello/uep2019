@@ -1,6 +1,7 @@
 <table id="table-proyectos1" class="table table-responsive mdl-data-table" style="padding-left: 5px; font-size: 12px; vertical-align: middle; text-align: center;">
     <thead>
     <tr>
+
         @foreach($columnas as $c)
             @if ($c->descripcion == 'Último Mov')
                 <td style="min-width: 68px;">{{ $c->descripcion  }}</td>
@@ -10,26 +11,18 @@
                 <td style="min-width: 70px;">{{ $c->descripcion  }}</td>
 
             @endif
-
         @endforeach
-
-
         <th style="width: 15%">Opciones</th>
     </tr>
     </thead>
-
     <tbody>
-
     @foreach($proyectos as $x)
-
-        <tr style="background-color: {{ $x->color }}">
+        <tr class="editrow" value="{{ $x->id }}" style="background-color: {{ $x->color }}">
 
              @foreach($columnas as $c)
-
                @php
                $nombre = $c->nombre
                @endphp
-
                 @if ($c->nombre == 'localidad_id')
                     <td style="text-align:center">{{  $x->localidad->nombre }}</td>
                 @elseif($c->nombre == 'estado_id')
@@ -81,6 +74,8 @@
                     <td style="text-align:center">{{ $x->fechaRespuestaBanco }}</td>
                 @elseif($c->nombre == 'fechaEnvioBanco')
                    <td style="text-align:center">{{ $x->fechaEnvioBanco }}</td>
+                @elseif($c->nombre == 'nombre')
+                   <td class="nombre" style="text-align:center">{{ $x->nombre }}</td>
 
                 @else
                     <td style="text-align:center">{{  $x->$nombre }}</td>

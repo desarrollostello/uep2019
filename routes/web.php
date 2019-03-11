@@ -115,11 +115,11 @@ Route::group(['middleware' => 'auth'], function ()
     Route::group(['prefix' => 'proyecto'], function () {
             Route::get('listado', 'ProyectoController@index')->name('proyecto.index')->middleware('permission:proyecto.index');
             Route::get('filtroAnual', 'ProyectoController@filtroAnual')->name('proyecto.filtroAnual');
-            Route::patch('excel1', 'ProyectoController@excel1')->name('proyecto.excel1');
+            Route::POST('excel1', 'ProyectoController@excel1')->name('proyecto.excel1');
             Route::get('nuevo', 'ProyectoController@create')->name('proyecto.create')->middleware('permission:proyecto.create');
             Route::post('nuevo', 'ProyectoController@store')->name('proyecto.store')->middleware('permission:proyecto.store');
             Route::get('editar/{proyecto}', 'ProyectoController@edit')->name('proyecto.edit')->middleware('permission:proyecto.edit');
-            Route::get('editar1/{id}', 'ProyectoController@editar')->name('proyecto.editar')->middleware('permission:proyecto.editar');
+            Route::get('editarAjax', 'ProyectoController@editar')->name('proyecto.editarAjax');
             Route::get('ver/{proyecto}', 'ProyectoController@show')->name('proyecto.show')->middleware('permission:proyecto.show');
             Route::get('filtrar/{estado}', 'ProyectoController@filtrar')->name('proyecto.filtrar')->middleware('permission:proyecto.filtrar');
             Route::patch('editar/{proyecto}', 'ProyectoController@update')->name('proyecto.update')->middleware('permission:proyecto.update');
